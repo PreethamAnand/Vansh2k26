@@ -61,6 +61,14 @@ Execute the SQL scripts found in `database_setup.sql` and `update_schema.sql` wi
 npm run dev
 ```
 
+## Gallery Asset Naming
+
+All files in the public gallery folder follow a serial naming convention for easier maintenance and predictable ordering.
+
+- Location: public/gallery
+- Format: 3-digit serial number with extension
+- Example: 001.jpeg, 002.jpeg ... 024.jpeg
+
 ## License
 © 2026 Vansh2k26. All rights reserved. Built for high-performance innovation.
 
