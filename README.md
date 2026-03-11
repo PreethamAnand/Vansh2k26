@@ -1,4 +1,6 @@
-# VHACK 2.0 - Premium Hackathon Platform 🚀
+# Vansh2k26
+
+# VHACK 2.0 - Premium Hackathon Platform
 
 VHACK 2.0 is a state-of-the-art hackathon management platform designed for a premium user experience. It features a seamless registration flow, dynamic payment processing, and comprehensive dashboards for participants, judges, and administrators.
 
@@ -59,8 +61,8 @@ Execute the SQL scripts found in `database_setup.sql` and `update_schema.sql` wi
 npm run dev
 ```
 
-## 📄 License
-© 2026 VHACK 2.0. All Rights Reserved. Built for high-performance innovation.
+## License
+© 2026 VHACK 2.0. All rights reserved. Built for high-performance innovation.
 
 ---
 
@@ -90,4 +92,3 @@ npm run dev
 - **Phase 1**: [Day 1 Milestones]
 - **Phase 2**: [Day 2 Milestones]
 - **Future Scope**: [Scalability and real-world impact]
-# Vansh2k26
