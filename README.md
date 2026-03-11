@@ -1,8 +1,8 @@
 # Vansh2k26
 
-# VHACK 2.0 - Premium Hackathon Platform
+# Vansh2k26 - Premium Hackathon Platform
 
-VHACK 2.0 is a state-of-the-art hackathon management platform designed for a premium user experience. It features a seamless registration flow, dynamic payment processing, and comprehensive dashboards for participants, judges, and administrators.
+Vansh2k26 is a state-of-the-art hackathon management platform designed for a premium user experience. It features a seamless registration flow, dynamic payment processing, and comprehensive dashboards for participants, judges, and administrators.
 
 ## ✨ Features
 
@@ -62,7 +62,7 @@ npm run dev
 ```
 
 ## License
-© 2026 VHACK 2.0. All rights reserved. Built for high-performance innovation.
+© 2026 Vansh2k26. All rights reserved. Built for high-performance innovation.
 
 ---
 
@@ -71,7 +71,7 @@ npm run dev
 
 ### 📋 Team Information
 - **Team Name**: [Your Team Name]
-- **Team ID**: [VHACK_2.0_XXX]
+- **Team ID**: [VANSH2K26_XXX]
 - **Members**:
   1. [Member 1 Name]
   2. [Member 2 Name]
