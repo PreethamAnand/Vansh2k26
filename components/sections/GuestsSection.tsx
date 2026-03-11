@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { FloatingPathsLayer } from "@/components/ui/background-paths";
 
 const PANELS = [
   { id: "guest-1", label: "Chief Guest", name: "Speaker One", image: "/moments/moment-1.png" },
@@ -14,17 +15,15 @@ const GuestsSection = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-      <section id="guests" aria-label="Guest Speakers" className="relative overflow-hidden bg-[#04030a] py-16">
-        {/* glow overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_50%,rgba(123,35,255,0.18),transparent_40%),radial-gradient(circle_at_90%_40%,rgba(22,188,255,0.13),transparent_38%)]" />
-
+      <section id="guests" aria-label="Guest Speakers" className="relative overflow-hidden py-16">
+        <FloatingPathsLayer className="opacity-80" />
         <div className="relative mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10">
-          <h2 className="mb-10 text-center font-kanit text-5xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h2 className="mb-10 text-center font-kanit text-5xl font-black uppercase tracking-tight text-slate-900 sm:text-6xl lg:text-7xl dark:text-white">
             Guests
           </h2>
 
           {/* Panel strip */}
-          <div className="flex h-[520px] w-full gap-2 overflow-hidden rounded-2xl border border-white/10 sm:h-[600px]">
+          <div className="flex h-[520px] w-full gap-2 overflow-hidden rounded-2xl border border-slate-200/80 sm:h-[600px] dark:border-white/10">
             {PANELS.map((panel) => {
               const isActive = activeId === panel.id;
               return (
@@ -66,7 +65,7 @@ const GuestsSection = () => {
                   {/* Bottom info — shown when panel is active */}
                   <div
                     className="absolute inset-x-0 bottom-0 p-6 transition-all duration-300"
-                    style={{ opacity: isActive ? 1 : 0, transform: isActive ? "translateY(0)" : "translateY(12px" }}
+                    style={{ opacity: isActive ? 1 : 0, transform: isActive ? "translateY(0)" : "translateY(12px)" }}
                   >
                     <span className="mb-1 block font-kanit text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
                       {panel.label}

@@ -1,1 +1,0 @@
-export { WarpBackground } from "@/components/ui/warp-background";

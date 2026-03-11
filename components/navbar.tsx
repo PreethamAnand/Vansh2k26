@@ -5,6 +5,7 @@ import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { ShimmerButton } from "@/registry/magicui/shimmer-button";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -71,16 +72,13 @@ export default function GlassNavBar() {
         <div className="hidden md:block">
           <Link
             href="/register"
-            className="
-              inline-flex items-center rounded-full
-              border border-white/80 bg-white/10 px-5 py-2
-              font-kanit text-sm font-bold uppercase tracking-wider text-white
-              backdrop-blur-sm
-              transition-all duration-300 hover:bg-white hover:text-black
-              active:scale-95
-            "
+            className="inline-flex active:scale-95 transition-transform duration-200"
           >
-            Register
+            <ShimmerButton className="shadow-2xl">
+              <span className="text-center font-kanit text-sm leading-none font-medium uppercase tracking-tight whitespace-pre-wrap text-white lg:text-base dark:from-white dark:to-slate-900/10">
+                Register
+              </span>
+            </ShimmerButton>
           </Link>
         </div>
 
@@ -116,9 +114,13 @@ export default function GlassNavBar() {
           <Link
             href="/register"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 rounded-full border border-white/30 px-5 py-2.5 text-center font-kanit text-sm font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black transition-all duration-300"
+            className="mt-2 inline-flex justify-center"
           >
-            Register
+            <ShimmerButton className="w-full shadow-2xl">
+              <span className="text-center font-kanit text-sm leading-none font-medium uppercase tracking-tight whitespace-pre-wrap text-white dark:from-white dark:to-slate-900/10">
+                Register
+              </span>
+            </ShimmerButton>
           </Link>
         </nav>
       </div>

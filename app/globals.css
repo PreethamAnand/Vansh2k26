@@ -262,7 +262,7 @@ input:-webkit-autofill:active {
 .moments-section {
     position: relative;
     overflow: hidden;
-    background: #000000;
+    background: transparent;
     padding: 2.5rem 0 2rem;
 }
 
