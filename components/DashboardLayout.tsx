@@ -4,14 +4,15 @@ import { useEffect, useState, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import {
     Menu, X, LogOut, User, LayoutDashboard, Award,
-    BarChart3, Users, Zap, GanttChartSquare, ChevronDown, QrCode, UserCog, Lock
+    BarChart3, Users, Zap, GanttChartSquare, ChevronDown, QrCode, UserCog, Lock, Crown, CalendarRange
 } from "lucide-react";
 import Link from "next/link";
 import { useHackathon } from "@/context/HackathonContext";
+import { COORDINATOR_EVENTS } from "@/lib/eventCoordinatorConfig";
 
 interface DashboardLayoutProps {
     children: React.ReactNode;
-    type: 'team' | 'judge' | 'volunteer' | 'admin';
+    type: 'team' | 'judge' | 'volunteer' | 'admin' | 'superadmin' | 'event-coordinator';
     title: string;
 }
 
@@ -26,6 +27,12 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
     const [progress, setProgress] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
     const [isSubmissionCurrentlyLocked, setIsSubmissionCurrentlyLocked] = useState(false);
+    const panelLabel = type.replace("-", " ").toUpperCase();
+    const hasAccess = !!user && (
+        user.role === type ||
+        (type === "admin" && user.role === "superadmin") ||
+        (type === "event-coordinator" && (user.role === "admin" || user.role === "superadmin"))
+    );
 
     const displayName = useMemo(() => {
         if (type === 'team') {
@@ -40,7 +47,9 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
             }
             return activeTeam ? activeTeam.team : "Team Name";
         }
-        if (type === 'admin') return "Administrator";
+        if (type === 'admin') return user?.role === 'superadmin' ? "Super Administrator" : "Administrator";
+        if (type === 'superadmin') return "Super Administrator";
+        if (type === 'event-coordinator') return user?.name || "Event Coordinator";
         if (type === 'judge') return user?.name || "Judge Panel";
         if (type === 'volunteer') return user?.name || "Volunteer";
         return "User";
@@ -64,14 +73,35 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
             { href: "/dashboard/admin/register", icon: UserCog, label: "Manual Entry" },
             { href: "/dashboard/admin/deadlines", icon: Zap, label: "Timeline" },
             { href: "/dashboard/admin/results", icon: GanttChartSquare, label: "Leaderboard" },
+        ],
+        superadmin: [
+            { href: "/dashboard/superadmin", icon: Crown, label: "Executive View" },
+            { href: "/dashboard/admin", icon: BarChart3, label: "Admin Console" },
+            { href: "/dashboard/event-coordinator", icon: CalendarRange, label: "Event Platforms" },
+        ],
+        "event-coordinator": [
+            ...(user?.eventSlug
+                ? [{
+                    href: `/dashboard/event-coordinator/${user.eventSlug}`,
+                    icon: CalendarRange,
+                    label: "My Event Dashboard"
+                }]
+                : [
+                    { href: "/dashboard/event-coordinator", icon: LayoutDashboard, label: "Overview" },
+                    ...COORDINATOR_EVENTS.map((eventItem, index) => ({
+                        href: `/dashboard/event-coordinator/${eventItem.slug}`,
+                        icon: CalendarRange,
+                        label: `Event ${index + 1}`
+                    }))
+                ])
         ]
     };
 
     useEffect(() => {
-        if (!isLoading && (!user || user.role !== type)) {
+        if (!isLoading && !hasAccess) {
             router.push("/login");
         }
-    }, [user, isLoading, type, router]);
+    }, [hasAccess, isLoading, router]);
 
     useEffect(() => {
         const calculateTimeLeft = () => {
@@ -130,7 +160,7 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
         return () => clearInterval(lockTimer);
     }, [isSubmissionLocked]);
 
-    if (isLoading || !user || user.role !== type) {
+    if (isLoading || !hasAccess) {
         return (
             <div className="min-h-screen bg-[#06000D] flex items-center justify-center">
                 <div className="w-12 h-12 border-4 border-purple-600 border-t-transparent rounded-full animate-spin" />
@@ -153,7 +183,7 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
                                 <span className="font-kanit font-black text-xl italic leading-none tracking-tight">
                                     VHACK <span className="text-purple-500">2.0</span>
                                 </span>
-                                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1">{type} PANEL</span>
+                                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1">{panelLabel} PANEL</span>
                             </div>
                         </Link>
 

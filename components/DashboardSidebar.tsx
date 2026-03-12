@@ -23,6 +23,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { useHackathon } from "@/context/HackathonContext";
 import { useMemo } from "react";
+import { COORDINATOR_EVENTS } from "@/lib/eventCoordinatorConfig";
 
 interface SidebarItemProps {
     href: string;
@@ -57,7 +58,7 @@ const SidebarItem = ({ href, icon: Icon, label, active, isCollapsed, onClick }: 
 );
 
 interface DashboardSidebarProps {
-    type: 'team' | 'judge' | 'volunteer' | 'admin';
+    type: 'team' | 'judge' | 'volunteer' | 'admin' | 'superadmin' | 'event-coordinator';
     isOpen: boolean;
     onClose: () => void;
     isCollapsed: boolean;
@@ -75,6 +76,8 @@ export const DashboardSidebar = ({ type, isOpen, onClose, isCollapsed, onToggleC
             return activeTeam ? activeTeam.team : "Team Name";
         }
         if (type === 'admin') return "Administrator";
+        if (type === 'superadmin') return "Super Administrator";
+        if (type === 'event-coordinator') return user?.name || "Event Coordinator";
         if (type === 'judge') return user?.name || "Judge Panel";
         if (type === 'volunteer') return user?.name || "Volunteer";
         return "User";
@@ -97,6 +100,19 @@ export const DashboardSidebar = ({ type, isOpen, onClose, isCollapsed, onToggleC
             { href: "/dashboard/admin/users", icon: Users, label: "Roles" },
             { href: "/dashboard/admin/deadlines", icon: Zap, label: "Deadline" },
             { href: "/dashboard/admin/results", icon: GanttChartSquare, label: "Results" },
+        ],
+        superadmin: [
+            { href: "/dashboard/superadmin", icon: ShieldCheck, label: "Executive" },
+            { href: "/dashboard/admin", icon: BarChart3, label: "Admin" },
+            { href: "/dashboard/event-coordinator", icon: ClipboardCheck, label: "Event Platforms" },
+        ],
+        "event-coordinator": [
+            { href: "/dashboard/event-coordinator", icon: LayoutDashboard, label: "Overview" },
+            ...COORDINATOR_EVENTS.map((eventItem, index) => ({
+                href: `/dashboard/event-coordinator/${eventItem.slug}`,
+                icon: ClipboardCheck,
+                label: `Event ${index + 1}`
+            }))
         ]
     };
 

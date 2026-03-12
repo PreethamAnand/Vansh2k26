@@ -38,13 +38,21 @@ export default function GlassNavBar() {
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <Image
             src="/vansh_logo.PNG"
             alt="VANSH 2K26"
             width={56}
             height={56}
             className="h-12 w-auto object-contain"
+            priority
+          />
+          <Image
+            src="/vignan-logo.png"
+            alt="Vignan's Institute of Information Technology"
+            width={120}
+            height={40}
+            className="h-9 w-auto object-contain brightness-0 invert hidden sm:block"
             priority
           />
         </Link>
@@ -68,15 +76,15 @@ export default function GlassNavBar() {
           })}
         </nav>
 
-        {/* Desktop Register Button */}
+        {/* Desktop Portal Button */}
         <div className="hidden md:block">
           <Link
-            href="/register"
+            href="/login"
             className="inline-flex active:scale-95 transition-transform duration-200"
           >
             <ShimmerButton className="shadow-2xl">
               <span className="text-center font-kanit text-sm leading-none font-medium uppercase tracking-tight whitespace-pre-wrap text-white lg:text-base dark:from-white dark:to-slate-900/10">
-                Register
+                Login
               </span>
             </ShimmerButton>
           </Link>
@@ -112,13 +120,13 @@ export default function GlassNavBar() {
             </Link>
           ))}
           <Link
-            href="/register"
+            href="/login"
             onClick={() => setMenuOpen(false)}
             className="mt-2 inline-flex justify-center"
           >
             <ShimmerButton className="w-full shadow-2xl">
               <span className="text-center font-kanit text-sm leading-none font-medium uppercase tracking-tight whitespace-pre-wrap text-white dark:from-white dark:to-slate-900/10">
-                Register
+                Login
               </span>
             </ShimmerButton>
           </Link>

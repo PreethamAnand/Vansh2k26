@@ -1,159 +1,91 @@
-"use client"
-
-import React from "react";
-import Image from "next/image";
-import { Calendar, MapPin, Tag, Trophy, Cpu, Code, Globe, ShieldCheck } from "lucide-react";
-import FadeInView from "@/components/FadeInView";
-import { motion } from "framer-motion";
-
-const PRODUCTS = [
-    {
-        id: "vhack-main",
-        title: "VHACK 2.0 Registration",
-        description: "Official entry ticket for the 48-hour national level hackathon. Includes access to workspace, mentors, and all sessions.",
-        price: "₹600",
-        date: "April 10-11, 2026",
-        icon: <Cpu className="w-8 h-8" />,
-        color: "#FFEE00",
-        type: "Hackathon"
-    },
-    {
-        id: "workshop-ai",
-        title: "Agentic AI Workshop",
-        description: "Hands-on training session on building autonomous AI agents and intelligent automation workflows using modern frameworks.",
-        price: "₹250",
-        date: "April 18, 2026",
-        icon: <Code className="w-8 h-8" />,
-        color: "#00C8FF",
-        type: "Workshop"
-    },
-    {
-        id: "seminar-web3",
-        title: "Future of Web3 & IoT",
-        description: "A deep dive seminar into decentralized technologies and their integration with IoT devices for real-world scaling.",
-        price: "₹150",
-        date: "April 25, 2026",
-        icon: <Globe className="w-8 h-8" />,
-        color: "#BA45E8",
-        type: "Seminar"
-    },
-    {
-        id: "ctf-event",
-        title: "Cyber Capture The Flag",
-        description: "Intense 6-hour security challenge focusing on penetration testing, cryptography, and network defense.",
-        price: "₹200",
-        date: "May 02, 2026",
-        icon: <ShieldCheck className="w-8 h-8" />,
-        color: "#FF4D4D",
-        type: "Competition"
-    },
-    {
-        id: "mentorship-pass",
-        title: "Exclusive Mentorship Pass",
-        description: "Direct 1-on-1 session with industry veteran mentors during the hackathon for intensive project feedback.",
-        price: "₹300",
-        date: "May 10, 2026",
-        icon: <Trophy className="w-8 h-8" />,
-        color: "#4DFF88",
-        type: "Session"
-    }
-];
+import Link from "next/link";
+import { ArrowUpRight, Sparkles, CalendarClock, MapPin } from "lucide-react";
+import { EVENTS_DATA } from "@/lib/eventData";
 
 export default function EventsPage() {
     return (
-        <div className="relative flex flex-col w-full min-h-screen bg-[#0B0114] text-white font-sans overflow-x-hidden">
-            {/* Background Effects */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-0 left-0 w-[50%] h-[50%] bg-[#62009B] opacity-10 blur-[150px] rounded-full" />
-                <div className="absolute bottom-0 right-0 w-[50%] h-[50%] bg-[#BA45E8] opacity-5 blur-[150px] rounded-full" />
+        <main className="relative min-h-screen overflow-hidden bg-[#080211] text-white">
+            <div className="pointer-events-none absolute inset-0">
+                <div className="absolute -top-24 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-fuchsia-500/12 blur-[130px]" />
+                <div className="absolute bottom-[-140px] right-[-80px] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-[140px]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(120,119,198,0.16),transparent_32%)]" />
             </div>
 
-            {/* Hero Section */}
-            <div className="relative z-10 pt-48 pb-20 px-4 md:px-10 container mx-auto text-center">
-                <FadeInView>
-                    <h1 className="text-[#FFEE00] font-kanit font-black text-6xl md:text-8xl italic uppercase tracking-tighter drop-shadow-[0_0_20px_rgba(255,238,0,0.3)] leading-none mb-6">
-                        OUR <span className="text-white">EVENTS</span> & SERVICES
-                    </h1>
-                    <p className="text-white/60 font-kanit text-xl max-w-2xl mx-auto uppercase italic tracking-widest">
-                        Check out our upcoming specialized workshops, seminars, and competition modules.
-                    </p>
-                </FadeInView>
-            </div>
+            <section className="relative z-10 mx-auto w-full max-w-[1400px] px-5 pb-20 pt-28 sm:px-8 lg:px-12">
+                <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+                    <div>
+                        <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-[10px] font-extrabold uppercase tracking-[0.28em] text-white/70">
+                            <Sparkles size={12} className="text-cyan-300" />
+                            Premium Event Dashboards
+                        </p>
+                        <h1 className="max-w-4xl font-kanit text-4xl font-black uppercase italic leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+                            Explore All 8
+                            <span className="ml-3 bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
+                                Event Platforms
+                            </span>
+                        </h1>
+                        <p className="mt-4 max-w-2xl text-sm font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-base">
+                            Dedicated sleek pages for every event, crafted with premium visual identity and focused details.
+                        </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/15 bg-white/[0.05] px-5 py-4 text-right backdrop-blur-lg">
+                        <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/45">Live Routes</p>
+                        <p className="text-3xl font-black italic text-white">{EVENTS_DATA.length}</p>
+                    </div>
+                </div>
 
-            {/* Products Grid */}
-            <div className="relative z-10 container mx-auto px-4 pb-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {PRODUCTS.map((product, idx) => (
-                        <FadeInView key={product.id} delay={idx * 0.1}>
-                            <div className="group relative bg-white/5 border border-white/10 rounded-[35px] p-8 backdrop-blur-md hover:bg-white/10 transition-all duration-500 overflow-hidden h-full flex flex-col">
-                                {/* Accent Glow */}
-                                <div
-                                    className="absolute -top-10 -right-10 w-32 h-32 opacity-0 group-hover:opacity-20 blur-3xl rounded-full transition-opacity duration-500"
-                                    style={{ backgroundColor: product.color }}
-                                />
+                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    {EVENTS_DATA.map((event, index) => (
+                        <article
+                            key={event.slug}
+                            className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-white/30"
+                            style={{ boxShadow: `0 20px 60px ${event.glow}` }}
+                        >
+                            <div
+                                className="pointer-events-none absolute -right-12 -top-10 h-40 w-40 rounded-full opacity-30 blur-3xl transition-opacity duration-500 group-hover:opacity-55"
+                                style={{ background: event.accent }}
+                            />
+                            <div className="relative z-10">
+                                <div className="mb-5 flex items-center justify-between">
+                                    <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-white/60">
+                                        Event {String(index + 1).padStart(2, "0")}
+                                    </span>
+                                    <span
+                                        className="rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em]"
+                                        style={{ background: `${event.accent}1a`, color: event.accent }}
+                                    >
+                                        {event.category}
+                                    </span>
+                                </div>
 
-                                <div className="relative z-10 flex flex-col h-full">
-                                    <div className="flex justify-between items-start mb-6">
-                                        <div
-                                            className="p-4 rounded-2xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"
-                                            style={{ color: product.color }}
-                                        >
-                                            {product.icon}
-                                        </div>
-                                        <span className="bg-white/10 text-white/60 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-white/5">
-                                            {product.type}
-                                        </span>
+                                <h2 className="mb-2 font-kanit text-3xl font-black uppercase italic leading-tight text-white transition-colors group-hover:text-cyan-100">
+                                    {event.title}
+                                </h2>
+                                <p className="mb-6 text-sm text-white/55">{event.subtitle}</p>
+
+                                <div className="mb-6 space-y-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/55">
+                                    <div className="flex items-center gap-2.5">
+                                        <CalendarClock size={14} style={{ color: event.accent }} />
+                                        <span>{event.date}</span>
                                     </div>
-
-                                    <h3 className="text-white font-kanit font-black text-2xl uppercase italic mb-3 group-hover:text-[#FFEE00] transition-colors">
-                                        {product.title}
-                                    </h3>
-
-                                    <p className="text-white/50 text-sm leading-relaxed mb-6 flex-grow">
-                                        {product.description}
-                                    </p>
-
-                                    <div className="space-y-3 mt-auto pt-6 border-t border-white/10">
-                                        <div className="flex items-center gap-2 text-white/40">
-                                            <Calendar size={14} className="text-[#FFEE00]" />
-                                            <span className="text-xs font-bold uppercase tracking-wider">{product.date}</span>
-                                        </div>
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-2 text-white">
-                                                <Tag size={16} className="text-[#FFEE00]" />
-                                                <span className="text-2xl font-kanit font-black italic">{product.price}</span>
-                                            </div>
-                                            <button className="bg-white/5 hover:bg-white/20 text-white/60 hover:text-white px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border border-white/10 transition-all cursor-default">
-                                                Sold Separately
-                                            </button>
-                                        </div>
+                                    <div className="flex items-center gap-2.5">
+                                        <MapPin size={14} style={{ color: event.accent }} />
+                                        <span>{event.venue}</span>
                                     </div>
                                 </div>
+
+                                <Link
+                                    href={`/event/${event.slug}`}
+                                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.18em] text-white transition-all duration-300 hover:border-cyan-300/70 hover:bg-cyan-300/15"
+                                >
+                                    Open Dashboard
+                                    <ArrowUpRight size={14} />
+                                </Link>
                             </div>
-                        </FadeInView>
+                        </article>
                     ))}
                 </div>
-
-                {/* Legal Info Section */}
-                <div className="mt-32 pt-12 border-t border-white/10 text-center">
-                    <FadeInView>
-                        <p className="text-white/20 text-xs uppercase tracking-[0.3em] mb-4">
-                            Legal Business Entity
-                        </p>
-                        <h2 className="text-white font-kanit font-black text-2xl md:text-4xl uppercase italic mb-2">
-                            SHUBHAM VASANT GUNDU
-                        </h2>
-                        <p className="text-white/40 text-sm max-w-xl mx-auto">
-                            Operating as the primary coordinator and event organizer for VHACK 2.0. All commercial transactions are processed through the official gateway under this legal registry.
-                        </p>
-                    </FadeInView>
-                </div>
-            </div>
-
-            {/* Decorative Footer Logo */}
-            <div className="absolute bottom-20 -left-20 opacity-5 pointer-events-none">
-                <Image src="/vh_2.0.png" alt="" width={600} height={300} />
-            </div>
-        </div>
+            </section>
+        </main>
     );
 }

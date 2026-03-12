@@ -1,3 +1,4 @@
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
 @import "tailwindcss";
 
 :root {
@@ -31,8 +32,8 @@ html.lenis body {
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --font-sans: "Gilroy-Regular", sans-serif;
+    --font-mono: "Gilroy-Medium", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,22 +46,37 @@ html.lenis body {
 body {
     background: var(--background);
     color: var(--foreground);
-    font-family:
-        var(--font-geist-sans),
-        system-ui,
-        -apple-system,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+    font-family: "Gilroy-Regular", sans-serif;
 }
 
 .font-kanit {
-    font-family: var(--font-kanit), var(--font-geist-sans), sans-serif;
+    font-family: "Gilroy-Medium", sans-serif;
 }
 
 .font-poppins {
-    font-family: var(--font-poppins), var(--font-geist-sans), sans-serif;
+    font-family: "Gilroy-Regular", sans-serif;
+}
+
+.font-light {
+    font-family: "Gilroy-Light", sans-serif;
+}
+
+.font-normal {
+    font-family: "Gilroy-Regular", sans-serif;
+}
+
+.font-medium {
+    font-family: "Gilroy-Medium", sans-serif;
+}
+
+.font-semibold,
+.font-bold,
+.font-extrabold {
+    font-family: "Gilroy-Bold", sans-serif;
+}
+
+.font-black {
+    font-family: "Gilroy-Heavy", sans-serif;
 }
 
 .text-stroke-brand-thick {

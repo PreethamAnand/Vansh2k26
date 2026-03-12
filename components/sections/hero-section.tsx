@@ -3,6 +3,7 @@
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import LightRays from "@/components/LightRays";
+import CurvedLoop from "@/components/CurvedLoop";
 
 // const SPONSORS = [
 //   { src: "/college-logo.png", alt: "Vignan ITS", width: 32 },
@@ -122,6 +123,17 @@ const Hero = () => {
           ))}
         </div> */}
 
+      </div>
+
+      {/* ── Curved Scroll Banner ── */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-auto">
+        <CurvedLoop
+          marqueeText="VANSH 2K26 ✦ CULTURE ✦ CREATIVITY ✦ COMPETITION ✦ MUSIC ✦ DANCE ✦ INNOVATION ✦ CELEBRATION ✦"
+          speed={2}
+          curveAmount={90}
+          interactive
+          wrapperClassName="py-0"
+        />
       </div>
     </section>
   );

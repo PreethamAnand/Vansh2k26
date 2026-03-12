@@ -1,30 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Kanit, Poppins } from "next/font/google";
 import "./globals.css";
 import { ViewTransitions } from 'next-view-transitions'
 import SmoothScroll from "@/components/SmoothScroll";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const kanit = Kanit({
-  weight: ["400", "700", "800"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  variable: "--font-kanit",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vhack.online'),
@@ -76,7 +53,7 @@ export default function RootLayout({
           <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
         </head>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${kanit.variable} ${poppins.className} antialiased overflow-x-hidden bg-black`}
+          className="antialiased overflow-x-hidden bg-black"
           suppressHydrationWarning
         >
           <AuthProvider>
@@ -95,7 +72,7 @@ export default function RootLayout({
                       backdropFilter: "blur(12px)",
                       border: "1px solid rgba(255, 255, 255, 0.1)",
                       color: "#fff",
-                      fontFamily: "var(--font-kanit)",
+                      fontFamily: "'Gilroy-Medium', sans-serif",
                       borderRadius: "16px",
                       boxShadow: "0 10px 30px -10px rgba(109, 40, 217, 0.3)",
                     },

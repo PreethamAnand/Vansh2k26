@@ -14,14 +14,25 @@ export function Footer() {
       <div className="relative flex flex-col md:flex-row w-full justify-between items-center min-h-[216px] bg-[#62009b] border-white border-t-8 md:border-t-12 border-b-8 md:border-b-12 px-4 md:px-8 py-8 md:py-0">
 
         {/* Logo Section */}
-        <div className="flex justify-center items-center mb-6 md:mb-0 md:ml-12 bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md rotate-[-2deg] shadow-2xl">
-          <Image
-            src="/vansh_logo.PNG"
-            alt="VANSH Logo"
-            width={200}
-            height={80}
-            className="w-[150px] md:w-[200px] h-auto object-contain brightness-110"
-          />
+        <div className="flex flex-col justify-center items-center gap-4 mb-6 md:mb-0 md:ml-12">
+          <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md rotate-[-2deg] shadow-2xl">
+            <Image
+              src="/vansh_logo.PNG"
+              alt="VANSH Logo"
+              width={200}
+              height={80}
+              className="w-[150px] md:w-[200px] h-auto object-contain brightness-110"
+            />
+          </div>
+          <div className="bg-white/90 border border-white/20 px-5 py-2.5 rounded-xl shadow-lg rotate-[1deg]">
+            <Image
+              src="/vignan-logo.png"
+              alt="Vignan's Institute of Information Technology"
+              width={180}
+              height={50}
+              className="w-[130px] md:w-[170px] h-auto object-contain"
+            />
+          </div>
         </div>
 
         {/* Content Section */}

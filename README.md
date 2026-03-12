@@ -1,6 +1,4 @@
-# Vansh2k26
-
-# Vansh2k26 - Premium Hackathon Platform
+# Vansh2k26 — Premium Hackathon Platform
 
 Vansh2k26 is a state-of-the-art hackathon management platform designed for a premium user experience. It features a seamless registration flow, dynamic payment processing, and comprehensive dashboards for participants, judges, and administrators.
 
@@ -39,7 +37,7 @@ Vansh2k26 is a state-of-the-art hackathon management platform designed for a pre
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/PreethamAnand/Vansh2k26.git
 
 # Install dependencies
 npm install
