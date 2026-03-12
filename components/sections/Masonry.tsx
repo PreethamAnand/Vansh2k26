@@ -249,7 +249,7 @@ export default function Masonry({
     containerRef.current.style.height = gridHeight ? `${gridHeight}px` : "";
   }, [gridHeight, containerRef]);
 
-  const handleMouseEnter = (element: HTMLDivElement, item: LayoutItem) => {
+  const handleMouseEnter = (element: HTMLAnchorElement, item: LayoutItem) => {
     const selector = `[data-key="${item.id}"]`;
 
     if (scaleOnHover) {
@@ -271,7 +271,7 @@ export default function Masonry({
     }
   };
 
-  const handleMouseLeave = (element: HTMLDivElement, item: LayoutItem) => {
+  const handleMouseLeave = (element: HTMLAnchorElement, item: LayoutItem) => {
     const selector = `[data-key="${item.id}"]`;
 
     if (scaleOnHover) {

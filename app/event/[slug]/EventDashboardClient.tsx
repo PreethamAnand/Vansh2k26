@@ -65,7 +65,6 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                     shockStrength={5}
                     resistance={750}
                     returnDuration={1.5}
-                    style={{}}
                 />
             </div>
 
