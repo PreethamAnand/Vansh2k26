@@ -15,6 +15,7 @@ import {
     Zap,
 } from "lucide-react";
 import type { EventData } from "@/lib/eventData";
+import DotGrid from "@/components/DotGrid";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -53,9 +54,23 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                     style={{ background: event.glow }}
                 />
             </div>
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <DotGrid
+                    dotSize={4}
+                    gap={26}
+                    baseColor="#4f7876"
+                    activeColor={event.accent}
+                    proximity={270}
+                    shockRadius={140}
+                    shockStrength={5}
+                    resistance={750}
+                    returnDuration={1.5}
+                    style={{}}
+                />
+            </div>
 
             <div
-                className="relative z-10 min-h-[88vh] flex flex-col justify-end pb-16 pt-28 px-6 md:px-14 lg:px-20"
+                className="relative z-10 min-h-[88vh] flex items-end pb-16 pt-28 px-6 md:px-14 lg:px-20"
                 style={{ background: event.gradient }}
             >
                 <motion.div
@@ -74,85 +89,139 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                     </Link>
                 </motion.div>
 
-                <motion.div
-                    variants={fadeUp}
-                    initial="hidden"
-                    animate="show"
-                    custom={1}
-                    className="mb-5"
-                >
-                    <span
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] border"
-                        style={{
-                            color: event.accent,
-                            borderColor: `${event.accent}55`,
-                            background: `${event.accent}12`,
-                        }}
-                    >
-                        <Zap size={11} />
-                        {event.category}
-                    </span>
-                </motion.div>
+                <div className="grid w-full items-end gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] xl:gap-14">
+                    <div className="min-w-0">
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            animate="show"
+                            custom={1}
+                            className="mb-5"
+                        >
+                            <span
+                                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] border"
+                                style={{
+                                    color: event.accent,
+                                    borderColor: `${event.accent}55`,
+                                    background: `${event.accent}12`,
+                                }}
+                            >
+                                <Zap size={11} />
+                                {event.category}
+                            </span>
+                        </motion.div>
 
-                <motion.h1
-                    variants={fadeUp}
-                    initial="hidden"
-                    animate="show"
-                    custom={2}
-                    className="font-black uppercase italic tracking-tighter leading-[0.88] mb-4"
-                    style={{
-                        fontSize: "clamp(3.5rem, 10vw, 9rem)",
-                        WebkitTextStroke: "1px transparent",
-                    }}
-                >
-                    <span
-                        style={{
-                            background: `linear-gradient(135deg, #ffffff 40%, ${event.accent} 100%)`,
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                        }}
-                    >
-                        {event.title}
-                    </span>
-                </motion.h1>
+                        <motion.h1
+                            variants={fadeUp}
+                            initial="hidden"
+                            animate="show"
+                            custom={2}
+                            className="font-[950] uppercase italic tracking-[-0.06em] leading-[0.84] mb-4"
+                            style={{
+                                fontSize: "clamp(3.5rem, 10vw, 9rem)",
+                                WebkitTextStroke: "1px transparent",
+                            }}
+                        >
+                            <span
+                                style={{
+                                    background: `linear-gradient(135deg, #ffffff 40%, ${event.accent} 100%)`,
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
+                                }}
+                            >
+                                {event.title}
+                            </span>
+                        </motion.h1>
 
-                <motion.p
-                    variants={fadeUp}
-                    initial="hidden"
-                    animate="show"
-                    custom={3}
-                    className="text-white/55 font-black uppercase italic tracking-widest text-lg md:text-xl max-w-xl mb-10"
-                >
-                    {event.subtitle}
-                </motion.p>
+                        <motion.p
+                            variants={fadeUp}
+                            initial="hidden"
+                            animate="show"
+                            custom={3}
+                            className="text-white/55 font-extrabold uppercase italic tracking-widest text-lg md:text-xl max-w-xl mb-10"
+                        >
+                            {event.subtitle}
+                        </motion.p>
 
-                <motion.div
-                    variants={fadeUp}
-                    initial="hidden"
-                    animate="show"
-                    custom={4}
-                    className="flex flex-wrap items-center gap-4"
-                >
-                    <Link
-                        href="/register"
-                        className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-sm text-[#06000D] shadow-lg transition-all hover:scale-[1.03] active:scale-[0.97]"
-                        style={{
-                            background: `linear-gradient(135deg, ${event.accent} 0%, #ffffff88 200%)`,
-                            backgroundColor: event.accent,
-                            boxShadow: `0 8px 32px ${event.glow}`,
-                        }}
+                        <motion.div
+                            variants={fadeUp}
+                            initial="hidden"
+                            animate="show"
+                            custom={4}
+                            className="flex flex-wrap items-center gap-4"
+                        >
+                            <Link
+                                href="/register"
+                                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-sm text-[#06000D] shadow-lg transition-all hover:scale-[1.03] active:scale-[0.97]"
+                                style={{
+                                    background: `linear-gradient(135deg, ${event.accent} 0%, #ffffff88 200%)`,
+                                    backgroundColor: event.accent,
+                                    boxShadow: `0 8px 32px ${event.glow}`,
+                                }}
+                            >
+                                Register Now
+                                <ChevronRight size={16} />
+                            </Link>
+                            <a
+                                href={`tel:${event.coordinatorPhone}`}
+                                className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl font-black uppercase tracking-widest text-sm border border-white/15 bg-white/5 backdrop-blur hover:bg-white/10 transition-all"
+                            >
+                                <Phone size={14} style={{ color: event.accent }} />
+                                Contact Coordinator
+                            </a>
+                        </motion.div>
+                    </div>
+
+                    <motion.div
+                        variants={fadeUp}
+                        initial="hidden"
+                        animate="show"
+                        custom={5}
+                        className="rounded-[2rem] border border-white/10 bg-black/25 p-5 backdrop-blur-xl shadow-[0_24px_80px_rgba(0,0,0,0.35)] lg:mb-4"
                     >
-                        Register Now
-                        <ChevronRight size={16} />
-                    </Link>
-                    <a
-                        href={`tel:${event.coordinatorPhone}`}
-                        className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl font-black uppercase tracking-widest text-sm border border-white/15 bg-white/5 backdrop-blur hover:bg-white/10 transition-all"
-                    >
-                        <Phone size={14} style={{ color: event.accent }} />
-                        Contact Coordinator
-                    </a>
-                </motion.div>
+                        <div className="flex items-center gap-3 mb-5">
+                            <div
+                                className="w-8 h-8 rounded-2xl flex items-center justify-center"
+                                style={{ background: `${event.accent}20` }}
+                            >
+                                <span className="text-sm font-black" style={{ color: event.accent }}>
+                                    !
+                                </span>
+                            </div>
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.32em] font-black text-white/35">
+                                    Event Snapshot
+                                </p>
+                                <h3 className="font-[950] uppercase italic text-2xl tracking-tight text-white">
+                                    Rules & Format
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2.5">
+                            {event.rules.slice(0, 5).map((rule, i) => (
+                                <div
+                                    key={i}
+                                    className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-3"
+                                >
+                                    <span
+                                        className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl text-[10px] font-black"
+                                        style={{ background: `${event.accent}18`, color: event.accent }}
+                                    >
+                                        {String(i + 1).padStart(2, "0")}
+                                    </span>
+                                    <p className="text-sm font-medium leading-relaxed text-white/72">{rule}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        {event.rules.length > 5 ? (
+                            <p className="mt-4 text-xs font-bold uppercase tracking-[0.22em] text-white/40">
+                                Scroll for the full rulebook below
+                            </p>
+                        ) : null}
+                    </motion.div>
+                </div>
 
                 <div
                     className="absolute right-0 bottom-0 select-none pointer-events-none font-black italic uppercase leading-none"
@@ -232,10 +301,10 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                         viewport={{ once: true }}
                         transition={{ duration: 0.55, delay: 0.1 }}
                     >
-                        <p className="text-white/60 text-base leading-relaxed mb-5 font-normal">
+                        <p className="text-white/75 text-base leading-relaxed mb-5 font-semibold">
                             {event.description}
                         </p>
-                        <p className="text-white/40 text-sm leading-relaxed font-normal">
+                        <p className="text-white/55 text-sm leading-relaxed font-semibold">
                             {event.longDescription}
                         </p>
 
@@ -259,7 +328,7 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
             </section>
 
             <section className="relative z-10 px-6 md:px-14 lg:px-20 pb-20">
-                <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
+                <div className="max-w-2xl">
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -335,48 +404,6 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                             </a>
                         </motion.div>
                     </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.55, delay: 0.1 }}
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div
-                                className="w-5 h-5 rounded-full flex items-center justify-center"
-                                style={{ background: event.accent }}
-                            >
-                                <span className="text-[#06000D] text-[10px] font-black">!</span>
-                            </div>
-                            <h3 className="font-black uppercase italic text-2xl tracking-tight">
-                                Rules & Format
-                            </h3>
-                        </div>
-
-                        <div className="space-y-2">
-                            {event.rules.map((rule, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, x: 16 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.055 }}
-                                    className="flex items-start gap-4 px-4 py-3.5 rounded-xl border border-white/6 bg-white/[0.025] hover:bg-white/[0.04] hover:border-white/12 transition-all group"
-                                >
-                                    <span
-                                        className="flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-black mt-0.5"
-                                        style={{ background: `${event.accent}18`, color: event.accent }}
-                                    >
-                                        {String(i + 1).padStart(2, "0")}
-                                    </span>
-                                    <p className="text-white/55 text-sm leading-relaxed font-normal group-hover:text-white/70 transition-colors">
-                                        {rule}
-                                    </p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
                 </div>
             </section>
 
@@ -388,11 +415,27 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                     transition={{ duration: 0.55 }}
                     className="rounded-3xl border border-white/8 bg-white/[0.025] backdrop-blur-md p-8 md:p-12"
                 >
-                    <div className="flex items-center gap-3 mb-8">
-                        <Check size={18} style={{ color: event.accent }} />
-                        <h3 className="font-black uppercase italic text-2xl md:text-3xl tracking-tight">
-                            Eligibility Criteria
-                        </h3>
+                    <div className="flex items-start justify-between gap-4 mb-8 flex-wrap">
+                        <div className="flex items-center gap-3">
+                            <Check size={18} style={{ color: event.accent }} />
+                            <h3 className="font-black uppercase italic text-2xl md:text-3xl tracking-tight">
+                                Eligibility Criteria
+                            </h3>
+                        </div>
+                        <div className="text-right">
+                            <p className="text-[9px] uppercase tracking-[0.25em] font-black text-white/30 mb-1">
+                                Coordinator
+                            </p>
+                            <p className="font-black text-white text-sm mb-1">{event.coordinator}</p>
+                            <a
+                                href={`tel:${event.coordinatorPhone}`}
+                                className="inline-flex items-center justify-end gap-1.5 text-xs font-black tracking-widest transition-colors"
+                                style={{ color: event.accent }}
+                            >
+                                <Phone size={11} />
+                                {event.coordinatorPhone}
+                            </a>
+                        </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">

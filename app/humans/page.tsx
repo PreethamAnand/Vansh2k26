@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useMemo } from "react"
 import HumanCard from "@/components/HumansCard/Card"
 import Image from "next/image"
@@ -106,7 +106,7 @@ export default function HumansPage() {
             <FadeInView delay={0.1} yOffset={20}>
               <Image
                 src="/humans_title.svg"
-                alt="Humans at VHACK 2.0"
+                alt="Humans at VANSH2K26"
                 width={574}
                 height={158}
                 className="w-full h-auto object-contain object-center"
@@ -195,3 +195,4 @@ export default function HumansPage() {
     </div>
   )
 }
+

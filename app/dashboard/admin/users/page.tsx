@@ -79,13 +79,13 @@ export default function UsersManagement() {
         const tdS = 'border:1px solid #ccc;padding:7px 10px;font-size:11px;text-align:left;vertical-align:top;';
         const headerRow = `<tr>${headers.map(h => `<th style="${thS}">${h}</th>`).join('')}</tr>`;
         const dataRows = rows.map((row, i) =>
-            `<tr style="background:${i % 2 === 0 ? '#fff' : '#f7f8fc'};">${row.map(cell => `<td style="${tdS}">${cell ?? '—'}</td>`).join('')}</tr>`
+            `<tr style="background:${i % 2 === 0 ? '#fff' : '#f7f8fc'};">${row.map(cell => `<td style="${tdS}">${cell ?? 'â€”'}</td>`).join('')}</tr>`
         ).join('');
         const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>VHACK 2.0 — Hacker Directory</title>
+    <title>VANSH2K26 â€” Hacker Directory</title>
     <style>
         @page { size: A3 landscape; margin: 12mm; }
         @media print { .no-print { display: none !important; } body { margin: 0; } tr { page-break-inside: avoid; } }
@@ -96,16 +96,16 @@ export default function UsersManagement() {
 <body>
     <div class="no-print" style="position:fixed;top:0;left:0;right:0;background:#1a1a8c;color:#fff;
         padding:10px 24px;display:flex;justify-content:space-between;align-items:center;z-index:9999;font-family:Arial,sans-serif;">
-        <span style="font-weight:700;font-size:13px;">📋 VHACK 2.0 — Hacker Directory (${rows.length} participants)</span>
+        <span style="font-weight:700;font-size:13px;">ðŸ“‹ VANSH2K26 â€” Hacker Directory (${rows.length} participants)</span>
         <button onclick="window.print()" style="background:#FFEE00;color:#000;border:none;padding:8px 22px;
-            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">🖨️ Print / Save as PDF</button>
+            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">ðŸ–¨ï¸ Print / Save as PDF</button>
     </div>
     <div style="padding:18px 24px;margin-top:50px;">
         <div style="display:flex;align-items:center;justify-content:flex-start;gap:20px;margin-bottom:8px;">
             <img src="/vignan-logo.png" style="height:80px;object-fit:contain;flex-shrink:0;" />
             <div style="font-family:'Segoe UI',Arial,sans-serif;">
                 <div style="font-size:11px;color:#333;letter-spacing:0.5px;font-weight:700;">Vignan Institute of Technology and Science</div>
-                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VHACK 2.0 HACKATHON</div>
+                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VANSH2K26 HACKATHON</div>
                 <div style="font-size:13px;font-weight:700;letter-spacing:5px;color:#cc0000;margin-top:2px;">HACKER DIRECTORY</div>
                 <div style="font-size:10px;color:#888;margin-top:5px;">Date: ${now} &nbsp;|&nbsp; Total Participants: ${rows.length}</div>
             </div>
@@ -113,7 +113,7 @@ export default function UsersManagement() {
         <div style="height:3px;background:linear-gradient(90deg,#cc0000,#1a1a8c,#cc0000);margin:8px 0 14px;border-radius:2px;"></div>
         <table><thead>${headerRow}</thead><tbody>${dataRows}</tbody></table>
         <div style="margin-top:14px;text-align:center;font-size:9px;color:#bbb;border-top:1px solid #eee;padding-top:8px;">
-            VHACK 2.0 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; Hacker Directory &nbsp;|&nbsp; Generated: ${now}
+            VANSH2K26 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; Hacker Directory &nbsp;|&nbsp; Generated: ${now}
         </div>
     </div>
 </body>
@@ -443,3 +443,4 @@ function StarIcon(props: any) {
         </svg>
     )
 }
+

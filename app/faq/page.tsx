@@ -24,12 +24,12 @@ export default function FaqPage() {
 		},
 		{
 			question: "Will the Hackathon be in person or online ?",
-			answer: "VHACK 2.0 will be conducted in complete offline/in-person mode.",
+			answer: "VANSH2K26 will be conducted in complete offline/in-person mode.",
 		},
 		{
-			question: "What is the venue for VHACK 2.0 ?",
+			question: "What is the venue for VANSH2K26 ?",
 			answer:
-				"Vignan Institute of Technology and Science, Hyderabad — explore our beautiful campus while thinking about innovating some crazy thing.",
+				"Vignan Institute of Technology and Science, Hyderabad â€” explore our beautiful campus while thinking about innovating some crazy thing.",
 		},
 		{
 			question: "What are the prerequisites to participate in this hackathon ?",
@@ -40,7 +40,7 @@ export default function FaqPage() {
 			question:
 				"Is the food and accommodation provided free of charge or are there any associated costs ?",
 			answer:
-				"We've got you covered when it comes to food, water, and coffee – they're on us. However, any additional snacks can be purchased separately. As for accommodation, we will provide arrangements similar to those found in other hackathons, which typically involve a set of mattresses in a common hall.",
+				"We've got you covered when it comes to food, water, and coffee â€“ they're on us. However, any additional snacks can be purchased separately. As for accommodation, we will provide arrangements similar to those found in other hackathons, which typically involve a set of mattresses in a common hall.",
 		},
 		{
 			question:

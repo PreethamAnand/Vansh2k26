@@ -1,4 +1,3 @@
-
 import Image from "next/image"
 import FadeInView from "@/components/FadeInView"
 
@@ -33,7 +32,7 @@ export default function PrizesPage() {
 					<div className="w-[35%] sm:block hidden sm:self-center self-end sm:w-[30%] md:w-[25%] lg:w-[25%] xl:w-[10%]sm:mr-40 md:mr-15 lg:mr-30 xl:mr-40">
 						<Image
 							src="/vh_2.0.png"
-							alt="VHACK 2.0 logo"
+							alt="VANSH2K26 logo"
 							width={300}
 							height={150}
 							className="w-full h-auto object-contain object-center scale-150 drop-shadow-xl"
@@ -95,3 +94,4 @@ export default function PrizesPage() {
 		</div>
 	)
 }
+

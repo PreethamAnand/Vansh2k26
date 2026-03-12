@@ -33,7 +33,6 @@ export async function GET(req: Request) {
             password: r.password || "",
             members: r.members || [],
             status: r.status || "PENDING",
-            problemStatement: r.problem_statement || r.raw_data?.problemStatement || "",
             room: r.room || "",
             roomWifiSSID: r.room_wifi_ssid || "",
             roomWifiPass: r.room_wifi_pass || "",
@@ -68,12 +67,11 @@ export async function GET(req: Request) {
 
 export async function PATCH(req: Request) {
     try {
-        const { id, problemStatement, submission, roundScores, roundComments, roundDetailedScores, isEliminated, isCheckedIn, room, volunteer_name, volunteer_phone, roomWifiSSID, roomWifiPass, assigned_judge, assigned_judge_2 } = await req.json();
+        const { id, submission, roundScores, roundComments, roundDetailedScores, isEliminated, isCheckedIn, room, volunteer_name, volunteer_phone, roomWifiSSID, roomWifiPass, assigned_judge, assigned_judge_2 } = await req.json();
 
         if (!id) return NextResponse.json({ error: 'ID is required' }, { status: 400 });
 
         const updateData: any = {};
-        if (problemStatement !== undefined) updateData.problem_statement = problemStatement;
         if (roundScores !== undefined) updateData.round_scores = roundScores;
         if (roundComments !== undefined) updateData.round_comments = roundComments;
         if (roundDetailedScores !== undefined) updateData.round_detailed_scores = roundDetailedScores;

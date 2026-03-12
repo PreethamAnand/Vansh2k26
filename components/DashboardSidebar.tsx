@@ -143,15 +143,15 @@ export const DashboardSidebar = ({ type, isOpen, onClose, isCollapsed, onToggleC
                     {!isCollapsed ? (
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(147,51,234,0.5)] overflow-hidden bg-black">
-                                <img src="/vh_2.0.png" alt="VHACK Logo" className="w-full h-full object-cover" />
+                                <img src="/vh_2.0.png" alt="VANSH2K26 Logo" className="w-full h-full object-cover" />
                             </div>
                             <span className="font-kanit font-black text-2xl italic tracking-tighter">
-                                VHACK <span className="text-purple-500">2.0</span>
+                                VANSH2K26
                             </span>
                         </div>
                     ) : (
                         <div className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(147,51,234,0.5)] overflow-hidden bg-black">
-                            <img src="/vh_2.0.png" alt="VHACK Logo" className="w-full h-full object-cover" />
+                            <img src="/vh_2.0.png" alt="VANSH2K26 Logo" className="w-full h-full object-cover" />
                         </div>
                     )}
                     {/* Close Button for Mobile */}

@@ -38,7 +38,7 @@ export async function POST(req: Request) {
                 return_url: `${baseUrl}/register?order_id={order_id}`,
                 notify_url: `${baseUrl}/api/payment/webhook`,
             },
-            order_note: `VHACK 2.0 Registration for ${registrationData.team_name}`
+            order_note: `VANSH2K26 Registration for ${registrationData.team_name}`
         };
 
         const response = await cashfree.PGCreateOrder(request);
@@ -52,3 +52,4 @@ export async function POST(req: Request) {
         }, { status: 500 });
     }
 }
+

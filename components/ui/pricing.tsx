@@ -3,7 +3,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Check, Headset, ShieldCheck, Star, Ticket } from "lucide-react";
+import { Check, Star } from "lucide-react";
 import NumberFlow from "@number-flow/react";
 import Link from "next/link";
 
@@ -11,8 +11,8 @@ interface PricingPlan {
   name: string;
   price: string;
   period: string;
-  features: string[];
-  description: string;
+  features?: string[];
+  description?: string;
   buttonText: string;
   href: string;
   isPopular: boolean;
@@ -37,31 +37,22 @@ export function Pricing({
   return (
     <div className="mx-auto w-full max-w-[1400px] px-4 py-16 sm:px-6 lg:px-10">
       <div className="pointer-events-none absolute left-0 top-0 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-8 right-0 h-72 w-72 rounded-full bg-violet-400/10 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-8 right-0 h-72 w-72 rounded-full bg-black/60 blur-3xl" />
 
       <div className="mb-12 text-center">
         <h2 className="font-kanit text-5xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl">
           {title}
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl whitespace-pre-line text-base text-white/75 sm:text-lg">
-          {description}
-        </p>
-        <p className="mx-auto mt-2 max-w-2xl text-sm uppercase tracking-[0.18em] text-cyan-200/70">{subtitle}</p>
-      </div>
-
-      <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <div className="rounded-xl border border-white/15 bg-black/25 p-3 text-center text-sm text-white/75 backdrop-blur-sm">
-          <div className="mx-auto mb-1 flex w-fit items-center gap-2 text-cyan-300"><Ticket className="h-4 w-4" /><span className="font-semibold">Instant Pass Confirmation</span></div>
-          <p>Register now and receive your event confirmation without delay.</p>
-        </div>
-        <div className="rounded-xl border border-white/15 bg-black/25 p-3 text-center text-sm text-white/75 backdrop-blur-sm">
-          <div className="mx-auto mb-1 flex w-fit items-center gap-2 text-cyan-300"><ShieldCheck className="h-4 w-4" /><span className="font-semibold">Secure Payment Flow</span></div>
-          <p>Protected payment journey with immediate registration updates.</p>
-        </div>
-        <div className="rounded-xl border border-white/15 bg-black/25 p-3 text-center text-sm text-white/75 backdrop-blur-sm">
-          <div className="mx-auto mb-1 flex w-fit items-center gap-2 text-cyan-300"><Headset className="h-4 w-4" /><span className="font-semibold">Support During Event</span></div>
-          <p>On-site volunteer desk for onboarding and ticket help.</p>
-        </div>
+        {subtitle && (
+          <div className="mx-auto mt-4 inline-flex items-center rounded-full border border-amber-300/50 bg-amber-300 px-5 py-2 text-sm font-black uppercase tracking-[0.18em] text-black shadow-[0_0_32px_rgba(252,211,77,0.35)]">
+            {subtitle}
+          </div>
+        )}
+        {description && (
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
+            {description}
+          </p>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -118,16 +109,20 @@ export function Pricing({
               <p className="mt-1 text-xs font-medium uppercase tracking-wider text-amber-200/80">{plan.slotsLeft}</p>
             )}
 
-            <ul className="mt-6 flex flex-1 flex-col gap-2">
-              {plan.features.map((feature, featureIndex) => (
-                <li key={`${plan.name}-${featureIndex}`} className="flex items-start gap-2 text-sm text-white/85">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-cyan-300" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            {plan.features && plan.features.length > 0 && (
+              <>
+                <ul className="mt-6 flex flex-1 flex-col gap-2">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={`${plan.name}-${featureIndex}`} className="flex items-start gap-2 text-sm text-white/85">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-cyan-300" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-            <hr className="my-5 border-white/15" />
+                <hr className="my-5 border-white/15" />
+              </>
+            )}
 
             <Link
               href={plan.href}
@@ -140,7 +135,7 @@ export function Pricing({
               {plan.buttonText}
             </Link>
 
-            <p className="mt-5 text-xs leading-5 text-white/65">{plan.description}</p>
+            {plan.description && <p className="mt-5 text-xs leading-5 text-white/65">{plan.description}</p>}
             {plan.footnote && <p className="mt-2 text-[11px] leading-5 text-cyan-200/70">{plan.footnote}</p>}
           </motion.div>
         ))}

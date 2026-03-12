@@ -64,9 +64,9 @@ export default function AdminResults() {
     }, [projects, searchQuery, evalFilter, calculateAverage]);
 
     const getRankDisplay = (index: number) => {
-        if (index === 0) return { emoji: "🥇", color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" };
-        if (index === 1) return { emoji: "🥈", color: "text-slate-300", bg: "bg-slate-400/10 border-slate-400/30" };
-        if (index === 2) return { emoji: "🥉", color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" };
+        if (index === 0) return { emoji: "ðŸ¥‡", color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" };
+        if (index === 1) return { emoji: "ðŸ¥ˆ", color: "text-slate-300", bg: "bg-slate-400/10 border-slate-400/30" };
+        if (index === 2) return { emoji: "ðŸ¥‰", color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" };
         return { emoji: null, color: "text-white/20", bg: "bg-white/5 border-white/10" };
     };
 
@@ -91,7 +91,7 @@ export default function AdminResults() {
         const roundGroupHeaders = ROUNDS.map(r => {
             const count = roundMaxEvals[r.id];
             const span = withFeedback ? count * 2 : count;
-            return `<th colspan="${span}" style="${thStyle}background:#dde4f7;color:#1a1a8c;">${r.title} — ${r.subtitle}</th>`;
+            return `<th colspan="${span}" style="${thStyle}background:#dde4f7;color:#1a1a8c;">${r.title} â€” ${r.subtitle}</th>`;
         }).join('');
 
         // Header row 2: Evaluation Slots
@@ -132,10 +132,10 @@ export default function AdminResults() {
                     const [jid, score] = evaluations[i] || [null, null];
                     const comment = p.roundComments?.[r.id]?.[jid as string] || '';
                     const detailed = (p.roundDetailedScores?.[r.id]?.[jid as string]) || {};
-                    const judgeName = judges.find(j => j.generatedId === jid)?.name || jid || '—';
+                    const judgeName = judges.find(j => j.generatedId === jid)?.name || jid || 'â€”';
 
                     const criteriaBreakdown = score != null ? ROUNDS.find(rr => rr.id === r.id)!.criteria
-                        .map(c => `${c.label}: ${(detailed as any)[c.id] ?? '—'}`).join(' | ') : 'No evaluation yet';
+                        .map(c => `${c.label}: ${(detailed as any)[c.id] ?? 'â€”'}`).join(' | ') : 'No evaluation yet';
 
                     const maxMarksForRound = r.criteria.length * 5;
                     const percentage = score != null ? Number(score) / maxMarksForRound : 0;
@@ -145,8 +145,8 @@ export default function AdminResults() {
                         ${score != null
                             ? `<div style="font-size:8px;color:#888;font-weight:700;margin-bottom:2px;text-transform:uppercase;">${judgeName}</div>
                                <strong style="font-size:13px;color:#1a1a8c;">${Number(score).toFixed(1)}</strong>
-                               <div style="font-size:8px;color:#555;margin-top:2px;line-height:1.1;">${criteriaBreakdown.substring(0, 60)}${criteriaBreakdown.length > 60 ? '…' : ''}</div>`
-                            : '<span style="color:#ccc;">—</span>'}
+                               <div style="font-size:8px;color:#555;margin-top:2px;line-height:1.1;">${criteriaBreakdown.substring(0, 60)}${criteriaBreakdown.length > 60 ? 'â€¦' : ''}</div>`
+                            : '<span style="color:#ccc;">â€”</span>'}
                     </td>`;
                     cells.push(scoreCell);
 
@@ -154,7 +154,7 @@ export default function AdminResults() {
                         const feedbackCell = `<td style="${tdStyle}text-align:left;background:#fffef9;max-width:150px;">
                             ${comment ? `<div style="font-size:8px;color:#888;margin-bottom:2px;">FROM: ${judgeName}</div>
                                         <span style="font-size:10px;color:#555;font-style:italic;line-height:1.4;">${comment.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`
-                                : '<span style="color:#ddd;font-size:10px;">—</span>'}
+                                : '<span style="color:#ddd;font-size:10px;">â€”</span>'}
                         </td>`;
                         cells.push(feedbackCell);
                     }
@@ -165,12 +165,12 @@ export default function AdminResults() {
             const statusColor = p.isEliminated ? '#cc0000' : '#1a7a1a';
             return `<tr style="background:${rowBg};">
                 <td style="${tdStyle}font-weight:700;">${idx + 1}</td>
-                <td style="${tdStyle}text-align:left;font-weight:600;">${p.name || '—'}</td>
-                <td style="${tdStyle}text-align:left;font-size:10px;">${p.team || '—'}</td>
-                <td style="${tdStyle}font-family:monospace;font-size:10px;">${p.teamId || '—'}</td>
-                <td style="${tdStyle}font-size:10px;">${p.track || '—'}</td>
+                <td style="${tdStyle}text-align:left;font-weight:600;">${p.name || 'â€”'}</td>
+                <td style="${tdStyle}text-align:left;font-size:10px;">${p.team || 'â€”'}</td>
+                <td style="${tdStyle}font-family:monospace;font-size:10px;">${p.teamId || 'â€”'}</td>
+                <td style="${tdStyle}font-size:10px;">${p.track || 'â€”'}</td>
                 ${roundCells}
-                <td style="${tdStyle}font-weight:900;font-size:13px;color:${finalAvg > 0 ? '#1a1a8c' : '#aaa'};">${finalAvg > 0 ? finalAvg : '—'}</td>
+                <td style="${tdStyle}font-weight:900;font-size:13px;color:${finalAvg > 0 ? '#1a1a8c' : '#aaa'};">${finalAvg > 0 ? finalAvg : 'â€”'}</td>
                 <td style="${tdStyle}font-weight:700;color:${statusColor};font-size:10px;">${p.isEliminated ? 'Eliminated' : 'Active'}</td>
             </tr>`;
         }).join('');
@@ -186,9 +186,9 @@ export default function AdminResults() {
             return cells;
         }).join('');
         const overallAvg = filteredProjects.length > 0
-            ? (filteredProjects.reduce((s, p) => s + calculateAverage(p, roundIds), 0) / filteredProjects.length).toFixed(2) : '—';
+            ? (filteredProjects.reduce((s, p) => s + calculateAverage(p, roundIds), 0) / filteredProjects.length).toFixed(2) : 'â€”';
         const tfoot = `<tr style="background:#e8eaf6;">
-            <td colspan="5" style="padding:7px;font-size:11px;font-weight:700;text-align:right;border:1px solid #ccc;">Column Averages →</td>
+            <td colspan="5" style="padding:7px;font-size:11px;font-weight:700;text-align:right;border:1px solid #ccc;">Column Averages â†’</td>
             ${avgCells}
             <td style="${tdStyle}font-weight:900;color:#1a1a8c;">${overallAvg}</td>
             <td style="${tdStyle}"></td>
@@ -197,13 +197,13 @@ export default function AdminResults() {
         const now = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
         const feedbackNote = withFeedback
             ? 'Each judge has a Score column + Feedback column'
-            : 'Score columns only — no feedback included';
+            : 'Score columns only â€” no feedback included';
 
         const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>VHACK 2.0 — ${reportTitle}</title>
+    <title>VANSH2K26 â€” ${reportTitle}</title>
     <style>
         @page { size: A2 landscape; margin: 12mm; }
         @media print { .no-print { display:none!important; } body { margin:0; } tr { page-break-inside:avoid; } }
@@ -214,16 +214,16 @@ export default function AdminResults() {
 <body>
     <div class="no-print" style="position:fixed;top:0;left:0;right:0;background:#1a1a8c;color:#fff;
         padding:10px 24px;display:flex;justify-content:space-between;align-items:center;z-index:9999;font-family:Arial,sans-serif;">
-        <span style="font-weight:700;font-size:13px;">📊 VHACK 2.0 — ${reportTitle} (${filteredProjects.length} Teams)</span>
+        <span style="font-weight:700;font-size:13px;">ðŸ“Š VANSH2K26 â€” ${reportTitle} (${filteredProjects.length} Teams)</span>
         <button onclick="window.print()" style="background:#FFEE00;color:#000;border:none;padding:8px 22px;
-            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">🖨️ Print / Save as PDF</button>
+            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">ðŸ–¨ï¸ Print / Save as PDF</button>
     </div>
     <div style="padding:18px 24px;margin-top:50px;">
         <div style="display:flex;align-items:center;justify-content:flex-start;gap:20px;margin-bottom:8px;">
             <img src="/vignan-logo.png" style="height:80px;object-fit:contain;flex-shrink:0;" />
             <div style="font-family:'Segoe UI',Arial,sans-serif;">
                 <div style="font-size:11px;color:#333;letter-spacing:0.5px;font-weight:700;">Vignan Institute of Technology and Science</div>
-                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VHACK 2.0 HACKATHON</div>
+                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VANSH2K26 HACKATHON</div>
                 <div style="font-size:13px;font-weight:700;letter-spacing:4px;color:#cc0000;margin-top:2px;">${reportTitle.toUpperCase()}</div>
                 <div style="font-size:10px;color:#888;margin-top:5px;">Date: ${now} &nbsp;|&nbsp; Total Teams: ${filteredProjects.length}</div>
             </div>
@@ -231,14 +231,14 @@ export default function AdminResults() {
         <div style="height:3px;background:linear-gradient(90deg,#cc0000,#1a1a8c,#cc0000);margin:8px 0 14px;border-radius:2px;"></div>
         <div style="display:flex;gap:14px;font-size:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap;">
             <span style="font-weight:700;color:#555;">Score (out of 5):</span>
-            <span style="background:#efffef;border:1px solid #9d9;padding:2px 8px;border-radius:3px;">4–5 Excellent</span>
-            <span style="background:#fffde7;border:1px solid #dd9;padding:2px 8px;border-radius:3px;">3–4 Good</span>
-            <span style="background:#fff0f0;border:1px solid #fcc;padding:2px 8px;border-radius:3px;">1–3 Needs Work</span>
+            <span style="background:#efffef;border:1px solid #9d9;padding:2px 8px;border-radius:3px;">4â€“5 Excellent</span>
+            <span style="background:#fffde7;border:1px solid #dd9;padding:2px 8px;border-radius:3px;">3â€“4 Good</span>
+            <span style="background:#fff0f0;border:1px solid #fcc;padding:2px 8px;border-radius:3px;">1â€“3 Needs Work</span>
             <span style="color:#999;font-style:italic;">${feedbackNote}</span>
         </div>
         <table><thead>${thead}</thead><tbody>${rows}</tbody><tfoot>${tfoot}</tfoot></table>
         <div style="margin-top:14px;text-align:center;font-size:9px;color:#bbb;border-top:1px solid #eee;padding-top:8px;">
-            VHACK 2.0 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; ${reportTitle} &nbsp;|&nbsp; Generated: ${now}
+            VANSH2K26 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; ${reportTitle} &nbsp;|&nbsp; Generated: ${now}
         </div>
     </div>
 </body>
@@ -268,10 +268,10 @@ export default function AdminResults() {
         const roundGroupHeaders = ROUNDS.map(r => {
             const judgeCount = Math.max(roundJudgeMap[r.id].length, 1);
             const span = judgeCount * 2; // score + feedback per judge
-            return `<th colspan="${span}" style="${thStyle};background:#dde4f7;color:#1a1a8c;">${r.title} — ${r.subtitle}</th>`;
+            return `<th colspan="${span}" style="${thStyle};background:#dde4f7;color:#1a1a8c;">${r.title} â€” ${r.subtitle}</th>`;
         }).join('');
 
-        // Build header row 2: for each judge → "Score" + "Feedback" columns
+        // Build header row 2: for each judge â†’ "Score" + "Feedback" columns
         const subHeaderCells = ROUNDS.flatMap(r =>
             roundJudgeMap[r.id].length === 0
                 ? [
@@ -306,15 +306,15 @@ export default function AdminResults() {
             const roundCells = ROUNDS.flatMap(r => {
                 const judgeIds = roundJudgeMap[r.id];
                 if (judgeIds.length === 0) return [
-                    `<td style="${tdStyle}">—</td>`,
-                    `<td style="${tdStyle}">—</td>`
+                    `<td style="${tdStyle}">â€”</td>`,
+                    `<td style="${tdStyle}">â€”</td>`
                 ];
                 return judgeIds.flatMap(jid => {
                     const score = p.roundScores?.[r.id]?.[jid];
                     const comment = p.roundComments?.[r.id]?.[jid] || '';
                     const detailed = (p.roundDetailedScores?.[r.id]?.[jid]) || {};
                     const criteriaBreakdown = ROUNDS.find(rr => rr.id === r.id)!.criteria
-                        .map(c => `${c.label}: ${(detailed as any)[c.id] ?? '—'}`).join(' | ');
+                        .map(c => `${c.label}: ${(detailed as any)[c.id] ?? 'â€”'}`).join(' | ');
                     const maxMarksForRound = r.criteria.length * 5;
                     const percentage = score != null ? Number(score) / maxMarksForRound : 0;
                     const cellBg = score == null ? '#f9f9f9' : percentage >= 0.8 ? '#efffef' : percentage >= 0.6 ? '#fffde7' : '#fff0f0';
@@ -322,14 +322,14 @@ export default function AdminResults() {
                     const scoreCell = `<td style="${tdStyle}background:${cellBg};" title="${criteriaBreakdown}">
                         ${score != null
                             ? `<strong style="font-size:14px;color:#1a1a8c;">${Number(score).toFixed(1)}</strong><br/>
-                               <span style="font-size:9px;color:#888;">${criteriaBreakdown.replace(/\|/g, '·').substring(0, 80)}${criteriaBreakdown.length > 80 ? '…' : ''}</span>`
-                            : '<span style="color:#ccc;">—</span>'}
+                               <span style="font-size:9px;color:#888;">${criteriaBreakdown.replace(/\|/g, 'Â·').substring(0, 80)}${criteriaBreakdown.length > 80 ? 'â€¦' : ''}</span>`
+                            : '<span style="color:#ccc;">â€”</span>'}
                     </td>`;
 
                     const feedbackCell = `<td style="${tdStyle}text-align:left;background:#fffef9;max-width:160px;">
                         ${comment
                             ? `<span style="font-size:10px;color:#555;font-style:italic;line-height:1.4;">${comment.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>`
-                            : '<span style="color:#ddd;font-size:10px;">—</span>'}
+                            : '<span style="color:#ddd;font-size:10px;">â€”</span>'}
                     </td>`;
 
                     return [scoreCell, feedbackCell];
@@ -340,12 +340,12 @@ export default function AdminResults() {
             const statusColor = p.isEliminated ? '#cc0000' : '#1a7a1a';
             return `<tr style="background:${rowBg};">
                 <td style="${tdStyle}font-weight:700;">${idx + 1}</td>
-                <td style="${tdStyle}text-align:left;font-weight:600;">${p.name || '—'}</td>
-                <td style="${tdStyle}text-align:left;font-size:10px;">${p.team || '—'}</td>
-                <td style="${tdStyle}font-family:monospace;font-size:10px;">${p.teamId || '—'}</td>
-                <td style="${tdStyle}font-size:10px;">${p.track || '—'}</td>
+                <td style="${tdStyle}text-align:left;font-weight:600;">${p.name || 'â€”'}</td>
+                <td style="${tdStyle}text-align:left;font-size:10px;">${p.team || 'â€”'}</td>
+                <td style="${tdStyle}font-family:monospace;font-size:10px;">${p.teamId || 'â€”'}</td>
+                <td style="${tdStyle}font-size:10px;">${p.track || 'â€”'}</td>
                 ${roundCells}
-                <td style="${tdStyle}font-weight:900;font-size:13px;color:${finalAvg > 0 ? '#1a1a8c' : '#aaa'};">${finalAvg > 0 ? finalAvg : '—'}</td>
+                <td style="${tdStyle}font-weight:900;font-size:13px;color:${finalAvg > 0 ? '#1a1a8c' : '#aaa'};">${finalAvg > 0 ? finalAvg : 'â€”'}</td>
                 <td style="${tdStyle}font-weight:700;color:${statusColor};font-size:10px;">${p.isEliminated ? 'Eliminated' : 'Active'}</td>
             </tr>`;
         }).join('');
@@ -354,14 +354,14 @@ export default function AdminResults() {
         const avgCells = ROUNDS.flatMap(r => {
             const judgeIds = roundJudgeMap[r.id];
             if (judgeIds.length === 0) return [
-                `<td style="${tdStyle}">—</td>`,
+                `<td style="${tdStyle}">â€”</td>`,
                 `<td style="${tdStyle}"></td>`
             ];
             return judgeIds.flatMap(jid => {
                 const scores = filteredProjects
                     .map(p => p.roundScores?.[r.id]?.[jid])
                     .filter(s => s != null).map(Number);
-                const avg = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(2) : '—';
+                const avg = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(2) : 'â€”';
                 return [
                     `<td style="${tdStyle}font-weight:700;">${avg}</td>`,
                     `<td style="${tdStyle}"></td>`
@@ -369,9 +369,9 @@ export default function AdminResults() {
             });
         }).join('');
         const overallAvg = filteredProjects.length > 0
-            ? (filteredProjects.reduce((s, p) => s + calculateAverage(p, ROUNDS.map(r => r.id)), 0) / filteredProjects.length).toFixed(2) : '—';
+            ? (filteredProjects.reduce((s, p) => s + calculateAverage(p, ROUNDS.map(r => r.id)), 0) / filteredProjects.length).toFixed(2) : 'â€”';
         const tfoot = `<tr style="background:#e8eaf6;">
-            <td colspan="5" style="padding:7px;font-size:11px;font-weight:700;text-align:right;border:1px solid #ccc;">Column Averages →</td>
+            <td colspan="5" style="padding:7px;font-size:11px;font-weight:700;text-align:right;border:1px solid #ccc;">Column Averages â†’</td>
             ${avgCells}
             <td style="${tdStyle}font-weight:900;color:#1a1a8c;">${overallAvg}</td>
             <td style="${tdStyle}"></td>
@@ -383,7 +383,7 @@ export default function AdminResults() {
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>VHACK 2.0 — Evaluation Score Sheet</title>
+    <title>VANSH2K26 â€” Evaluation Score Sheet</title>
     <style>
         @page { size: A2 landscape; margin: 12mm; }
         @media print {
@@ -399,9 +399,9 @@ export default function AdminResults() {
 <body>
     <div class="no-print" style="position:fixed;top:0;left:0;right:0;background:#1a1a8c;color:#fff;
         padding:10px 24px;display:flex;justify-content:space-between;align-items:center;z-index:9999;font-family:Arial,sans-serif;">
-        <span style="font-weight:700;font-size:13px;">📊 VHACK 2.0 — Evaluation Score Sheet (${filteredProjects.length} Teams)</span>
+        <span style="font-weight:700;font-size:13px;">ðŸ“Š VANSH2K26 â€” Evaluation Score Sheet (${filteredProjects.length} Teams)</span>
         <button onclick="window.print()" style="background:#FFEE00;color:#000;border:none;padding:8px 22px;
-            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">🖨️ Print / Save as PDF</button>
+            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">ðŸ–¨ï¸ Print / Save as PDF</button>
     </div>
 
     <div style="padding:18px 24px;margin-top:50px;">
@@ -412,7 +412,7 @@ export default function AdminResults() {
                 <div style="font-size:11px;color:#333;letter-spacing:0.5px;font-weight:700;">
                     Vignan Institute of Technology and Science
                 </div>
-                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VHACK 2.0 HACKATHON</div>
+                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VANSH2K26 HACKATHON</div>
                 <div style="font-size:13px;font-weight:700;letter-spacing:5px;color:#cc0000;margin-top:2px;">EVALUATION SCORE SHEET</div>
                 <div style="font-size:10px;color:#888;margin-top:5px;">Date: ${now} &nbsp;|&nbsp; Total Teams: ${filteredProjects.length}</div>
             </div>
@@ -422,9 +422,9 @@ export default function AdminResults() {
         <!-- Legend -->
         <div style="display:flex;gap:14px;font-size:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap;">
             <span style="font-weight:700;color:#555;">Score (out of 5):</span>
-            <span style="background:#efffef;border:1px solid #9d9;padding:2px 8px;border-radius:3px;">4–5 Excellent</span>
-            <span style="background:#fffde7;border:1px solid #dd9;padding:2px 8px;border-radius:3px;">3–4 Good</span>
-            <span style="background:#fff0f0;border:1px solid #fcc;padding:2px 8px;border-radius:3px;">1–3 Needs Work</span>
+            <span style="background:#efffef;border:1px solid #9d9;padding:2px 8px;border-radius:3px;">4â€“5 Excellent</span>
+            <span style="background:#fffde7;border:1px solid #dd9;padding:2px 8px;border-radius:3px;">3â€“4 Good</span>
+            <span style="background:#fff0f0;border:1px solid #fcc;padding:2px 8px;border-radius:3px;">1â€“3 Needs Work</span>
             <span style="color:#999;font-style:italic;">Each judge has a Score column + Feedback column</span>
         </div>
 
@@ -436,7 +436,7 @@ export default function AdminResults() {
         </table>
 
         <div style="margin-top:14px;text-align:center;font-size:9px;color:#bbb;border-top:1px solid #eee;padding-top:8px;">
-            VHACK 2.0 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; Evaluation Score Sheet &nbsp;|&nbsp; Generated: ${now}
+            VANSH2K26 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; Evaluation Score Sheet &nbsp;|&nbsp; Generated: ${now}
         </div>
     </div>
 </body>
@@ -606,17 +606,17 @@ export default function AdminResults() {
                         </div>
                     </div>
 
-                    {/* Row 2: Export Navbar — full width */}
+                    {/* Row 2: Export Navbar â€” full width */}
                     <div className="flex items-center bg-white/5 border border-white/10 rounded-2xl p-1 backdrop-blur-md gap-1 overflow-x-auto custom-scrollbar">
                         {[
-                            { label: 'Round 1', rounds: ['round1'], title: 'Round 1 — Evaluation Report', accent: false },
-                            { label: 'Round 2', rounds: ['round2'], title: 'Round 2 — Evaluation Report', accent: false },
-                            { label: 'Round 3', rounds: ['round3'], title: 'Round 3 — Evaluation Report', accent: false },
-                            { label: 'Round 4', rounds: ['round4'], title: 'Round 4 — Evaluation Report', accent: false },
-                            { label: 'R1 + R2 + R3', rounds: ['round1', 'round2', 'round3'], title: 'Rounds 1, 2 & 3 — Evaluation Report', accent: false },
-                            { label: 'R2 + R3', rounds: ['round2', 'round3'], title: 'Rounds 2 & 3 — Evaluation Report', accent: false },
-                            { label: 'R1 + R2', rounds: ['round1', 'round2'], title: 'Rounds 1 & 2 — Evaluation Report', accent: false },
-                            { label: 'Export All', rounds: ['round1', 'round2', 'round3', 'round4'], title: 'Full Evaluation — All Rounds', accent: true },
+                            { label: 'Round 1', rounds: ['round1'], title: 'Round 1 â€” Evaluation Report', accent: false },
+                            { label: 'Round 2', rounds: ['round2'], title: 'Round 2 â€” Evaluation Report', accent: false },
+                            { label: 'Round 3', rounds: ['round3'], title: 'Round 3 â€” Evaluation Report', accent: false },
+                            { label: 'Round 4', rounds: ['round4'], title: 'Round 4 â€” Evaluation Report', accent: false },
+                            { label: 'R1 + R2 + R3', rounds: ['round1', 'round2', 'round3'], title: 'Rounds 1, 2 & 3 â€” Evaluation Report', accent: false },
+                            { label: 'R2 + R3', rounds: ['round2', 'round3'], title: 'Rounds 2 & 3 â€” Evaluation Report', accent: false },
+                            { label: 'R1 + R2', rounds: ['round1', 'round2'], title: 'Rounds 1 & 2 â€” Evaluation Report', accent: false },
+                            { label: 'Export All', rounds: ['round1', 'round2', 'round3', 'round4'], title: 'Full Evaluation â€” All Rounds', accent: true },
                         ].map(({ label, rounds, title, accent }) => (
                             <button
                                 key={label}
@@ -700,7 +700,7 @@ export default function AdminResults() {
                                                         </div>
                                                         <div>
                                                             <div className="font-black text-white text-sm uppercase italic tracking-tight leading-tight">{p.name}</div>
-                                                            <div className="text-[10px] text-white/30 font-bold uppercase tracking-widest mt-0.5">{p.team} • {p.teamId}</div>
+                                                            <div className="text-[10px] text-white/30 font-bold uppercase tracking-widest mt-0.5">{p.team} â€¢ {p.teamId}</div>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -880,7 +880,7 @@ export default function AdminResults() {
 // Helper component for score pills
 function ScorePill({ value, color, judges }: { value: Record<string, number | null> | undefined | null; color: string; judges: any[] }) {
     if (!value || Object.keys(value).length === 0) {
-        return <span className="text-white/15 font-mono text-xs font-bold">—</span>;
+        return <span className="text-white/15 font-mono text-xs font-bold">â€”</span>;
     }
     const judgeIds = Object.keys(value);
 
@@ -899,3 +899,4 @@ function ScorePill({ value, color, judges }: { value: Record<string, number | nu
         </div>
     );
 }
+

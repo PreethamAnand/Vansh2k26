@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/#schedule", label: "Schedule" },
   { href: "/events", label: "Events" },
-  { href: "/team", label: "Team" },
 ];
 
 export default function GlassNavBar() {
@@ -42,9 +41,9 @@ export default function GlassNavBar() {
           <Image
             src="/vansh_logo.PNG"
             alt="VANSH 2K26"
-            width={56}
-            height={56}
-            className="h-12 w-auto object-contain"
+            width={85}
+            height={85}
+            className="h-[85px] w-auto object-contain"
             priority
           />
           <Image

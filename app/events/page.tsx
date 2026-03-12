@@ -1,10 +1,18 @@
 import Link from "next/link";
 import { ArrowUpRight, Sparkles, CalendarClock, MapPin } from "lucide-react";
 import { EVENTS_DATA } from "@/lib/eventData";
+import Threads from "@/components/Threads";
 
 export default function EventsPage() {
     return (
         <main className="relative min-h-screen overflow-hidden bg-[#080211] text-white">
+            <div className="fixed inset-0 pointer-events-none z-0 opacity-70">
+                <Threads
+                    amplitude={0.6}
+                    distance={0.8}
+                    enableMouseInteraction={false}
+                />
+            </div>
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute -top-24 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-fuchsia-500/12 blur-[130px]" />
                 <div className="absolute bottom-[-140px] right-[-80px] h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-[140px]" />
@@ -78,7 +86,7 @@ export default function EventsPage() {
                                     href={`/event/${event.slug}`}
                                     className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.18em] text-white transition-all duration-300 hover:border-cyan-300/70 hover:bg-cyan-300/15"
                                 >
-                                    Open Dashboard
+                                    Register
                                     <ArrowUpRight size={14} />
                                 </Link>
                             </div>

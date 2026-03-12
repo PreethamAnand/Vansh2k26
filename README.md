@@ -5,7 +5,8 @@ Vansh2k26 is a state-of-the-art hackathon management platform designed for a pre
 ## ✨ Features
 
 - **Advanced Registration Flow**: 3-step process (Details → UPI Payment → UTR Verification).
-- **Dynamic Identity System**: Automated sequential Team ID generation (`VHACK_2.0_101`).
+- **Multiple Pass Types**: Dedicated flows for hackathon registration, day passes, group passes, and VIP passes.
+- **Dynamic Identity System**: Automated sequential Team ID generation (`VANSH2K26_101`).
 - **Smart Payment Integration**: 
   - Dynamic UPI QR Code generation.
   - Automatic transaction note embedding for reconciliation.
@@ -14,6 +15,8 @@ Vansh2k26 is a state-of-the-art hackathon management platform designed for a pre
   - **Team Portal**: Digital entry tickets with QR codes, submission tracking, and project status.
   - **Admin Command**: Full control over registrations, payment verification, and participant directory.
   - **Judge Panel**: Structured grading pool for project evaluation.
+  - **Event Coordinator Workspace**: Event-specific oversight for participant and activity management.
+- **Public Event Experience**: Dedicated event pages, updated prize and guideline sections, and a redesigned visual landing flow.
 - **Automated Communication**: Professional HTML confirmation emails sent via **Resend** upon registration approval.
 - **Premium Aesthetics**: High-fidelity UI using Framer Motion animations and custom glassmorphism effects.
 
@@ -70,31 +73,3 @@ All files in the public gallery folder follow a serial naming convention for eas
 ## License
 © 2026 Vansh2k26. All rights reserved. Built for high-performance innovation.
 
----
-
-## 🏆 Project Submission Template
-*Participants: Please copy the section below and replace it with your project details as part of the mandatory Day 1 documentation update.*
-
-### 📋 Team Information
-- **Team Name**: [Your Team Name]
-- **Team ID**: [VANSH2K26_XXX]
-- **Members**:
-  1. [Member 1 Name]
-  2. [Member 2 Name]
-  3. [Member 3 Name]
-
-### 💡 Project Overview
-- **Problem Statement**: [Define the core problem you are solving]
-- **Proposed Solution**: [Briefly explain your solution]
-- **Innovation & Differentiation**: [What makes your project unique compared to existing solutions?]
-- **Detailed Description**: [Comprehensive project breakdown]
-
-### 🛠️ Technical Details
-- **Tech Stack**: [List languages, frameworks, databases, etc.]
-- **System Architecture**: [Overview of how components interact]
-- **APIs / External Services**: [List all third-party tools/APIs used]
-
-### 🗺️ Implementation Roadmap
-- **Phase 1**: [Day 1 Milestones]
-- **Phase 2**: [Day 2 Milestones]
-- **Future Scope**: [Scalability and real-world impact]

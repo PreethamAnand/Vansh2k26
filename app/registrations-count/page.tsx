@@ -110,7 +110,7 @@ export default function RegistrationsCountPage() {
                                 <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider ml-1">Access Key</label>
                                 <input
                                     type="password"
-                                    placeholder="••••••••"
+                                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     autoFocus
@@ -150,7 +150,7 @@ export default function RegistrationsCountPage() {
                             <ShieldCheck size={20} />
                         </div>
                         <div>
-                            <h2 className="text-sm font-bold tracking-tight">VHACK 2.0 Audit</h2>
+                            <h2 className="text-sm font-bold tracking-tight">VANSH2K26 Audit</h2>
                             <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Registration Registry</p>
                         </div>
                     </div>
@@ -304,3 +304,4 @@ export default function RegistrationsCountPage() {
         </main>
     );
 }
+

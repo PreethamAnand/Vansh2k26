@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { FloatingPathsLayer } from "@/components/ui/background-paths";
+import Galaxy from "@/components/Galaxy";
 
 export interface CardFlipProps {
   title?: string;
@@ -138,35 +139,7 @@ function CardFlip({
             </div>
           </div>
 
-          <div className="mt-6 border-zinc-200 border-t pt-6 dark:border-zinc-800">
-            <div
-              className={cn(
-                "group/start relative",
-                "flex items-center justify-between",
-                "-m-3 rounded-xl p-3",
-                "transition-all duration-300",
-                "bg-gradient-to-r from-zinc-100 via-zinc-100 to-zinc-100",
-                "dark:from-zinc-800 dark:via-zinc-800 dark:to-zinc-800",
-                "hover:from-0% hover:from-orange-500/10 hover:via-100% hover:via-orange-500/5 hover:to-100% hover:to-transparent",
-                "dark:hover:from-0% dark:hover:from-orange-500/20 dark:hover:via-100% dark:hover:via-orange-500/10 dark:hover:to-100% dark:hover:to-transparent",
-                "hover:scale-[1.02] hover:cursor-pointer"
-              )}
-            >
-              <span className="font-medium text-sm text-zinc-900 transition-colors duration-300 group-hover/start:text-orange-600 dark:text-white dark:group-hover/start:text-orange-400">
-                Start today
-              </span>
-              <div className="group/icon relative">
-                <div
-                  className={cn(
-                    "absolute inset-[-6px] rounded-lg transition-all duration-300",
-                    "bg-gradient-to-br from-orange-500/20 via-orange-500/10 to-transparent",
-                    "scale-90 opacity-0 group-hover/start:scale-100 group-hover/start:opacity-100"
-                  )}
-                />
-                <ArrowRight className="relative z-10 h-4 w-4 text-orange-500 transition-all duration-300 group-hover/start:translate-x-0.5 group-hover/start:scale-110" />
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -238,18 +211,36 @@ const EventsSection = () => {
     <section
       id="events"
       aria-label="Events"
-      className="relative overflow-hidden py-16"
+      className="relative overflow-hidden py-16 bg-black"
     >
-      <FloatingPathsLayer className="opacity-80" />
-      <div className="relative mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10">
+      <div className="absolute inset-0 z-0 h-full w-full">
+        <Galaxy 
+          mouseRepulsion={false}
+          mouseInteraction={false}
+          density={1.7}
+          glowIntensity={0.2}
+          saturation={0.5}
+          hueShift={260}
+          twinkleIntensity={0.3}
+          rotationSpeed={0.1}
+          repulsionStrength={2}
+          autoCenterRepulsion={0}
+          starSpeed={0.7}
+          speed={1.9}
+        />
+      </div>
+      <FloatingPathsLayer className="relative z-10 opacity-80" />
+      <div className="relative z-20 mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10">
         <h2 className="text-center font-kanit text-5xl font-black uppercase tracking-tight text-slate-900 sm:text-6xl lg:text-7xl dark:text-white">
           Events
         </h2>
 
-        <div className="mt-12 grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {EVENTS.map((event) => (
-            <CardFlip key={event.title} {...event} />
-          ))}
+        <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm dark:bg-black/20 dark:border-white/10">
+          <div className="grid grid-cols-2 justify-items-center gap-x-3 gap-y-1 sm:grid-cols-2 lg:grid-cols-4">
+            {EVENTS.map((event) => (
+              <CardFlip key={event.title} {...event} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

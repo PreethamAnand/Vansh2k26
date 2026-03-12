@@ -104,7 +104,7 @@ export const sendConfirmationEmails = async (teamData: any) => {
     const ticketBuffer = await generateTicketImage(teamData);
 
     // Resend from address (Verified domain)
-    const fromAddress = 'VHACK 2.0 <admin@vhack.online>';
+    const fromAddress = 'VANSH2K26 <admin@vhack.online>';
 
 
     // Leader Email - PROFESSIONAL CORPORATE THEME
@@ -122,7 +122,7 @@ export const sendConfirmationEmails = async (teamData: any) => {
                 <div style="padding: 40px;">
                     <h1 style="color: #0f172a; font-size: 24px; font-weight: 800; margin: 0 0 16px 0; letter-spacing: -0.025em;">Registration Confirmed</h1>
                     <p style="font-size: 16px; color: #475569; margin: 0;">Dear <b>${leader.fullName}</b>,</p>
-                    <p style="font-size: 16px; color: #475569; margin: 12px 0 0 0;">Congratulations! Your team registration for <b>VHACK 2.0</b> has been successfully processed. We are excited to have you join us at VITS for this 24-hour innovation journey.</p>
+                    <p style="font-size: 16px; color: #475569; margin: 12px 0 0 0;">Congratulations! Your team registration for <b>VANSH2K26</b> has been successfully processed. We are excited to have you join us at VITS for this 24-hour innovation journey.</p>
                     
                     <!-- Event Details Block -->
                     <div style="margin: 32px 0; background: #f1f5f9; border-radius: 12px; padding: 24px;">
@@ -144,7 +144,7 @@ export const sendConfirmationEmails = async (teamData: any) => {
                 </div>
                 
                 <div style="background: #f8fafc; padding: 32px; text-align: center; border-top: 1px solid #f1f5f9;">
-                    <p style="margin: 0; font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">VHACK 2.0 | Advanced Agentic Coding Hackathon</p>
+                    <p style="margin: 0; font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">VANSH2K26 | Advanced Agentic Coding Hackathon</p>
                     <p style="margin: 4px 0 0 0; font-size: 11px; color: #cbd5e1;"><a href="https://chat.whatsapp.com/J5Cqelh3gVPLalKt9FEqPp?mode=gi_t" style="color: #cbd5e1; text-decoration: none;">Join the WhatsApp Community for Live Updates</a></p>
                 </div>
             </div>
@@ -159,7 +159,7 @@ export const sendConfirmationEmails = async (teamData: any) => {
                     <div style="font-size: 24px; font-weight: 900; color: #62009B; italic: oblique;">VHACK <span style="color: #2563eb;">2.0</span></div>
                 </div>
                 <div style="padding: 40px;">
-                    <h2 style="color: #0f172a; margin: 0 0 16px 0; font-size: 20px;">Welcome to VHACK 2.0</h2>
+                    <h2 style="color: #0f172a; margin: 0 0 16px 0; font-size: 20px;">Welcome to VANSH2K26</h2>
                     <p style="color: #475569; font-size: 16px;">Hi <b>${memberName}</b>,</p>
                     <p style="color: #475569; font-size: 16px; margin: 12px 0 0 0;">You have been successfully registered as a member of Team <b>${team}</b> for the upcoming hackathon.</p>
                     
@@ -173,7 +173,7 @@ export const sendConfirmationEmails = async (teamData: any) => {
                     <p style="color: #64748b; font-size: 13px;">Your team lead (<b>${leader.fullName}</b>) has been issued the official digital entry ticket for the entire team.</p>
                 </div>
                 <div style="background: #f8fafc; padding: 24px; text-align: center; font-size: 11px; color: #94a3b8;">
-                    <p>VHACK 2.0 @ Vignan Institute of Technology and Science</p>
+                    <p>VANSH2K26 @ Vignan Institute of Technology and Science</p>
                 </div>
             </div>
         </div>
@@ -187,7 +187,7 @@ export const sendConfirmationEmails = async (teamData: any) => {
         await resend.emails.send({
             from: fromAddress,
             to: leader.email,
-            subject: `🔒 REGISTRATION SYNCED: Team ${team} | VHACK 2.0`,
+            subject: `ðŸ”’ REGISTRATION SYNCED: Team ${team} | VANSH2K26`,
             html: leaderEmailHtml,
             attachments: [
                 ...commonAttachments,
@@ -197,7 +197,7 @@ export const sendConfirmationEmails = async (teamData: any) => {
                 }] : [])
             ]
         });
-        console.log(`✅ Premium ticket email sent to leader: ${leader.email}`);
+        console.log(`âœ… Premium ticket email sent to leader: ${leader.email}`);
 
         // Send Member Emails
         for (const member of normalizedMembers.slice(1)) {
@@ -206,13 +206,14 @@ export const sendConfirmationEmails = async (teamData: any) => {
             await resend.emails.send({
                 from: fromAddress,
                 to: member.email,
-                subject: `👾 ACCESS GRANTED: Welcome to Team ${team} | VHACK 2.0`,
+                subject: `ðŸ‘¾ ACCESS GRANTED: Welcome to Team ${team} | VANSH2K26`,
                 html: memberEmailHtml(member.fullName),
                 attachments: commonAttachments
             });
-            console.log(`✅ Premium welcome email sent to: ${member.email}`);
+            console.log(`âœ… Premium welcome email sent to: ${member.email}`);
         }
     } catch (error) {
-        console.error('❌ Resend delivery failed:', error);
+        console.error('âŒ Resend delivery failed:', error);
     }
 };
+

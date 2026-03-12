@@ -98,7 +98,6 @@ export interface Project {
     name: string;
     team: string;
     track: string;
-    problemStatement: string;
     members: (string | Member)[];
     captain: string;
     captainMobile: string;
@@ -214,18 +213,27 @@ export const HackathonProvider = ({ children }: { children: ReactNode }) => {
         // OPTIMIZATION: If user is a team, only fetch THEIR team data to save Supabase resources
         const fetchServerTeams = async (isBackground = false) => {
             try {
-                let url = '/api/teams';
-                if (user?.role === 'team' && user?.teamId) {
-                    url += `?teamId=${user.teamId}`;
+                const params = new URLSearchParams();
+                if (user?.role === 'team' && user?.teamId?.trim()) {
+                    params.set('teamId', user.teamId.trim());
                 }
 
-                const response = await fetch(url);
+                const queryString = params.toString();
+                const url = queryString ? `/api/teams?${queryString}` : '/api/teams';
+
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: { Accept: 'application/json' },
+                    cache: 'no-store'
+                });
                 if (response.ok && mountedRef.current) {
                     const serverTeams = await response.json();
 
                     // If we are a team, we might want to merge with existing if it's a partial update,
                     // but for now, replacing is fine since the state is scoped.
                     setProjects(serverTeams || []);
+                } else if (!isBackground) {
+                    console.error(`Failed to sync teams from server: ${response.status} ${response.statusText}`);
                 }
             } catch (err) {
                 if (!isBackground) console.error("Failed to sync teams from server:", err);

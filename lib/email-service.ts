@@ -7,7 +7,7 @@ import sharp from 'sharp';
 
 export async function verifyAndSendTicket(transactionId: string) {
     try {
-        console.log(`🚀 Automated verification for: ${transactionId}`);
+        console.log(`ðŸš€ Automated verification for: ${transactionId}`);
 
         // 1. Update Status to COMPLETED
         const { data: registration, error: sbError } = await supabase
@@ -18,17 +18,17 @@ export async function verifyAndSendTicket(transactionId: string) {
             .single();
 
         if (sbError || !registration) {
-            console.error("❌ Supabase Update Error:", sbError || "No registration found");
+            console.error("âŒ Supabase Update Error:", sbError || "No registration found");
             return { success: false, message: "Registration not found" };
         }
 
-        console.log(`✅ Registration found for team: ${registration.team_name}`);
+        console.log(`âœ… Registration found for team: ${registration.team_name}`);
 
         // 2. Extract Captain's Email
         let captainEmail = registration.email || registration.captain_email || "";
 
         if (!captainEmail) {
-            console.log("🔍 Email missing from main column, checking members array...");
+            console.log("ðŸ” Email missing from main column, checking members array...");
             try {
                 const members = typeof registration.members === 'string'
                     ? JSON.parse(registration.members)
@@ -38,20 +38,20 @@ export async function verifyAndSendTicket(transactionId: string) {
                     captainEmail = members[0].email || members[0].Email || "";
                 }
             } catch (e) {
-                console.error("❌ Error parsing members for email:", e);
+                console.error("âŒ Error parsing members for email:", e);
             }
         }
 
-        console.log(`📧 Target Email: ${captainEmail}`);
+        console.log(`ðŸ“§ Target Email: ${captainEmail}`);
 
         if (!process.env.RESEND_API_KEY) {
-            console.error("❌ RESEND_API_KEY is missing!");
+            console.error("âŒ RESEND_API_KEY is missing!");
             return { success: false, message: "Resend API key missing" };
         }
 
         // 3. Send Confirmation Email with Ticket Attachment
         if (captainEmail && process.env.RESEND_API_KEY) {
-            console.log("🎨 Starting Ticket Generation...");
+            console.log("ðŸŽ¨ Starting Ticket Generation...");
             const resend = new Resend(process.env.RESEND_API_KEY);
 
             const qrBuffer = await QRCode.toBuffer(registration.team_id, {
@@ -64,10 +64,10 @@ export async function verifyAndSendTicket(transactionId: string) {
             });
 
             const templatePath = path.join(process.cwd(), 'public', 'ticket-template.png');
-            console.log(`🖼️ Loading template from: ${templatePath}`);
+            console.log(`ðŸ–¼ï¸ Loading template from: ${templatePath}`);
 
             if (!fs.existsSync(templatePath)) {
-                console.error("❌ Ticket template NOT FOUND at path:", templatePath);
+                console.error("âŒ Ticket template NOT FOUND at path:", templatePath);
                 return { success: false, message: "Ticket template missing", error: "File not found" };
             }
 
@@ -80,7 +80,7 @@ export async function verifyAndSendTicket(transactionId: string) {
                 </svg>
             `);
 
-            console.log("🧩 Compositing ticket image...");
+            console.log("ðŸ§© Compositing ticket image...");
             const ticketBuffer = await sharp(templateBuffer)
                 .composite([
                     {
@@ -97,11 +97,11 @@ export async function verifyAndSendTicket(transactionId: string) {
                 .png()
                 .toBuffer();
 
-            console.log("📨 Sending email via Resend...");
+            console.log("ðŸ“¨ Sending email via Resend...");
             const { data, error: resendError } = await resend.emails.send({
-                from: 'VHACK 2.0 <admin@vhack.online>',
+                from: 'VANSH2K26 <admin@vhack.online>',
                 to: captainEmail,
-                subject: `Registration Confirmed: See you at VHACK 2k26 🚀`,
+                subject: `Registration Confirmed: See you at VHACK 2k26 ðŸš€`,
                 attachments: [
                     {
                         filename: `VHACK_Ticket_${registration.team_id}.png`,
@@ -112,11 +112,11 @@ export async function verifyAndSendTicket(transactionId: string) {
                     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a1a; padding: 20px; border: 1px solid #eee; border-radius: 20px;">
                         <div style="text-align: center; margin-bottom: 30px;">
                             <h1 style="color: #62009B; text-transform: uppercase; margin-bottom: 5px; font-size: 28px;">REGISTRATION CONFIRMED</h1>
-                            <p style="color: #666; font-size: 18px; margin-top: 0;">You're officially a participant of VHACK 2.0</p>
+                            <p style="color: #666; font-size: 18px; margin-top: 0;">You're officially a participant of VANSH2K26</p>
                         </div>
                         
                         <p>Dear <strong>${registration.captain}</strong>,</p>
-                        <p>Congratulations! Your team <strong>${registration.team_name}</strong> has successfully completed the registration process for VHACK 2.0. We are excited to have you on board!</p>
+                        <p>Congratulations! Your team <strong>${registration.team_name}</strong> has successfully completed the registration process for VANSH2K26. We are excited to have you on board!</p>
 
                         <div style="background: #f8f9fa; border: 2px solid #62009B; border-radius: 15px; padding: 25px; margin: 25px 0;">
                             <h3 style="margin-top: 0; font-size: 16px; color: #62009B; border-bottom: 1px solid #ddd; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Official Event Details</h3>
@@ -155,7 +155,7 @@ export async function verifyAndSendTicket(transactionId: string) {
 
                         <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; text-align: center;">
                             <p style="margin: 0; color: #999; font-size: 12px;">See you at the hackathon!</p>
-                            <p style="margin: 5px 0; color: #62009B; font-weight: black; font-size: 14px;">TEAM VHACK 2.0</p>
+                            <p style="margin: 5px 0; color: #62009B; font-weight: black; font-size: 14px;">TEAM VANSH2K26</p>
                             <p style="margin: 0; color: #ccc; font-size: 10px;">Advanced Agentic Coding Flagship Event</p>
                         </div>
                     </div>
@@ -163,18 +163,19 @@ export async function verifyAndSendTicket(transactionId: string) {
             });
 
             if (resendError) {
-                console.error("❌ Resend API Error:", resendError);
+                console.error("âŒ Resend API Error:", resendError);
                 return { success: false, message: "Email failed", error: resendError };
             }
 
-            console.log(`✨ Email sent successfully to ${captainEmail}! ID: ${data?.id}`);
+            console.log(`âœ¨ Email sent successfully to ${captainEmail}! ID: ${data?.id}`);
             return { success: true, team: registration.team_name, error: null };
         }
 
         return { success: false, message: "Email not sent (Missing data or API key)", error: null };
 
     } catch (error: any) {
-        console.error('❌ Verification Service Error:', error);
+        console.error('âŒ Verification Service Error:', error);
         return { success: false, message: "Service error", error: error.message || error };
     }
 }
+

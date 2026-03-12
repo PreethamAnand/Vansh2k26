@@ -5,7 +5,7 @@ import { teamSupabase as supabase } from '@/lib/supabase';
  * Password formula: first 2 UPPERCASE letters of each member's name joined with "-"
  * then @VH26-[TEAM_NUMBER]
  * Example: members ["Rahul Verma", "Ankit Kumar", "Priya Nair"], team 101
- *          → RA-AN-PR@VH26-101
+ *          â†’ RA-AN-PR@VH26-101
  */
 function generatePasswordFromMembers(members: any[], teamNum: number): string {
     const initials = members
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { teamName, domain, members, userTransactionId, teamId } = body;
 
-        console.log("🚀 Registering Team (Draft):", { team: teamName, track: domain, orderId: userTransactionId, teamId });
+        console.log("ðŸš€ Registering Team (Draft):", { team: teamName, track: domain, orderId: userTransactionId, teamId });
 
         if (!teamName || !domain || !members || !userTransactionId || !teamId) {
             return NextResponse.json({ success: false, message: "Missing required fields (including Team ID and Transaction ID)" }, { status: 400 });
@@ -59,12 +59,12 @@ export async function POST(req: Request) {
             nextNum++;
         }
 
-        const nextTeamId = `VHACK_2.0_${nextNum}`;
-        console.log(`🆔 Server Generated Team ID: ${nextTeamId}`);
+        const nextTeamId = `VANSH2K26_${nextNum}`;
+        console.log(`ðŸ†” Server Generated Team ID: ${nextTeamId}`);
 
         // Generate unique password from members' initials
         const password = generatePasswordFromMembers(members, nextNum);
-        console.log(`🔑 Generated Password: ${password}`);
+        console.log(`ðŸ”‘ Generated Password: ${password}`);
 
         // Save registration as PENDING verification
         const { error: sbError } = await supabase
@@ -88,7 +88,7 @@ export async function POST(req: Request) {
             ]);
 
         if (sbError) {
-            console.error("❌ Failed to save to Supabase:", sbError);
+            console.error("âŒ Failed to save to Supabase:", sbError);
             return NextResponse.json({
                 success: false,
                 message: "Database save failed",
@@ -105,7 +105,7 @@ export async function POST(req: Request) {
         });
 
     } catch (error: any) {
-        console.error('❌ Registration Error:', error);
+        console.error('âŒ Registration Error:', error);
         return NextResponse.json({
             success: false,
             message: "Registration failed",
@@ -113,3 +113,4 @@ export async function POST(req: Request) {
         }, { status: 500 });
     }
 }
+

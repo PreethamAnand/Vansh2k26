@@ -104,7 +104,7 @@ export default function TeamPage() {
                         </h1>
                         <div className="w-24 h-1.5 bg-[#FFEE00] rounded-full" />
                         <p className="mt-6 text-white/60 font-poppins text-center max-w-2xl text-lg">
-                            The brilliant minds behind <span className="text-white font-bold">VHACK 2.0</span>. Working tirelessly to bring you the ultimate hackathon experience.
+                            The brilliant minds behind <span className="text-white font-bold">VANSH2K26</span>. Working tirelessly to bring you the ultimate hackathon experience.
                         </p>
                     </div>
                 </FadeInView>
@@ -144,3 +144,4 @@ export default function TeamPage() {
         </div>
     );
 }
+

@@ -11,7 +11,7 @@ export function Footer() {
       }}
     >
       {/* socials tape */}
-      <div className="relative flex flex-col md:flex-row w-full justify-between items-center min-h-[216px] bg-[#62009b] border-white border-t-8 md:border-t-12 border-b-8 md:border-b-12 px-4 md:px-8 py-8 md:py-0">
+      <div className="relative flex flex-col md:flex-row w-full justify-between items-center min-h-[140px] bg-black border-white border-t-4 md:border-t-6 border-b-4 md:border-b-6 px-4 md:px-8 py-4 md:py-0">
 
         {/* Logo Section */}
         <div className="flex flex-col justify-center items-center gap-4 mb-6 md:mb-0 md:ml-12">
@@ -24,15 +24,6 @@ export function Footer() {
               className="w-[150px] md:w-[200px] h-auto object-contain brightness-110"
             />
           </div>
-          <div className="bg-white/90 border border-white/20 px-5 py-2.5 rounded-xl shadow-lg rotate-[1deg]">
-            <Image
-              src="/vignan-logo.png"
-              alt="Vignan's Institute of Information Technology"
-              width={180}
-              height={50}
-              className="w-[130px] md:w-[170px] h-auto object-contain"
-            />
-          </div>
         </div>
 
         {/* Content Section */}
@@ -43,9 +34,6 @@ export function Footer() {
             <ul className="flex flex-wrap justify-center md:justify-end gap-6 md:gap-8 text-white font-black font-kanit italic uppercase text-sm md:text-lg tracking-wider">
               <li className="hover:text-[#FFEE00] transition-colors">
                 <Link href="/">Home</Link>
-              </li>
-              <li className="hover:text-[#FFEE00] transition-colors">
-                <Link href="/team">Team</Link>
               </li>
               <li className="hover:text-[#FFEE00] transition-colors">
                 <Link href="/contact">Contact</Link>
@@ -72,7 +60,7 @@ export function Footer() {
             </p>
             <ul className="flex flex-row gap-4 md:gap-6 justify-center items-center bg-white/10 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-white/20">
               <SocialIcon src="/linkdin.svg" alt="LinkedIn" href="https://www.linkedin.com/company/v-hack-2-o/" />
-              <SocialIcon src="/insta.svg" alt="Instagram" href="https://www.instagram.com/vhack2.0?igsh=enFmOHFsc2Zsam1h" />
+              <SocialIcon src="/insta.svg" alt="Instagram" href="https://www.instagram.com/vansh2k26?igsh=enFmOHFsc2Zsam1h" />
               <SocialIcon src="/whatsapp.png" alt="WhatsApp" href="https://chat.whatsapp.com/J5Cqelh3gVPLalKt9FEqPp?mode=gi_t" />
             </ul>
           </div>
@@ -81,9 +69,6 @@ export function Footer() {
           <div className="mt-2 text-center md:text-right space-y-2">
             <p className="text-white/40 font-bold text-xs md:text-sm uppercase tracking-[0.2em]">
               &copy; 2026 VANSH. ALL RIGHTS RESERVED.
-            </p>
-            <p className="text-white/30 text-[10px] uppercase tracking-widest font-medium">
-              Legal Business Name: <span className="text-white/60">SHUBHAM VASANT GUNDU</span>
             </p>
           </div>
         </div>
@@ -115,4 +100,5 @@ const SocialIcon = ({ src, alt, href }: { src: string; alt: string; href?: strin
     )}
   </li>
 )
+
 

@@ -433,15 +433,6 @@ export default function JudgeDashboard() {
                                             })}
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <Info size={16} className="text-blue-400" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/40">Project Title</span>
-                                        </div>
-                                        <p className="text-xl text-white/90 leading-relaxed italic font-medium">
-                                            "{activeProject.problemStatement}"
-                                        </p>
-                                    </div>
                                 </div>
                             </div>
                         </div>

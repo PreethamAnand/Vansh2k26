@@ -136,7 +136,7 @@ function RegisterPageContent() {
                     </h1>
 
                     <p className="text-white/60 text-lg md:text-xl font-poppins mb-10 leading-relaxed max-w-lg mx-auto">
-                        The registration portal for <span className="text-[#FFEE00] font-bold italic">VHACK 2.0</span> is currently closed. Thank you for the overwhelming response!
+                        The registration portal for <span className="text-[#FFEE00] font-bold italic">VANSH2K26</span> is currently closed. Thank you for the overwhelming response!
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -194,7 +194,7 @@ function RegisterPageContent() {
                 <div className="bg-[#1A002E]/80 backdrop-blur-xl border-2 border-white/10 rounded-[30px] md:rounded-[40px] p-5 md:p-10 shadow-2xl relative overflow-hidden">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 relative">
                         <div>
-                            <span className="text-[#FFEE00] font-kanit font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-[10px] md:text-sm block mb-1">VHACK 2.0 Registration</span>
+                            <span className="text-[#FFEE00] font-kanit font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-[10px] md:text-sm block mb-1">VANSH2K26 Registration</span>
                             <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-kanit font-black uppercase italic drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] leading-none md:leading-tight">
                                 <span className="text-[#FFEE00]">FILL</span> DETAILS
                             </h1>
@@ -277,3 +277,4 @@ const RegisterPage = () => (
 );
 
 export default RegisterPage;
+

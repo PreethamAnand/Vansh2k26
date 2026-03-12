@@ -15,7 +15,7 @@ export default function Loading() {
                 <div className="relative animate-bounce duration-[2000ms]">
                     <Image
                         src="/vh_2.0.png"
-                        alt="VHACK 2.0"
+                        alt="VANSH2K26"
                         width={120}
                         height={120}
                         className="w-20 h-20 md:w-28 md:h-28 object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
@@ -27,7 +27,7 @@ export default function Loading() {
             {/* Progress Text */}
             <div className="mt-8 flex flex-col items-center gap-2">
                 <h2 className="text-white font-kanit font-black text-xl uppercase italic tracking-widest animate-pulse">
-                    Initializing <span className="text-[#FFEE00]">VHACK 2.0</span>
+                    Initializing <span className="text-[#FFEE00]">VANSH2K26</span>
                 </h2>
                 <div className="flex gap-1.5">
                     <div className="w-1.5 h-1.5 bg-[#FFEE00] rounded-full animate-bounce [animation-delay:-0.3s]" />
@@ -48,3 +48,4 @@ export default function Loading() {
         </div>
     );
 }
+

@@ -6,19 +6,19 @@ import SmoothScroll from "@/components/SmoothScroll";
 export const metadata: Metadata = {
   metadataBase: new URL('https://vhack.online'),
   title: {
-    default: "VHACK 2.0 | VITS Hyderabad Hackathon",
-    template: "%s | VHACK 2.0"
+    default: "VANSH2K26 | VITS Hyderabad Hackathon",
+    template: "%s | VANSH2K26"
   },
-  description: "VHACK 2.0 is VITS Hyderabad's student-run hackathon. Join us for 2 days of coding, innovation, and fun. February 27-28, 2026.",
+  description: "VANSH2K26 is VITS Hyderabad's student-run hackathon. Join us for 2 days of coding, innovation, and fun. February 27-28, 2026.",
   icons: {
     icon: '/vh_2.0.png',
   },
   keywords: ["Hackathon", "VITS", "Coding", "VHACK", "Hyderabad", "Tech Event", "Vignan"],
   openGraph: {
-    title: "VHACK 2.0 | VITS Hyderabad Hackathon",
+    title: "VANSH2K26 | VITS Hyderabad Hackathon",
     description: "Join us for 2 days of coding, innovation, and fun at Vignan Institute of Technology and Science, Hyderabad.",
     url: 'https://vhack.online',
-    siteName: 'VHACK 2.0',
+    siteName: 'VANSH2K26',
     images: [
       {
         url: '/vh_2.0.png',
@@ -97,3 +97,4 @@ export default function RootLayout({
     </ViewTransitions >
   );
 }
+

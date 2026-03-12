@@ -72,12 +72,12 @@ export default function AdminDashboard() {
         const needsUpdate = projects.some(p => !p.password || !p.password.includes('@'));
         if (!needsUpdate) return; // All passwords already in new format
         backfillRan.current = true;
-        console.log(`🔑 Detected old/missing passwords — regenerating with new member-initials formula...`);
+        console.log(`ðŸ”‘ Detected old/missing passwords â€” regenerating with new member-initials formula...`);
         fetch('/api/admin/generate-passwords', { method: 'POST' })
             .then(r => r.json())
             .then(data => {
                 if (data.success) {
-                    console.log(`✅ Passwords updated for ${data.updated} teams. Refreshing...`);
+                    console.log(`âœ… Passwords updated for ${data.updated} teams. Refreshing...`);
                     window.location.reload();
                 }
             })
@@ -183,14 +183,14 @@ export default function AdminDashboard() {
         const tdS = 'border:1px solid #ccc;padding:7px 10px;font-size:11px;text-align:left;vertical-align:top;';
         const headerRow = `<tr>${headers.map(h => `<th style="${thS}">${h}</th>`).join('')}</tr>`;
         const dataRows = rows.map((row, i) =>
-            `<tr style="background:${i % 2 === 0 ? '#fff' : '#f7f8fc'};">${row.map(cell => `<td style="${tdS}">${cell ?? '—'}</td>`).join('')}</tr>`
+            `<tr style="background:${i % 2 === 0 ? '#fff' : '#f7f8fc'};">${row.map(cell => `<td style="${tdS}">${cell ?? 'â€”'}</td>`).join('')}</tr>`
         ).join('');
 
         const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>VHACK 2.0 — ${title}</title>
+    <title>VANSH2K26 â€” ${title}</title>
     <style>
         @page { size: A3 landscape; margin: 12mm; }
         @media print { .no-print { display: none !important; } body { margin: 0; } tr { page-break-inside: avoid; } }
@@ -201,16 +201,16 @@ export default function AdminDashboard() {
 <body>
     <div class="no-print" style="position:fixed;top:0;left:0;right:0;background:#1a1a8c;color:#fff;
         padding:10px 24px;display:flex;justify-content:space-between;align-items:center;z-index:9999;font-family:Arial,sans-serif;">
-        <span style="font-weight:700;font-size:13px;">📋 VHACK 2.0 — ${title} (${rows.length} records)</span>
+        <span style="font-weight:700;font-size:13px;">ðŸ“‹ VANSH2K26 â€” ${title} (${rows.length} records)</span>
         <button onclick="window.print()" style="background:#FFEE00;color:#000;border:none;padding:8px 22px;
-            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">🖨️ Print / Save as PDF</button>
+            border-radius:6px;font-weight:900;font-size:13px;cursor:pointer;">ðŸ–¨ï¸ Print / Save as PDF</button>
     </div>
     <div style="padding:18px 24px;margin-top:50px;">
         <div style="display:flex;align-items:center;justify-content:flex-start;gap:20px;margin-bottom:8px;">
             <img src="/vignan-logo.png" style="height:80px;object-fit:contain;flex-shrink:0;" />
             <div style="font-family:'Segoe UI',Arial,sans-serif;">
                 <div style="font-size:11px;color:#333;letter-spacing:0.5px;font-weight:700;">Vignan Institute of Technology and Science</div>
-                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VHACK 2.0 HACKATHON</div>
+                <div style="font-size:22px;font-weight:900;letter-spacing:3px;color:#1a1a8c;margin-top:4px;">VANSH2K26 HACKATHON</div>
                 <div style="font-size:13px;font-weight:700;letter-spacing:5px;color:#cc0000;margin-top:2px;">${title.toUpperCase()}</div>
                 <div style="font-size:10px;color:#888;margin-top:5px;">Date: ${now} &nbsp;|&nbsp; ${subtitle}: ${rows.length}</div>
             </div>
@@ -218,7 +218,7 @@ export default function AdminDashboard() {
         <div style="height:3px;background:linear-gradient(90deg,#cc0000,#1a1a8c,#cc0000);margin:8px 0 14px;border-radius:2px;"></div>
         <table><thead>${headerRow}</thead><tbody>${dataRows}</tbody></table>
         <div style="margin-top:14px;text-align:center;font-size:9px;color:#bbb;border-top:1px solid #eee;padding-top:8px;">
-            VHACK 2.0 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; ${title} &nbsp;|&nbsp; Generated: ${now}
+            VANSH2K26 Hackathon &nbsp;|&nbsp; Vignan Institute of Technology and Science &nbsp;|&nbsp; ${title} &nbsp;|&nbsp; Generated: ${now}
         </div>
     </div>
 </body>
@@ -348,7 +348,7 @@ export default function AdminDashboard() {
                                                         </span>
                                                     )}
                                                 </div>
-                                                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mt-1">{team.track} • {team.college}</p>
+                                                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mt-1">{team.track} â€¢ {team.college}</p>
                                                 {/* Password Badge */}
                                                 <div className="flex items-center gap-2 mt-2" onClick={(e) => e.stopPropagation()}>
                                                     <Lock size={10} className="text-blue-400/60" />
@@ -358,7 +358,7 @@ export default function AdminDashboard() {
                                                         : 'text-white/20 bg-white/5 border border-white/10'
                                                         } px-2 py-0.5 rounded`}>
                                                         {team.password
-                                                            ? (visiblePasswords.has(team.id) ? team.password : '••••••••')
+                                                            ? (visiblePasswords.has(team.id) ? team.password : 'â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢')
                                                             : 'Not Set'}
                                                     </code>
                                                     {team.password && (
@@ -412,15 +412,7 @@ export default function AdminDashboard() {
                                                 className="overflow-hidden"
                                             >
                                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8 mt-8 border-t border-white/5" onClick={(e) => e.stopPropagation()}>
-                                                    {/* 1. Project Title */}
-                                                    <div className="space-y-3">
-                                                        <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] flex items-center gap-2"><MapPin size={10} /> Project Title</span>
-                                                        <div className="bg-black/20 rounded-xl p-4 border border-white/5 h-32 overflow-y-auto custom-scrollbar">
-                                                            <p className="text-xs text-white/60 leading-relaxed font-medium whitespace-pre-wrap">{team.problemStatement || "No title defined yet."}</p>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* 2. Final Submissions */}
+                                                    {/* 1. Final Submissions */}
                                                     <div className="space-y-3">
                                                         <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] flex items-center gap-2"><Globe size={10} /> Final Submissions</span>
                                                         <div className="grid grid-cols-2 gap-2">
@@ -450,7 +442,7 @@ export default function AdminDashboard() {
                                                         </div>
                                                     </div>
 
-                                                    {/* 3. Logistics & Deployment */}
+                                                    {/* 2. Logistics & Deployment */}
                                                     <div className="space-y-3">
                                                         <span className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] flex items-center gap-2"><Wifi size={10} /> Room & Connectivity</span>
                                                         <div className="bg-white/5 rounded-xl p-4 border border-white/5 space-y-3">
@@ -476,7 +468,7 @@ export default function AdminDashboard() {
                                                                 <span className="text-[10px] text-white/40 font-bold uppercase shrink-0">Team Password</span>
                                                                 <code className="text-xs font-mono font-black text-blue-400 bg-blue-500/10 px-3 py-1 rounded border border-blue-500/20">
                                                                     {team.password
-                                                                        ? (visiblePasswords.has(team.id) ? team.password : '••••••••')
+                                                                        ? (visiblePasswords.has(team.id) ? team.password : 'â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢')
                                                                         : <span className="text-white/20 italic">Not Set</span>}
                                                                 </code>
                                                                 {team.password && (
@@ -491,7 +483,7 @@ export default function AdminDashboard() {
                                                         </div>
                                                         {!team.password && (
                                                             <p className="text-[9px] text-orange-400/70 font-bold uppercase tracking-wide">
-                                                                ⚠ Set a password in Supabase for this team to enable login.
+                                                                âš  Set a password in Supabase for this team to enable login.
                                                             </p>
                                                         )}
                                                     </div>
@@ -671,7 +663,7 @@ export default function AdminDashboard() {
                                                     <h4 className="text-lg font-black italic uppercase tracking-tight">{vol.name}</h4>
                                                     <span className="text-[9px] font-black text-blue-400 px-2 py-0.5 border border-blue-400/30 rounded bg-blue-400/5">{vol.generatedId}</span>
                                                 </div>
-                                                <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mt-1">{vol.role} • {vol.phone}</p>
+                                                <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mt-1">{vol.role} â€¢ {vol.phone}</p>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-4">
@@ -988,3 +980,4 @@ export default function AdminDashboard() {
         </DashboardLayout>
     );
 }
+

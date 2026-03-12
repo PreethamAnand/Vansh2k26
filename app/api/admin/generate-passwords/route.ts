@@ -5,7 +5,7 @@ import { teamSupabase as supabase } from '@/lib/supabase';
  * Password formula: first 2 UPPERCASE letters of each member's name joined with "-"
  * then @VH26-[TEAM_NUMBER]
  * Example: members ["Rahul Verma", "Ankit Kumar", "Priya Nair"], team 101
- *          → RA-AN-PR@VH26-101
+ *          â†’ RA-AN-PR@VH26-101
  */
 function generatePasswordFromMembers(members: any[], teamNum: number): string {
     const initials = members
@@ -40,7 +40,7 @@ export async function POST() {
         for (const team of teams) {
             if (!team.team_id) continue;
 
-            // Extract team number from team_id like "VHACK_2.0_101"
+            // Extract team number from team_id like "VANSH2K26_101"
             const parts = team.team_id.split('_');
             const teamNum = parseInt(parts[parts.length - 1]);
             if (isNaN(teamNum)) continue;
@@ -68,7 +68,8 @@ export async function POST() {
         });
 
     } catch (error: any) {
-        console.error('❌ Generate passwords error:', error);
+        console.error('âŒ Generate passwords error:', error);
         return NextResponse.json({ success: false, error: error.message || String(error) }, { status: 500 });
     }
 }
+

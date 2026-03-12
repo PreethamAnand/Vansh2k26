@@ -33,7 +33,7 @@ function StatusContent() {
                     <h2 className="text-white text-3xl font-kanit font-black mb-2 uppercase italic">PAYMENT RECEIVED!</h2>
                     <p className="text-[#FFEE00] font-bold text-sm tracking-widest mb-6">TRANSACTION ID: {transactionId}</p>
                     <p className="text-white/70 mb-8 leading-relaxed">
-                        Your registration for VHACK 2.0 is confirmed! Your slot is now locked. Check your email for further instructions.
+                        Your registration for VANSH2K26 is confirmed! Your slot is now locked. Check your email for further instructions.
                     </p>
                     <Link
                         href="/dashboard"
@@ -114,3 +114,4 @@ export default function PaymentStatusPage() {
         </div>
     );
 }
+

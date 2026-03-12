@@ -14,7 +14,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: false, message: "Transaction ID is required" }, { status: 400 });
         }
 
-        console.log(`🚀 Verifying payment for: ${transactionId}`);
+        console.log(`ðŸš€ Verifying payment for: ${transactionId}`);
 
         // 1. Update Status to COMPLETED
         const { data: registration, error: sbError } = await supabase
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
                     captainEmail = members[0].email || members[0].Email || "";
                 }
             } catch (e) {
-                console.error("❌ Error parsing members for email:", e);
+                console.error("âŒ Error parsing members for email:", e);
             }
         }
 
@@ -91,9 +91,9 @@ export async function POST(req: Request) {
 
                 // 3. Send via Resend
                 const { data, error: resendError } = await resend.emails.send({
-                    from: 'VHACK 2.0 <admin@vhack.online>',
+                    from: 'VANSH2K26 <admin@vhack.online>',
                     to: captainEmail,
-                    subject: `Registration Confirmed: See you at VHACK 2k26 🚀`,
+                    subject: `Registration Confirmed: See you at VHACK 2k26 ðŸš€`,
                     attachments: [
                         {
                             filename: `VHACK_Ticket_${registration.team_id}.png`,
@@ -104,11 +104,11 @@ export async function POST(req: Request) {
                         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a1a; padding: 20px; border: 1px solid #eee; border-radius: 20px;">
                             <div style="text-align: center; margin-bottom: 30px;">
                                 <h1 style="color: #62009B; text-transform: uppercase; margin-bottom: 5px; font-size: 28px;">REGISTRATION CONFIRMED</h1>
-                                <p style="color: #666; font-size: 18px; margin-top: 0;">You're officially a participant of VHACK 2.0</p>
+                                <p style="color: #666; font-size: 18px; margin-top: 0;">You're officially a participant of VANSH2K26</p>
                             </div>
                             
                             <p>Dear <strong>${registration.captain}</strong>,</p>
-                            <p>Congratulations! Your team <strong>${registration.team_name}</strong> has successfully completed the registration process for VHACK 2.0. We are excited to have you on board!</p>
+                            <p>Congratulations! Your team <strong>${registration.team_name}</strong> has successfully completed the registration process for VANSH2K26. We are excited to have you on board!</p>
 
                             <div style="background: #f8f9fa; border: 2px solid #62009B; border-radius: 15px; padding: 25px; margin: 25px 0;">
                                 <h3 style="margin-top: 0; font-size: 16px; color: #62009B; border-bottom: 1px solid #ddd; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Official Event Details</h3>
@@ -147,7 +147,7 @@ export async function POST(req: Request) {
 
                             <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; text-align: center;">
                                 <p style="margin: 0; color: #999; font-size: 12px;">See you at the hackathon!</p>
-                                <p style="margin: 5px 0; color: #62009B; font-weight: black; font-size: 14px;">TEAM VHACK 2.0</p>
+                                <p style="margin: 5px 0; color: #62009B; font-weight: black; font-size: 14px;">TEAM VANSH2K26</p>
                                 <p style="margin: 0; color: #ccc; font-size: 10px;">Advanced Agentic Coding Flagship Event</p>
                             </div>
                         </div>
@@ -155,19 +155,19 @@ export async function POST(req: Request) {
                 });
 
                 if (resendError) {
-                    console.error("❌ Resend API Error:", resendError);
+                    console.error("âŒ Resend API Error:", resendError);
                 } else {
-                    console.log(`📧 Email and Ticket sent successfully to ${captainEmail}. Response:`, data);
+                    console.log(`ðŸ“§ Email and Ticket sent successfully to ${captainEmail}. Response:`, data);
                 }
             } catch (emailError) {
-                console.error("❌ Email/Ticket Generation Failed:", emailError);
+                console.error("âŒ Email/Ticket Generation Failed:", emailError);
             }
         }
 
         return NextResponse.json({ success: true, team: registration.team_name });
 
     } catch (error: any) {
-        console.error('❌ Verification Error:', error);
+        console.error('âŒ Verification Error:', error);
         return NextResponse.json({
             success: false,
             message: "Verification failed",
@@ -175,3 +175,4 @@ export async function POST(req: Request) {
         }, { status: 500 });
     }
 }
+

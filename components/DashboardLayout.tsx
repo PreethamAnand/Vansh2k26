@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState, useMemo } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
+import { ElegantShape } from "@/components/ui/shape-landing-hero";
 import {
     Menu, X, LogOut, User, LayoutDashboard, Award,
     BarChart3, Users, Zap, GanttChartSquare, ChevronDown, QrCode, UserCog, Lock, Crown, CalendarRange
@@ -28,6 +30,7 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
     const [isFinished, setIsFinished] = useState(false);
     const [isSubmissionCurrentlyLocked, setIsSubmissionCurrentlyLocked] = useState(false);
     const panelLabel = type.replace("-", " ").toUpperCase();
+    const isEventCoordinatorDashboard = type === "event-coordinator";
     const hasAccess = !!user && (
         user.role === type ||
         (type === "admin" && user.role === "superadmin") ||
@@ -169,22 +172,39 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
     }
 
     return (
-        <div className="min-h-screen bg-[#06000D] text-white">
+        <div className={`min-h-screen text-white ${isEventCoordinatorDashboard ? "bg-[#06000D]" : "bg-[#06000D]"}`}>
+            {isEventCoordinatorDashboard && (
+                <>
+                    {/* Deep dark base */}
+                    <div className="fixed inset-0 bg-[#030305] pointer-events-none" />
+                    {/* Gradient glow blobs */}
+                    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+                        <div className="absolute -top-40 left-1/4 w-[700px] h-[700px] rounded-full bg-indigo-600/[0.07] blur-[140px]" />
+                        <div className="absolute top-1/2 -right-60 w-[600px] h-[600px] rounded-full bg-violet-600/[0.07] blur-[160px]" />
+                        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-rose-600/[0.05] blur-[140px]" />
+                    </div>
+                    {/* Animated floating shapes */}
+                    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+                        <ElegantShape delay={0.2} width={600} height={130} rotate={12} gradient="from-indigo-500/[0.12]" className="left-[-8%] top-[18%]" />
+                        <ElegantShape delay={0.45} width={480} height={110} rotate={-14} gradient="from-purple-500/[0.12]" className="right-[-4%] top-[60%]" />
+                        <ElegantShape delay={0.35} width={320} height={80} rotate={-8} gradient="from-violet-500/[0.1]" className="left-[8%] bottom-[8%]" />
+                        <ElegantShape delay={0.6} width={200} height={55} rotate={22} gradient="from-rose-500/[0.1]" className="right-[18%] top-[8%]" />
+                        <ElegantShape delay={0.7} width={160} height={42} rotate={-28} gradient="from-cyan-500/[0.1]" className="left-[22%] top-[4%]" />
+                    </div>
+                    {/* Top & bottom vignette */}
+                    <div className="fixed inset-0 bg-gradient-to-b from-[#030305]/80 via-transparent to-[#030305]/60 pointer-events-none" />
+                </>
+            )}
             {/* Top Navigation Bar */}
             <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0B0114]/80 backdrop-blur-xl border-b border-white/10">
                 <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
                     {/* Left: Branding & Role */}
                     <div className="flex items-center gap-8">
                         <Link href="/" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(147,51,234,0.5)] overflow-hidden bg-black transition-transform group-hover:scale-110">
-                                <img src="/vh_2.0.png" alt="Logo" className="w-full h-full object-cover" />
+                            <div className="flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
+                                <Image src="/vansh_logo.PNG" alt="VANSH 2K26" width={85} height={85} className="h-[85px] w-auto object-contain" priority />
                             </div>
-                            <div className="flex flex-col">
-                                <span className="font-kanit font-black text-xl italic leading-none tracking-tight">
-                                    VHACK <span className="text-purple-500">2.0</span>
-                                </span>
-                                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1">{panelLabel} PANEL</span>
-                            </div>
+                            <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1">{panelLabel} PANEL</span>
                         </Link>
 
                         {/* Shared Menu Items */}
@@ -240,7 +260,7 @@ export const DashboardLayout = ({ children, type, title }: DashboardLayoutProps)
             </nav>
 
             {/* Main Content Area */}
-            <main className="pt-20 lg:pt-24 pb-8 lg:pb-4 px-4 md:px-8 max-w-[1600px] mx-auto relative flex flex-col">
+            <main className="pt-20 lg:pt-24 pb-8 lg:pb-4 px-4 md:px-8 max-w-[1600px] mx-auto relative z-10 flex flex-col">
                 {/* Background Decorative Elements */}
                 <div className="fixed top-0 right-0 w-[400px] h-[400px] bg-purple-600/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="fixed bottom-0 left-0 w-[300px] h-[300px] bg-pink-600/5 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />

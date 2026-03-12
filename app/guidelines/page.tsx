@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -56,7 +56,7 @@ const DomainItem = ({ title, valid, invalid, desc }: { title: string, valid: str
                 <ul className="space-y-2">
                     {valid.map((item, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
-                            <span className="text-white/40">•</span> {item}
+                            <span className="text-white/40">â€¢</span> {item}
                         </li>
                     ))}
                 </ul>
@@ -66,7 +66,7 @@ const DomainItem = ({ title, valid, invalid, desc }: { title: string, valid: str
                 <ul className="space-y-2">
                     {invalid.map((item, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm opacity-60">
-                            <span className="text-white/20">×</span> {item}
+                            <span className="text-white/20">Ã—</span> {item}
                         </li>
                     ))}
                 </ul>
@@ -92,7 +92,7 @@ export default function GuidelinesPage() {
                             <div className="relative h-16 md:h-20 w-16 md:w-20">
                                 <Image
                                     src="/vh_2.0.png"
-                                    alt="VHACK 2.0"
+                                    alt="VANSH2K26"
                                     fill
                                     className="object-contain object-left"
                                     priority
@@ -114,7 +114,7 @@ export default function GuidelinesPage() {
 
                 {/* 1. Overview */}
                 <Section title="Event Overview" id="1">
-                    <p>VHACK 2.0 is an 24 hours innovative, multi domain based hackathon conducted over two days.</p>
+                    <p>VANSH2K26 is an 24 hours innovative, multi domain based hackathon conducted over two days.</p>
                     <p>All solutions must be conceptualized, designed, and developed entirely during the official hackathon duration.</p>
                     <p>Development may begin only after the official kickoff announcement.</p>
                     <div className="flex items-center gap-4 bg-white/5 p-4 rounded-lg inline-flex mt-4 border border-white/5">
@@ -148,24 +148,8 @@ export default function GuidelinesPage() {
                     </div>
                 </Section>
 
-                {/* 3. Problem & Innovation */}
-                <Section title="Problem Statement & Innovation Policy" id="3">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white/5 p-8 rounded-2xl">
-                        <ul className="list-disc pl-5 space-y-3 text-sm text-white/80">
-                            <li>Teams are free to choose their own problem statement.</li>
-                            <li>The problem must strictly align with one of the officially declared domains.</li>
-                            <li>Irrespective of domain, the idea must demonstrate clear innovation and originality.</li>
-                        </ul>
-                        <ul className="list-disc pl-5 space-y-3 text-sm text-white/80">
-                            <li>Projects must not be clones of existing products without meaningful differentiation.</li>
-                            <li>Visible added value must be clearly explained if inspired by existing solutions.</li>
-                            <li className="text-red-400">Innovation is a primary evaluation parameter.</li>
-                        </ul>
-                    </div>
-                </Section>
-
-                {/* 4. Structure & Rounds */}
-                <Section title="Hackathon Structure & Rounds" id="4">
+                {/* 3. Structure & Rounds */}
+                <Section title="Hackathon Structure & Rounds" id="3">
                     <div className="space-y-12">
                         {/* Day 1 */}
                         <div className="space-y-6">
@@ -173,25 +157,25 @@ export default function GuidelinesPage() {
 
                             <div className="relative pl-8 border-l-2 border-[#FFEE00]/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-[#FFEE00]" />
-                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Idea Presentation • 10:00 – 10:30 AM</h4>
-                                <p className="text-sm text-white/80">Present initial ideas and form teams. Finalize problem statements.</p>
+                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Idea Presentation â€¢ 10:00 â€“ 10:30 AM</h4>
+                                <p className="text-sm text-white/80">Present initial ideas and form teams.</p>
                             </div>
 
                             <div className="relative pl-8 border-l-2 border-[#FFEE00]/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-[#FFEE00]" />
-                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">First Evaluation • 12:30 – 01:00 PM</h4>
+                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">First Evaluation â€¢ 12:30 â€“ 01:00 PM</h4>
                                 <p className="text-sm text-white/80">Initial progress assessment and technical roadmap review.</p>
                             </div>
 
                             <div className="relative pl-8 border-l-2 border-[#FFEE00]/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-[#FFEE00]" />
-                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic text-red-400">Elimination Round • 04:00 – 05:00 PM</h4>
+                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic text-red-400">Elimination Round â€¢ 04:00 â€“ 05:00 PM</h4>
                                 <p className="text-sm text-white/80">Second level assessment with team elimination phase.</p>
                             </div>
 
                             <div className="relative pl-8 border-l-2 border-blue-500/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-blue-500" />
-                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Progress Check-in • 10:00 – 11:00 PM</h4>
+                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Progress Check-in â€¢ 10:00 â€“ 11:00 PM</h4>
                                 <p className="text-sm text-white/80 italic">Idea suggestions round: Evaluators and mentors will provide guidance and technical feedback.</p>
                             </div>
                         </div>
@@ -202,13 +186,13 @@ export default function GuidelinesPage() {
 
                             <div className="relative pl-8 border-l-2 border-[#FFEE00]/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-[#FFEE00]" />
-                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Top 10 Selection • 06:00 – 07:00 AM</h4>
+                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Top 10 Selection â€¢ 06:00 â€“ 07:00 AM</h4>
                                 <p className="text-sm text-white/80">Picking the strongest projects for the grand pitch.</p>
                             </div>
 
                             <div className="relative pl-8 border-l-2 border-[#FFEE00]/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-[#FFEE00]" />
-                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Final Presentations • 07:30 – 08:30 AM</h4>
+                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Final Presentations â€¢ 07:30 â€“ 08:30 AM</h4>
                                 <p className="text-sm text-white/80">Final live pitch and judge demonstrations.</p>
                             </div>
                         </div>
@@ -322,14 +306,14 @@ export default function GuidelinesPage() {
                             </h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <ul className="space-y-4 text-sm text-white/80">
-                                    <li className="flex gap-2"><span>•</span> Frequent and meaningful commits are mandatory.</li>
-                                    <li className="flex gap-2"><span>•</span> Commit history will be reviewed during evaluation.</li>
-                                    <li className="flex gap-2 text-red-400"><span>•</span> Sudden bulk uploads without progressive history will lead to disqualification.</li>
+                                    <li className="flex gap-2"><span>â€¢</span> Frequent and meaningful commits are mandatory.</li>
+                                    <li className="flex gap-2"><span>â€¢</span> Commit history will be reviewed during evaluation.</li>
+                                    <li className="flex gap-2 text-red-400"><span>â€¢</span> Sudden bulk uploads without progressive history will lead to disqualification.</li>
                                 </ul>
                                 <ul className="space-y-4 text-sm text-white/50 italic opacity-60">
-                                    <li className="flex gap-2 text-red-400 font-bold"><span>•</span> No outsourced development or external code.</li>
-                                    <li><span>•</span> No copying from other teams.</li>
-                                    <li><span>•</span> No pre-built complete solutions.</li>
+                                    <li className="flex gap-2 text-red-400 font-bold"><span>â€¢</span> No outsourced development or external code.</li>
+                                    <li><span>â€¢</span> No copying from other teams.</li>
+                                    <li><span>â€¢</span> No pre-built complete solutions.</li>
                                 </ul>
                             </div>
                         </div>
@@ -442,7 +426,7 @@ export default function GuidelinesPage() {
 
             {/* Sticky Logo / Footer */}
             <div className="relative z-10 text-center py-12 opacity-30">
-                <p className="uppercase tracking-[1em] font-black text-xs">VHACK 2.0 PROTOCOL</p>
+                <p className="uppercase tracking-[1em] font-black text-xs">VANSH2K26 PROTOCOL</p>
             </div>
 
             {/* Fixed Background Branding */}
@@ -452,3 +436,4 @@ export default function GuidelinesPage() {
         </div>
     );
 }
+

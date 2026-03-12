@@ -11,7 +11,7 @@ export async function GET() {
             .select('team_id');
 
         if (error) {
-            console.error("❌ Error fetching registrations:", error);
+            console.error("âŒ Error fetching registrations:", error);
             throw error;
         }
 
@@ -37,11 +37,11 @@ export async function GET() {
             nextNum++;
         }
 
-        const nextId = `VHACK_2.0_${nextNum}`;
+        const nextId = `VANSH2K26_${nextNum}`;
 
         return NextResponse.json({ success: true, nextId });
     } catch (error: any) {
-        console.error("🏁 Register-ID Route Exception:", error);
+        console.error("ðŸ Register-ID Route Exception:", error);
         return NextResponse.json({
             success: false,
             error: error.message || String(error),
@@ -49,3 +49,4 @@ export async function GET() {
         }, { status: 500 });
     }
 }
+

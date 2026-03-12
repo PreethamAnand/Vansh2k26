@@ -36,7 +36,7 @@ export default function TeamOnboarding() {
         console.log("Onboarding Data:", formData);
 
         // Simulate Success
-        toast.success("Welcome to VHACK 2.0! Your profile is set.");
+        toast.success("Welcome to VANSH2K26! Your profile is set.");
         router.push("/dashboard/team");
     };
 
@@ -156,7 +156,7 @@ export default function TeamOnboarding() {
                                 {agreed && <CheckCircle2 size={16} className="text-white" />}
                             </div>
                             <span className="text-sm font-bold text-white/60 group-hover:text-white transition-colors italic">
-                                I agree to the VHACK 2.0 Hackathon Rules
+                                I agree to the VANSH2K26 Hackathon Rules
                             </span>
                         </div>
                     </div>
@@ -179,3 +179,4 @@ export default function TeamOnboarding() {
         </DashboardLayout>
     );
 }
+

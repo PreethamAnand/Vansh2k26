@@ -72,7 +72,7 @@ export default function LiveScorePage() {
 
     const downloadCSV = (roundId?: string) => {
         const round = STATIC_ROUNDS_CONFIG.find(r => r.id === roundId);
-        const fileName = round ? `VHACK20_${round.title.replace(/\s+/g, '_')}.csv` : `VHACK20_Standings.csv`;
+        const fileName = round ? `VANSH2K26_${round.title.replace(/\s+/g, '_')}.csv` : `VANSH2K26_Standings.csv`;
 
         let csvContent = "Rank,Team ID,Team Name,Domain";
         if (roundId) {
@@ -137,7 +137,7 @@ export default function LiveScorePage() {
                             <div className="inline-block p-4 bg-slate-900 rounded-lg mb-4">
                                 <Lock className="text-white" size={24} />
                             </div>
-                            <h1 className="text-2xl font-bold text-neutral-900 tracking-tight">VHACK 2.0</h1>
+                            <h1 className="text-2xl font-bold text-neutral-900 tracking-tight">VANSH2K26</h1>
                             <p className="text-sm text-neutral-500 mt-2 uppercase tracking-widest font-semibold">Live Scoreboard Access</p>
                         </div>
 
@@ -168,7 +168,7 @@ export default function LiveScorePage() {
                 {/* Dashboard Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-300 pb-8">
                     <div>
-                        <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">VHACK 2.0 Standings</h1>
+                        <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">VANSH2K26 Standings</h1>
                         <p className="text-slate-500 font-medium mt-1 flex items-center gap-2">
                             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                             Live Administrative Data Feed
@@ -325,3 +325,4 @@ function ScoreCell({ p, roundId, calculateAverage }: { p: Project, roundId: stri
         </td>
     );
 }
+
