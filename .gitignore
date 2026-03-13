@@ -19,7 +19,6 @@ node_modules/
 
 # Sensitive credentials (never commit passwords or private keys)
 event-coordinator-credentials.csv
-lib/coordinatorCredentials.ts
 
 # TypeScript build info
 *.tsbuildinfo

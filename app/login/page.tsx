@@ -7,7 +7,13 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import FlowField from "@/components/ui/flow-field";
-import { COORDINATOR_CREDENTIALS } from "@/lib/coordinatorCredentials";
+
+type CoordinatorLoginResponse = {
+    ok: boolean;
+    coordinatorName?: string;
+    eventName?: string;
+    eventSlug?: string;
+};
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 const SUPERADMIN_ID = "superadmin@VANSH";
@@ -74,17 +80,21 @@ export default function LoginPage() {
                 return;
             }
 
-            // ── 3. Event Coordinator credentials (individual) ───────────────
-            const matchedCoordinator = COORDINATOR_CREDENTIALS.find(
-                (item) => item.username.toLowerCase() === id.toLowerCase() && item.password === pass
-            );
+            // ── 3. Event Coordinator credentials (server-side) ──────────────
+            const coordinatorRes = await fetch("/api/coordinator-login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: id, password: pass }),
+            });
 
-            if (matchedCoordinator) {
-                setDetectedRole(`${matchedCoordinator.coordinatorName} (${matchedCoordinator.eventName})`);
+            const coordinatorData = (await coordinatorRes.json()) as CoordinatorLoginResponse;
+
+            if (coordinatorRes.ok && coordinatorData.ok && coordinatorData.eventSlug) {
+                setDetectedRole(`${coordinatorData.coordinatorName} (${coordinatorData.eventName})`);
                 login("event-coordinator", {
-                    id: matchedCoordinator.username,
-                    name: matchedCoordinator.coordinatorName,
-                    eventSlug: matchedCoordinator.eventSlug,
+                    id,
+                    name: coordinatorData.coordinatorName,
+                    eventSlug: coordinatorData.eventSlug,
                 });
                 return;
             }
