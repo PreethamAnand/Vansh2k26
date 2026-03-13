@@ -50,7 +50,7 @@ function parseTeamSize(teamSize: string): { isSolo: boolean; min: number; max: n
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const YEARS = ["1st Year", "2nd Year", "3rd Year", "4th Year", "PG / Other"];
+const YEARS = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
 export default function EventRegistrationForm({ event }: { event: EventData }) {
     const { isSolo, min, max } = parseTeamSize(event.teamSize);

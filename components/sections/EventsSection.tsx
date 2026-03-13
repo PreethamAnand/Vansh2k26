@@ -29,7 +29,7 @@ function CardFlip({
   subtitle = "Explore the fundamentals",
   description = "Dive deep into the world of modern UI/UX design.",
   features = ["UI/UX", "Modern Design", "Tailwind CSS", "Kokonut UI"],
-  image = "/events/singing.png"
+  image = "/events/singing.webp"
 }: CardFlipProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -153,56 +153,56 @@ const EVENTS: CardFlipProps[] = [
     subtitle: "Entry Fee: Rs 199",
     description: "Coordinator: K. Sai Lalitya",
     features: ["Phone: 8374749942", "Solo Performance", "Stage Event", "Open Category"],
-    image: "/events/singing.png"
+    image: "/events/singing.webp"
   },
   {
     title: "DANCE SOLO",
     subtitle: "Entry Fee: Rs 199",
     description: "Coordinator: K. Sai Lalitya",
     features: ["Phone: 8374749942", "Solo Dance", "Stage Event", "Open Category"],
-    image: "/events/Solodance.jpg.jpeg"
+    image: "/events/Solodance.webp"
   },
   {
     title: "DANCE GROUP",
     subtitle: "Entry Fee: Rs 399",
     description: "Coordinator: J. Bhavani",
     features: ["Phone: 7013159259", "Group Performance", "Stage Event", "Team Dance"],
-    image: "/events/GROUP.png"
+    image: "/events/GROUP.webp"
   },
   {
     title: "BATTLE OF BANDS",
     subtitle: "Entry Fee: Rs 499",
     description: "Coordinator: K. Manjunadha Reddy",
     features: ["Phone: 9177639022", "Band Performance", "Live Music", "Stage Event"],
-    image: "/events/BOB.jpg.jpeg"
+    image: "/events/BOB.webp"
   },
   {
     title: "PHOTOGRAPHY",
     subtitle: "Entry Fee: Rs 299",
     description: "Coordinator: M. Dheeraj",
     features: ["Phone: 9848981465", "Photo Contest", "Creative Theme", "Open Category"],
-    image: "/events/photography.png"
+    image: "/events/photography.webp"
   },
   {
     title: "SHORT FILM",
     subtitle: "Entry Fee: Rs 299",
     description: "Coordinators: B. Iswaryya, Ashmitha",
     features: ["B. Iswaryya: 9110546818", "Ashmitha: 6303566399", "Film Contest", "Open Category"],
-    image: "/events/shortfilm.png"
+    image: "/events/shortfilm.webp"
   },
   {
     title: "MUN (MODEL UNITED NATIONS)",
     subtitle: "Team of 2 - Rs 299",
     description: "Model United Nations event",
     features: ["Team Size: 2", "Debate", "Diplomacy", "Committee Sessions"],
-    image: "/events/MUN.png"
+    image: "/events/MUN.webp"
   },
   {
     title: "GAME ZONE (BGMI & FREE FIRE)",
     subtitle: "Team of 4 - Rs 599",
     description: "Coordinators: Srikanth Reddy, Hasini",
     features: ["Srikanth: 7382020763", "Hasini: 8790755516", "Team Size: 4", "Esports Battle"],
-    image: "/events/gamezone.png"
+    image: "/events/gamezone.webp"
   }
 ];
 

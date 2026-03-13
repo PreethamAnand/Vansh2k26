@@ -6,7 +6,7 @@ const GALLERY_HEIGHTS = [520, 360, 610, 430, 570, 390, 480, 640];
 
 const items = Array.from({ length: 24 }, (_, index) => {
   const imageNumber = String(index + 1).padStart(3, "0");
-  const imagePath = `/gallery/${imageNumber}.jpeg`;
+  const imagePath = `/gallery/${imageNumber}.webp`;
 
   return {
     id: `moment-${imageNumber}`,

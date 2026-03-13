@@ -58,22 +58,29 @@ const Hero = () => {
         <div className="mb-0 w-full max-w-3xl rounded-2xl border border-white/10 bg-black/35 px-8 py-10 shadow-[0_8px_40px_rgba(0,0,0,0.4)] backdrop-blur-md sm:px-12 sm:py-12">
 
           {/* Headline */}
-          <div className="mb-6">
+          <div className="mb-5">
             <h1 className="font-kanit leading-tight text-white">
-              <span className="block text-3xl font-semibold text-white/80 sm:text-4xl lg:text-5xl">
-                The Ultimate Stage for
-              </span>
               <span className="block text-5xl font-black uppercase sm:text-6xl lg:text-8xl">
                 Talent &amp; Culture
+              </span>
+              <span className="block text-3xl font-semibold text-white/80 sm:text-4xl lg:text-5xl">
+                Unleashed
               </span>
             </h1>
           </div>
 
           {/* Tagline */}
-          <p className="mb-10 max-w-2xl text-sm font-medium leading-relaxed text-white/65 sm:text-base lg:text-lg">
-            From electrifying performances to thrilling competitions, VANSH 2K26 is where passion,
-            creativity, and celebration come alive.
+          <p className="mb-4 max-w-xl text-sm font-medium leading-relaxed text-white/65 sm:text-base">
+            Electrifying performances. Thrilling competitions. Pure celebration.
           </p>
+
+          {/* Date badge */}
+          <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-purple-400" />
+            <span className="font-kanit text-xs font-semibold uppercase tracking-widest text-white/80 sm:text-sm">
+              02 April 2026
+            </span>
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4">

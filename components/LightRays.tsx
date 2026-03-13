@@ -153,7 +153,7 @@ float noise(vec2 st) {
   return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
 }
 
-float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
+float raySt0rength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
                   float seedA, float seedB, float speed) {
   vec2 sourceToCoord = coord - raySource;
   vec2 dirNorm = normalize(sourceToCoord);
@@ -168,7 +168,7 @@ float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
   float baseStrength = clamp(
     (0.45 + 0.15 * sin(distortedAngle * seedA + iTime * speed)) +
     (0.3 + 0.2 * cos(-distortedAngle * seedB + iTime * speed)),
-    0.0, 1.0
+    0.0, 1.
   );
   return baseStrength * lengthFalloff * fadeFalloff * spreadFactor * pulse;
 }
