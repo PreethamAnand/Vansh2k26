@@ -5,12 +5,14 @@ Vansh2k26 is a state-of-the-art hackathon management platform designed for a pre
 ## ✨ Features
 
 - **Advanced Registration Flow**: 3-step process (Details → UPI Payment → UTR Verification).
+- **Event-Specific Registration Journey**: Dedicated route per event (`/event/[slug]/register`) with contextual metadata, event branding, and success/failure payment feedback.
 - **Multiple Pass Types**: Dedicated flows for hackathon registration, day passes, group passes, and VIP passes.
 - **Dynamic Identity System**: Automated sequential Team ID generation (`VANSH2K26_101`).
 - **Smart Payment Integration**: 
   - Dynamic UPI QR Code generation.
   - Automatic transaction note embedding for reconciliation.
   - Support for 12-digit UTR verification.
+  - Cashfree-powered event order creation and webhook-based payment status updates.
 - **Comprehensive Dashboards**:
   - **Team Portal**: Digital entry tickets with QR codes, submission tracking, and project status.
   - **Admin Command**: Full control over registrations, payment verification, and participant directory.
@@ -57,7 +59,17 @@ RESEND_API_KEY=your_resend_key
 ### 4. Database Setup
 Execute the SQL scripts found in `database_setup.sql` and `update_schema.sql` within your Supabase SQL Editor.
 
-### 5. Run Locally
+### 5. Payment Configuration (Cashfree)
+Add these variables to your `.env` file for event payment order generation and webhook processing:
+
+```env
+CASHFREE_ENV=SANDBOX
+CASHFREE_APP_ID=your_cashfree_app_id
+CASHFREE_SECRET_KEY=your_cashfree_secret_key
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+### 6. Run Locally
 ```bash
 npm run dev
 ```

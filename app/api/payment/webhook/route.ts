@@ -30,6 +30,29 @@ export async function POST(req: Request) {
         } catch (err) {
             console.error("❌ Invalid Webhook Signature", err);
             return NextResponse.json({ message: "Invalid Signature" }, { status: 401 });
+            } else {
+                // Try event_registrations table (sub-event payments)
+                const { data: eventReg } = await supabase
+                    .from("event_registrations")
+                    .select("id, event_name, team_name, email")
+                    .eq("transaction_id", orderId)
+                    .single();
+
+                if (eventReg) {
+                    const { error: updateError } = await supabase
+                        .from("event_registrations")
+                        .update({ status: "PAID" })
+                        .eq("transaction_id", orderId);
+
+                    if (updateError) {
+                        console.error(`❌ Failed to update event registration status:`, updateError);
+                    } else {
+                        console.log(`✅ Event registration confirmed for ${eventReg.team_name} — ${eventReg.event_name}`);
+                    }
+                } else {
+                    console.error(`❌ No registration found for Order ID: ${orderId}`);
+                }
+            }
         }
 
         const paymentStatus = payload.data.payment.payment_status;

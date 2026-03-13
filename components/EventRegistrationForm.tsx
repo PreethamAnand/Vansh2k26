@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     User,
@@ -15,6 +15,7 @@ import {
     Building2,
     GraduationCap,
     BookOpen,
+    ShieldCheck,
 } from "lucide-react";
 import type { EventData } from "@/lib/eventData";
 
@@ -64,11 +65,20 @@ export default function EventRegistrationForm({ event }: { event: EventData }) {
     });
 
     const [teamName, setTeamName] = useState("");
-    const [transactionId, setTransactionId] = useState("");
     const [members, setMembers] = useState<MemberData[]>([emptyMember()]);
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
+
+    // Load Cashfree SDK on mount
+    useEffect(() => {
+        if (document.querySelector('script[data-cashfree]')) return;
+        const script = document.createElement("script");
+        script.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
+        script.async = true;
+        script.setAttribute("data-cashfree", "1");
+        document.body.appendChild(script);
+    }, []);
 
     const updateMember = (idx: number, field: keyof MemberData, value: string) => {
         setMembers((prev) => {
@@ -88,7 +98,6 @@ export default function EventRegistrationForm({ event }: { event: EventData }) {
 
     const validate = (): string | null => {
         if (!isSolo && !teamName.trim()) return "Please enter a team / band name.";
-        if (!transactionId.trim()) return "Please enter your UPI transaction ID.";
         for (let i = 0; i < members.length; i++) {
             const m = members[i];
             const label = isSolo ? "Your" : i === 0 ? "Leader's" : `Member ${i + 1}'s`;
@@ -114,24 +123,34 @@ export default function EventRegistrationForm({ event }: { event: EventData }) {
 
         setIsLoading(true);
         try {
-            const res = await fetch("/api/event-register", {
+            // Step 1: Save registration + create Cashfree order
+            const res = await fetch("/api/payment/create-event-order", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     eventSlug: event.slug,
                     eventName: event.title,
                     teamName: isSolo ? members[0].fullName : teamName,
-                    transactionId,
-                    members,
                     registrationFee: event.registrationFee,
+                    members,
                 }),
             });
             const data = await res.json();
-            if (!res.ok || !data.success) throw new Error(data.message || "Registration failed.");
-            setIsSubmitted(true);
+            if (!res.ok || !data.success) throw new Error(data.message || "Failed to create payment order.");
+
+            // Step 2: Initiate Cashfree checkout
+            const cashfreeJS = (window as any).Cashfree;
+            if (!cashfreeJS) throw new Error("Payment SDK not loaded. Please refresh and try again.");
+
+            const cashfreeMode = process.env.NEXT_PUBLIC_CASHFREE_ENV === "PRODUCTION" ? "production" : "sandbox";
+            const cashfree = cashfreeJS({ mode: cashfreeMode });
+            await cashfree.checkout({
+                paymentSessionId: data.payment_session_id,
+                redirectTarget: "_self",
+            });
+            // Cashfree will redirect away — no need to setIsLoading(false)
         } catch (err: any) {
-            setErrorMsg(err.message || "Something went wrong. Please try again.");
-        } finally {
+            setErrorMsg(err.message || "Payment initiation failed. Please try again.");
             setIsLoading(false);
         }
     };
@@ -386,15 +405,15 @@ export default function EventRegistrationForm({ event }: { event: EventData }) {
                     </motion.button>
                 )}
 
-                {/* Transaction ID */}
+                {/* Payment Summary */}
                 <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, ease: EASE }}
-                    className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 space-y-4"
+                    className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 space-y-3"
                 >
-                    <div className="flex items-center gap-3 mb-1">
+                    <div className="flex items-center gap-3">
                         <div
                             className="w-8 h-8 rounded-xl flex items-center justify-center"
                             style={{ background: `${event.accent}20`, color: event.accent }}
@@ -403,32 +422,22 @@ export default function EventRegistrationForm({ event }: { event: EventData }) {
                         </div>
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.28em] font-black text-white/40">
-                                Payment Verification
+                                Secure Payment
                             </p>
                             <p className="text-white font-black text-sm">
                                 Registration Fee:{" "}
                                 <span style={{ color: event.accent }}>{event.registrationFee}</span>
                             </p>
                         </div>
+                        <div className="ml-auto flex items-center gap-1.5 text-white/30 text-[10px] font-black uppercase tracking-wider">
+                            <ShieldCheck size={13} />
+                            Cashfree Secured
+                        </div>
                     </div>
                     <p className="text-white/35 text-xs leading-relaxed">
-                        Pay the registration fee via UPI to our official ID, then paste your
-                        UPI transaction reference below for verification.
+                        You will be redirected to a secure Cashfree payment page to complete
+                        your registration. Supports UPI, Cards, Net Banking &amp; Wallets.
                     </p>
-                    <div>
-                        <label className="block text-[9px] uppercase tracking-[0.25em] font-black text-white/35 mb-1.5">
-                            UPI Transaction ID <span style={{ color: event.accent }}>*</span>
-                        </label>
-                        <input
-                            type="text"
-                            value={transactionId}
-                            onChange={(e) => setTransactionId(e.target.value)}
-                            placeholder="e.g. T26041234567890"
-                            className={inputClass}
-                            onFocus={(e) => { e.target.style.borderColor = event.accent; e.target.style.boxShadow = `0 0 0 2px ${event.accent}22`; }}
-                            onBlur={(e) => { e.target.style.borderColor = ""; e.target.style.boxShadow = ""; }}
-                        />
-                    </div>
                 </motion.div>
 
                 {/* Error */}
@@ -466,12 +475,12 @@ export default function EventRegistrationForm({ event }: { event: EventData }) {
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                             </svg>
-                            Submitting...
+                            Redirecting to Payment...
                         </>
                     ) : (
                         <>
-                            <Send size={15} />
-                            Submit Registration
+                            <CreditCard size={15} />
+                            Register &amp; Pay {event.registrationFee}
                         </>
                     )}
                 </motion.button>

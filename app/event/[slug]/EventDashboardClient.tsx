@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import type { EventData } from "@/lib/eventData";
 import DotGrid from "@/components/DotGrid";
-import EventRegistrationForm from "@/components/EventRegistrationForm";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -62,7 +61,7 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
             </div>
 
             <div
-                className="relative z-10 min-h-[88vh] flex items-end pb-16 pt-28 px-6 md:px-14 lg:px-20"
+                className="relative z-10 min-h-[88vh] flex items-end pb-16 pt-20 px-6 md:px-14 lg:px-20"
                 style={{ background: event.gradient }}
             >
                 <motion.div
@@ -70,7 +69,7 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                     initial="hidden"
                     animate="show"
                     custom={0}
-                    className="absolute top-24 left-6 md:left-14 lg:left-20"
+                    className="absolute top-16 left-6 md:left-14 lg:left-20"
                 >
                     <Link
                         href="/events"
@@ -143,7 +142,7 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                             className="flex flex-wrap items-center gap-4"
                         >
                             <Link
-                                href="#register"
+                                href={`/event/${event.slug}/register`}
                                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-sm text-[#06000D] shadow-lg transition-all hover:scale-[1.03] active:scale-[0.97]"
                                 style={{
                                     background: `linear-gradient(135deg, ${event.accent} 0%, #ffffff88 200%)`,
@@ -207,11 +206,7 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                             ))}
                         </div>
 
-                        {event.rules.length > 5 ? (
-                            <p className="mt-4 text-xs font-bold uppercase tracking-[0.22em] text-white/40">
-                                Scroll for the full rulebook below
-                            </p>
-                        ) : null}
+                        
                     </motion.div>
                 </div>
 
@@ -260,44 +255,6 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                             </div>
                         </div>
                     ))}
-                </motion.div>
-            </section>
-
-            {/* ── Registration Form ──────────────────────── */}
-            <section id="register" className="relative z-10 px-6 md:px-14 lg:px-20 mt-12 pb-24">
-                <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    {/* Section header */}
-                    <div className="flex items-center gap-4 mb-8">
-                        <div
-                            className="w-10 h-10 rounded-2xl flex items-center justify-center text-lg font-black"
-                            style={{ background: `${event.accent}20`, color: event.accent }}
-                        >
-                            ✦
-                        </div>
-                        <div>
-                            <p className="text-[10px] uppercase tracking-[0.32em] font-black text-white/35">
-                                Join the Competition
-                            </p>
-                            <h2
-                                className="font-[950] uppercase italic text-3xl md:text-4xl tracking-tight text-white"
-                            >
-                                Register Now
-                            </h2>
-                        </div>
-                    </div>
-
-                    {/* Form card */}
-                    <div
-                        className="rounded-[2rem] border border-white/10 bg-black/25 p-6 md:p-8 backdrop-blur-xl max-w-3xl"
-                        style={{ boxShadow: `0 24px 80px ${event.glow}` }}
-                    >
-                        <EventRegistrationForm event={event} />
-                    </div>
                 </motion.div>
             </section>
 
