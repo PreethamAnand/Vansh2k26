@@ -22,6 +22,8 @@ const CATEGORIES = [
   },
 ];
 
+const MOBILE_CARD_STYLES = ["-rotate-2 mt-3", "rotate-2 mt-0", "-rotate-1 mt-4", "rotate-1 mt-1"];
+
 const GuestsSection = () => {
   return (
     <section className="relative overflow-hidden bg-black px-4 pb-10 pt-8 sm:px-10">
@@ -48,14 +50,14 @@ const GuestsSection = () => {
         <div className="mt-1 h-1 w-20 rounded-full bg-[#D4AF37]/60" />
       </div>
 
-      <div className="relative z-10 mx-auto grid h-[450px] max-w-[1400px] grid-cols-4 gap-2 sm:h-[60vh] sm:min-h-[400px] sm:gap-6">
-        {CATEGORIES.map((category) => (
+      <div className="relative z-10 mx-auto flex h-[340px] max-w-[1400px] snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-2 sm:grid sm:h-[60vh] sm:min-h-[400px] sm:grid-cols-4 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0">
+        {CATEGORIES.map((category, index) => (
           <motion.div
             key={category.id}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="group relative h-full w-full cursor-pointer overflow-hidden rounded-xl border border-[#D4AF37]/40 shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-500"
+            className={`group relative h-full w-[72vw] max-w-[280px] shrink-0 snap-center cursor-pointer overflow-hidden rounded-xl border border-[#D4AF37]/40 shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-500 ${MOBILE_CARD_STYLES[index % MOBILE_CARD_STYLES.length]} sm:h-full sm:w-full sm:max-w-none sm:shrink sm:snap-none sm:rotate-0 sm:mt-0`}
           >
             <div className="absolute left-1 top-1 z-30 h-6 w-6 opacity-100 drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] sm:left-2 sm:top-2 sm:h-10 sm:w-10">
               <svg
