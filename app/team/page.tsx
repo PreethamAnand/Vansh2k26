@@ -20,14 +20,6 @@ const TEAM_SECTIONS = [
         ],
     },
     {
-        title: "Faculty Coordinators",
-        members: [
-            { name: "Mr. L . Balaji", role: "Assistant Professor", image: "/team/faculty/balaji.jpeg" },
-            { name: "Mr. T.Sai Lalith Prasad", role: "Assistant Professor", image: "/team/faculty/lalith_new.jpeg" },
-            { name: "Mr. MSB Kasyapa", role: "Assistant Professor", image: "/team/faculty/msb_kasyapa.jpeg" },
-        ],
-    },
-    {
         title: "Student Leads & Coordinators",
         members: [
             { name: "Shubham Gundu", image: "/team/students/shubham.webp" },
@@ -125,9 +117,7 @@ export default function TeamPage() {
                                     ? "grid-cols-1 max-w-sm mx-auto"
                                     : section.title === "HODs"
                                         ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto"
-                                        : section.title === "Faculty Coordinators"
-                                            ? "grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto"
-                                            : "grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+                                        : "grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
                                     }`}>
                                     {section.members.map((member, mIdx) => (
                                         <TeamMemberCard key={mIdx} member={member} />

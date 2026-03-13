@@ -193,7 +193,7 @@ export default function LiveScorePage() {
                         {[
                             { label: "Deployment Count", val: projects.length, icon: Users },
                             { label: "On-Site Checkins", val: projects.filter(p => p.isCheckedIn).length, icon: CheckCircle2 },
-                            { label: "Active Evaluation", val: projects.filter(p => !p.isEliminated).length, icon: BarChart3 },
+                            { label: "Active Teams", val: projects.filter(p => !p.isEliminated).length, icon: BarChart3 },
                             { label: "Final Release", val: projects.filter(p => p.submission?.isFinal).length, icon: FileText },
                         ].map((stat, i) => (
                             <div key={i} className="bg-white border border-slate-300 rounded-xl p-6 shadow-sm flex items-center gap-4">

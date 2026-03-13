@@ -14,7 +14,7 @@ Vansh2k26 is a state-of-the-art hackathon management platform designed for a pre
 - **Comprehensive Dashboards**:
   - **Team Portal**: Digital entry tickets with QR codes, submission tracking, and project status.
   - **Admin Command**: Full control over registrations, payment verification, and participant directory.
-  - **Judge Panel**: Structured grading pool for project evaluation.
+  - **Judge Panel**: Structured grading pool for project scoring.
   - **Event Coordinator Workspace**: Event-specific oversight for participant and activity management.
 - **Public Event Experience**: Dedicated event pages, updated prize and guideline sections, and a redesigned visual landing flow.
 - **Automated Communication**: Professional HTML confirmation emails sent via **Resend** upon registration approval.

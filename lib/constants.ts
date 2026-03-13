@@ -36,7 +36,7 @@ export const STATIC_ROUNDS_CONFIG = [
     {
         id: "round3",
         title: "Round-3",
-        subtitle: "Final Evaluation (Focusing on What was actually buill)",
+        subtitle: "Final Presentation (Focusing on What was actually built)",
         color: "text-yellow-400",
         bg: "bg-yellow-500",
         dayOffset: 1,

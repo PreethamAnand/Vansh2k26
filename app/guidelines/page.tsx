@@ -141,8 +141,8 @@ export default function GuidelinesPage() {
                                 <li>Team must consist of all registered members.</li>
                                 <li>All team members must remain available at the assigned desk/workspace throughout the hackathon.</li>
                                 <li>Members may step out only during officially announced break hours.</li>
-                                <li>During evaluation rounds, all team members must be present.</li>
-                                <li className="text-red-400 font-bold">Absence during evaluation may impact scoring or eligibility.</li>
+                                <li>During judging rounds, all team members must be present.</li>
+                                <li className="text-red-400 font-bold">Absence during judging rounds may impact scoring or eligibility.</li>
                             </ul>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ export default function GuidelinesPage() {
 
                             <div className="relative pl-8 border-l-2 border-[#FFEE00]/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-[#FFEE00]" />
-                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">First Evaluation â€¢ 12:30 â€“ 01:00 PM</h4>
+                                <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">First Review • 12:30 – 01:00 PM</h4>
                                 <p className="text-sm text-white/80">Initial progress assessment and technical roadmap review.</p>
                             </div>
 
@@ -176,7 +176,7 @@ export default function GuidelinesPage() {
                             <div className="relative pl-8 border-l-2 border-blue-500/20">
                                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#0B0114] border-2 border-blue-500" />
                                 <h4 className="text-white font-bold text-sm tracking-widest mb-1 italic">Progress Check-in â€¢ 10:00 â€“ 11:00 PM</h4>
-                                <p className="text-sm text-white/80 italic">Idea suggestions round: Evaluators and mentors will provide guidance and technical feedback.</p>
+                                <p className="text-sm text-white/80 italic">Idea suggestions round: Judges will provide guidance and technical feedback.</p>
                             </div>
                         </div>
 
@@ -307,7 +307,7 @@ export default function GuidelinesPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <ul className="space-y-4 text-sm text-white/80">
                                     <li className="flex gap-2"><span>â€¢</span> Frequent and meaningful commits are mandatory.</li>
-                                    <li className="flex gap-2"><span>â€¢</span> Commit history will be reviewed during evaluation.</li>
+                                    <li className="flex gap-2"><span>•</span> Commit history will be reviewed during judging rounds.</li>
                                     <li className="flex gap-2 text-red-400"><span>â€¢</span> Sudden bulk uploads without progressive history will lead to disqualification.</li>
                                 </ul>
                                 <ul className="space-y-4 text-sm text-white/50 italic opacity-60">
@@ -353,11 +353,11 @@ export default function GuidelinesPage() {
                 </Section>
 
                 {/* 10-12. Stability & Conduct */}
-                <Section title="Evaluation Stability & Conduct" id="10">
+                <Section title="Demo Stability & Conduct" id="10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-4">
                             <h4 className="text-white font-bold text-sm tracking-widest italic">10. Demo Stability</h4>
-                            <p className="text-xs text-white/40 leading-relaxed italic">Projects must function during evaluation. Judges are not responsible for technical failures. Demo failure impacts scoring.</p>
+                            <p className="text-xs text-white/40 leading-relaxed italic">Projects must function at all times. Judges are not responsible for technical failures. Demo failure impacts scoring.</p>
                         </div>
                         <div className="space-y-4">
                             <h4 className="text-white font-bold text-sm tracking-widest italic">12. Code of Conduct</h4>

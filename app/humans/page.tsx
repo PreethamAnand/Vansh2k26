@@ -3,13 +3,12 @@ import { useState, useMemo } from "react"
 import HumanCard from "@/components/HumansCard/Card"
 import Image from "next/image"
 import { organizerss } from "@/data/orgData"
-import { mentorss } from "@/data/mentorData"
 import { famm } from "@/data/famData"
 import FadeInView from "@/components/FadeInView"
 
 export default function HumansPage() {
   const [activeTab, setActiveTab] =
-    useState<"organizers" | "mentors" | "family">("organizers")
+    useState<"organizers" | "family">("organizers")
 
   const organizersGrid = useMemo(
     () => (
@@ -34,30 +33,6 @@ export default function HumansPage() {
             </FadeInView>
           ))}
         </div>
-      </div>
-    ),
-    []
-  )
-
-  const mentorsGrid = useMemo(
-    () => (
-      <div
-        className="grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-3
-            gap-y-16
-            gap-x-12
-            max-w-[300px]
-            md:max-w-[1400px]
-            mx-auto
-            px-8"
-      >
-        {mentorss.map((p, i) => (
-          <FadeInView key={p.name} delay={0.02 * i} yOffset={30}>
-            <HumanCard {...p} />
-          </FadeInView>
-        ))}
       </div>
     ),
     []
@@ -161,17 +136,6 @@ export default function HumansPage() {
               </button>
 
               <button
-                onClick={() => setActiveTab("mentors")}
-                aria-pressed={activeTab === "mentors"}
-                className={`px-6 md:px-8 h-full rounded-full font-semibold text-sm md:text-lg transition-all duration-300 ${activeTab === "mentors"
-                  ? "bg-[#9E00F9] text-white shadow-lg"
-                  : "bg-transparent text-purple-300 hover:text-white"
-                  }`}
-              >
-                Mentors
-              </button>
-
-              <button
                 onClick={() => setActiveTab("family")}
                 aria-pressed={activeTab === "family"}
                 className={`px-6 md:px-8 h-full rounded-full font-semibold text-sm md:text-lg transition-all duration-300 ${activeTab === "family"
@@ -188,7 +152,6 @@ export default function HumansPage() {
         {/* Content based on active tab */}
         <div className="mt-12 w-screen">
           {activeTab === "organizers" && organizersGrid}
-          {activeTab === "mentors" && mentorsGrid}
           {activeTab === "family" && familyGrid}
         </div>
       </div>
