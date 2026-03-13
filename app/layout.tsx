@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ViewTransitions } from 'next-view-transitions'
 import SmoothScroll from "@/components/SmoothScroll";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vhack.online'),
@@ -92,6 +93,7 @@ export default function RootLayout({
               </SmoothScroll>
             </HackathonProvider>
           </AuthProvider>
+          <SpeedInsights />
         </body>
       </html>
     </ViewTransitions >
