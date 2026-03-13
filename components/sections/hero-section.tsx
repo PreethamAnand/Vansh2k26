@@ -22,7 +22,7 @@ const Hero = () => {
       {/* ── Background Image ── */}
       <div className="absolute inset-0">
         <Image
-          src="/HEROBG.jpg"
+          src="/HEROBG.webp"
           alt="VANSH 2K26"
           fill
           className="object-cover object-center"
