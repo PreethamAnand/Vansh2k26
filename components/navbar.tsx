@@ -34,24 +34,16 @@ export default function GlassNavBar() {
         }
       `}
     >
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <Image
             src="/vansh_logo.PNG"
             alt="VANSH 2K26"
-            width={85}
-            height={85}
-            className="h-[85px] w-auto object-contain"
-            priority
-          />
-          <Image
-            src="/vignan-logo.png"
-            alt="Vignan's Institute of Information Technology"
-            width={120}
-            height={40}
-            className="h-9 w-auto object-contain brightness-0 invert hidden sm:block"
+            width={110}
+            height={110}
+            className="h-[110px] w-auto object-contain"
             priority
           />
         </Link>
