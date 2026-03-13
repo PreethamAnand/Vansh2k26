@@ -6,17 +6,17 @@ import SmoothScroll from "@/components/SmoothScroll";
 export const metadata: Metadata = {
   metadataBase: new URL('https://vhack.online'),
   title: {
-    default: "VANSH2K26 | VITS Hyderabad Hackathon",
+    default: "VANSH2K26 | VITS Hyderabad Cultural & Technical Fest",
     template: "%s | VANSH2K26"
   },
-  description: "VANSH2K26 is VITS Hyderabad's student-run hackathon. Join us for 2 days of coding, innovation, and fun. February 27-28, 2026.",
+  description: "VANSH2K26 is VITS Hyderabad's premier cultural & technical fest. Join us for 2 days of competition, creativity, and celebration. February 27-28, 2026.",
   icons: {
     icon: '/vh_2.0.png',
   },
   keywords: ["Hackathon", "VITS", "Coding", "VHACK", "Hyderabad", "Tech Event", "Vignan"],
   openGraph: {
-    title: "VANSH2K26 | VITS Hyderabad Hackathon",
-    description: "Join us for 2 days of coding, innovation, and fun at Vignan Institute of Technology and Science, Hyderabad.",
+    title: "VANSH2K26 | VITS Hyderabad Cultural & Technical Fest",
+    description: "Join us for 2 days of culture, innovation, and competition at Vignan Institute of Technology and Science, Hyderabad.",
     url: 'https://vhack.online',
     siteName: 'VANSH2K26',
     images: [

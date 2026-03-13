@@ -14,7 +14,7 @@ export default function Loading() {
                 {/* Logo Container */}
                 <div className="relative animate-bounce duration-[2000ms]">
                     <Image
-                        src="/vh_2.0.png"
+                        src="/vansh2k26.png"
                         alt="VANSH2K26"
                         width={120}
                         height={120}

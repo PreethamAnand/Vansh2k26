@@ -40,7 +40,7 @@ export function Pricing({
       <div className="pointer-events-none absolute bottom-8 right-0 h-72 w-72 rounded-full bg-black/60 blur-3xl" />
 
       <div className="mb-12 text-center">
-        <h2 className="font-kanit text-5xl font-black uppercase tracking-tight text-white sm:text-6xl lg:text-7xl">
+        <h2 className="font-kanit text-5xl font-[950] uppercase tracking-tight text-white sm:text-6xl lg:text-7xl">
           {title}
         </h2>
         {subtitle && (
