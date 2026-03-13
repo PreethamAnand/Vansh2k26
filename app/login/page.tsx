@@ -156,7 +156,7 @@ export default function LoginPage() {
                 {/* ── Card top: login image background + Vignan logo ── */}
                 <div className="relative h-56 md:h-64 flex flex-col items-center justify-center gap-3 overflow-hidden bg-[#20033a]">
                     <img
-                        src="/login_image.jpeg"
+                        src="/login_image.webp"
                         alt="Login Banner"
                         className="absolute inset-0 w-full h-full object-cover object-center"
                     />
