@@ -10,6 +10,7 @@ import FlowField from "@/components/ui/flow-field";
 
 type CoordinatorLoginResponse = {
     ok: boolean;
+    message?: string;
     coordinatorName?: string;
     eventName?: string;
     eventSlug?: string;
@@ -100,7 +101,7 @@ export default function LoginPage() {
             }
 
             // ── Nothing matched ─────────────────────────────────────────────
-            setError("Invalid ID or Password. Please check your credentials.");
+            setError(coordinatorData.message || "Invalid ID or Password. Please check your credentials.");
 
         } catch (err) {
             console.error("Login error:", err);

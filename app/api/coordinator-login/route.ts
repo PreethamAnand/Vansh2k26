@@ -12,12 +12,19 @@ export async function POST(req: Request) {
         }
 
         const credentials = getCoordinatorCredentials();
+        if (!credentials.length) {
+            return NextResponse.json(
+                { ok: false, message: "Coordinator login is not configured yet. Please contact admin." },
+                { status: 503 }
+            );
+        }
+
         const matched = credentials.find(
             (item) => item.username.toLowerCase() === username.toLowerCase() && item.password === password
         );
 
         if (!matched) {
-            return NextResponse.json({ ok: false }, { status: 401 });
+            return NextResponse.json({ ok: false, message: "Invalid ID or Password. Please check your credentials." }, { status: 401 });
         }
 
         return NextResponse.json({

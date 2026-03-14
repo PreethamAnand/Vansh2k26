@@ -1,87 +1,70 @@
-# Vansh2k26 — Premium Hackathon Platform
+# VANSH 2K26 Website
 
-Vansh2k26 is a state-of-the-art hackathon management platform designed for a premium user experience. It features a seamless registration flow, dynamic payment processing, and comprehensive dashboards for participants, judges, and administrators.
+VANSH 2K26 is a full-stack event platform built for managing registrations, payments, and role-based operations for a college cultural and technical fest.
 
-## ✨ Features
+## Overview
 
-- **Advanced Registration Flow**: 3-step process (Details → UPI Payment → UTR Verification).
-- **Event-Specific Registration Journey**: Dedicated route per event (`/event/[slug]/register`) with contextual metadata, event branding, and success/failure payment feedback.
-- **Multiple Pass Types**: Dedicated flows for hackathon registration, day passes, group passes, and VIP passes.
-- **Dynamic Identity System**: Automated sequential Team ID generation (`VANSH2K26_101`).
-- **Smart Payment Integration**: 
-  - Dynamic UPI QR Code generation.
-  - Automatic transaction note embedding for reconciliation.
-  - Support for 12-digit UTR verification.
-  - Cashfree-powered event order creation and webhook-based payment status updates.
-- **Comprehensive Dashboards**:
-  - **Team Portal**: Digital entry tickets with QR codes, submission tracking, and project status.
-  - **Admin Command**: Full control over registrations, payment verification, and participant directory.
-  - **Judge Panel**: Structured grading pool for project scoring.
-  - **Event Coordinator Workspace**: Event-specific oversight for participant and activity management.
-- **Public Event Experience**: Dedicated event pages, updated prize and guideline sections, and a redesigned visual landing flow.
-- **Automated Communication**: Professional HTML confirmation emails sent via **Resend** upon registration approval.
-- **Premium Aesthetics**: High-fidelity UI using Framer Motion animations and custom glassmorphism effects.
+This project includes:
 
-## 🛠️ Technology Stack
+- Public-facing pages for event discovery, schedules, guidelines, FAQs, and contact information.
+- Event and pass registration flows with payment status handling.
+- Dashboard experiences for multiple roles (Admin, Super Admin, Judges, Team, Volunteers, and Event Coordinators).
+- API routes for registration, team and event management, settings, login, and payment workflows.
 
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS & Vanilla CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Backend/Database**: Supabase (PostgreSQL)
-- **Email**: Resend API
-- **Transitions**: Next View Transitions
+## Core Capabilities
 
-## 🚀 Getting Started
+- Multi-event registration and participant tracking.
+- Pass-based registration support.
+- Role-based login and dashboard access.
+- Coordinator-specific event management access.
+- Email and payment integration for operational workflows.
 
-### 1. Prerequisites
-- Node.js (Latest LTS)
-- Supabase Account
-- Resend API Key
+## Tech Stack
 
-### 2. Installation
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Supabase
+
+## Project Structure
+
+- `app/`: Routes, pages, and API endpoints.
+- `components/`: Shared UI and dashboard components.
+- `context/`: Global auth and app context providers.
+- `lib/`: Utility modules, data helpers, and service integrations.
+- `data/`: Static data sources.
+- `public/`: Public static assets.
+
+## Local Setup
+
+1. Install dependencies:
+
 ```bash
-# Clone the repository
-git clone https://github.com/PreethamAnand/Vansh2k26.git
-
-# Install dependencies
 npm install
 ```
 
-### 3. Environment Setup
-Create a `.env` file in the root directory:
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-RESEND_API_KEY=your_resend_key
-```
+2. Configure environment variables in `.env` based on your deployment requirements.
 
-### 4. Database Setup
-Execute the SQL scripts found in `database_setup.sql` and `update_schema.sql` within your Supabase SQL Editor.
+3. Start development server:
 
-### 5. Payment Configuration (Cashfree)
-Add these variables to your `.env` file for event payment order generation and webhook processing:
-
-```env
-CASHFREE_ENV=SANDBOX
-CASHFREE_APP_ID=your_cashfree_app_id
-CASHFREE_SECRET_KEY=your_cashfree_secret_key
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
-### 6. Run Locally
 ```bash
 npm run dev
 ```
 
-## Gallery Asset Naming
+4. Open:
 
-All files in the public gallery folder follow a serial naming convention for easier maintenance and predictable ordering.
+```text
+http://localhost:3000
+```
 
-- Location: public/gallery
-- Format: 3-digit serial number with extension
-- Example: 001.jpeg, 002.jpeg ... 024.jpeg
+## Notes
+
+- Keep secrets and service keys only in environment files.
+- Do not commit production credentials.
+- Restart the dev server after updating environment variables.
 
 ## License
-© 2026 Vansh2k26. All rights reserved. Built for high-performance innovation.
+
+Copyright (c) 2026 VANSH 2K26. All rights reserved.
 

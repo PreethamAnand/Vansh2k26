@@ -41,7 +41,7 @@ export function Footer() {
           </div>
 
           {/* Column 3 — Connect With Us */}
-          <div className="flex flex-col items-end gap-2">
+          <div className="flex flex-col items-end gap-1.5">
             <h4 className="text-white font-black font-kanit italic uppercase text-base md:text-lg tracking-widest">
               Connect With Us
             </h4>
@@ -57,6 +57,11 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
+            <div className="text-right text-[11px] md:text-xs leading-tight text-white/70 font-semibold">
+              <p className="uppercase tracking-wide text-white/80">Student Coordinator</p>
+              <p>Jashwanth - +91 80964 19473</p>
+              <p>Saikishor - +91 96426 47782</p>
+            </div>
           </div>
 
         </div>
