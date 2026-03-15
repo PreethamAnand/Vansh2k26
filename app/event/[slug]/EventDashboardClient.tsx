@@ -13,7 +13,7 @@ import {
     Zap,
 } from "lucide-react";
 import type { EventData } from "@/lib/eventData";
-import DotGrid from "@/components/DotGrid";
+
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -46,19 +46,7 @@ export default function EventDashboardClient({ event }: { event: EventData }) {
                     style={{ background: event.glow }}
                 />
             </div>
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <DotGrid
-                    dotSize={4}
-                    gap={26}
-                    baseColor="#4f7876"
-                    activeColor={event.accent}
-                    proximity={270}
-                    shockRadius={140}
-                    shockStrength={5}
-                    resistance={750}
-                    returnDuration={1.5}
-                />
-            </div>
+
 
             <div
                 className="relative z-10 min-h-[88vh] flex items-end pb-16 pt-20 px-6 md:px-14 lg:px-20"

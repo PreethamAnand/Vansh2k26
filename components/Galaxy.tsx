@@ -1,8 +1,9 @@
 "use client";
 
-import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
-import { useEffect, useRef, type HTMLAttributes } from 'react';
-import './Galaxy.css';
+import { Renderer, Program, Mesh, Color, Triangle, Transform } from 'ogl';
+import { useEffect, useRef, useState } from 'react';
+import type { HTMLAttributes } from 'react';
+
 
 const vertexShader = `
 attribute vec2 uv;
@@ -37,10 +38,10 @@ uniform float uRepulsionStrength;
 uniform float uMouseActiveFactor;
 uniform float uAutoCenterRepulsion;
 uniform bool uTransparent;
+uniform float uNumLayers;
 
 varying vec2 vUv;
 
-#define NUM_LAYER 4.0
 #define STAR_COLOR_CUTOFF 0.2
 #define MAT45 mat2(0.7071, -0.7071, 0.7071, 0.7071)
 #define PERIOD 3.0
@@ -154,7 +155,8 @@ void main() {
 
   vec3 col = vec3(0.0);
 
-  for (float i = 0.0; i < 1.0; i += 1.0 / NUM_LAYER) {
+  for (float i = 0.0; i < 1.0; i += 1.0 / 8.0) {
+    if (i >= 1.0 / uNumLayers * (uNumLayers - 0.01)) break;
     float depth = fract(i + uStarSpeed * uSpeed);
     float scale = mix(20.0 * uDensity, 0.5 * uDensity, depth);
     float fade = depth * smoothstep(1.0, 0.9, depth);
@@ -215,13 +217,34 @@ export default function Galaxy({
   const smoothMousePos = useRef({ x: 0.5, y: 0.5 });
   const targetMouseActive = useRef(0.0);
   const smoothMouseActive = useRef(0.0);
+  const [isVisible, setIsVisible] = useState(false);
 
+  // IntersectionObserver — only render when section is in viewport
   useEffect(() => {
     if (!ctnDom.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.05 }
+    );
+    observer.observe(ctnDom.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!ctnDom.current || !isVisible) return;
     const ctn = ctnDom.current;
+
+    // Mobile: very low quality to prevent lag
+    const isMobile = window.innerWidth < 768;
+    const effectiveDpr = isMobile ? 0.5 : Math.min(window.devicePixelRatio || 1, 2);
+    const numLayers = isMobile ? 2.0 : 4.0;
+    const targetFPS = isMobile ? 24 : 60;
+    const frameInterval = 1000 / targetFPS;
+
     const renderer = new Renderer({
       alpha: transparent,
-      premultipliedAlpha: false
+      premultipliedAlpha: false,
+      dpr: effectiveDpr,
     });
     const gl = renderer.gl;
 
@@ -236,8 +259,7 @@ export default function Galaxy({
     let program: Program | null = null;
 
     function resize() {
-      const scale = 1;
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+      renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
       if (program) {
         program.uniforms.uResolution.value = new Color(
           gl.canvas.width,
@@ -275,33 +297,43 @@ export default function Galaxy({
         uRepulsionStrength: { value: repulsionStrength },
         uMouseActiveFactor: { value: 0.0 },
         uAutoCenterRepulsion: { value: autoCenterRepulsion },
-        uTransparent: { value: transparent }
+        uTransparent: { value: transparent },
+        uNumLayers: { value: numLayers },
       }
     });
 
+    const scene = new Transform();
     const mesh = new Mesh(gl, { geometry, program });
+    mesh.setParent(scene);
     let animateId = 0;
+    let lastFrameTime = 0;
 
     function update(t: number) {
       animateId = requestAnimationFrame(update);
       if (!program) return;
+
+      // Frame-rate throttle
+      const delta = t - lastFrameTime;
+      if (delta < frameInterval) return;
+      lastFrameTime = t - (delta % frameInterval);
 
       if (!disableAnimation) {
         program.uniforms.uTime.value = t * 0.001;
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
       }
 
-      const lerpFactor = 0.05;
-      smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
-      smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
+      if (!isMobile) {
+        const lerpFactor = 0.05;
+        smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
+        smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
+        smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
 
-      smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
+        program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
+        program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
+        program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
+      }
 
-      program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
-      program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
-      program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
-
-      renderer.render({ scene: mesh });
+      renderer.render({ scene });
     }
     animateId = requestAnimationFrame(update);
     ctn.appendChild(gl.canvas);
@@ -318,7 +350,7 @@ export default function Galaxy({
       targetMouseActive.current = 0.0;
     }
 
-    if (mouseInteraction) {
+    if (mouseInteraction && !isMobile) {
       ctn.addEventListener('mousemove', handleMouseMove);
       ctn.addEventListener('mouseleave', handleMouseLeave);
     }
@@ -326,14 +358,17 @@ export default function Galaxy({
     return () => {
       cancelAnimationFrame(animateId);
       window.removeEventListener('resize', resize);
-      if (mouseInteraction) {
+      if (mouseInteraction && !isMobile) {
         ctn.removeEventListener('mousemove', handleMouseMove);
         ctn.removeEventListener('mouseleave', handleMouseLeave);
       }
-      ctn.removeChild(gl.canvas);
+      if (ctn.contains(gl.canvas)) {
+        ctn.removeChild(gl.canvas);
+      }
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [
+    isVisible,
     focal,
     rotation,
     starSpeed,

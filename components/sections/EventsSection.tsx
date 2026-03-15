@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { FloatingPathsLayer } from "@/components/ui/background-paths";
-import Galaxy from "@/components/Galaxy";
 
 export interface CardFlipProps {
   title?: string;
@@ -211,24 +210,8 @@ const EventsSection = () => {
     <section
       id="events"
       aria-label="Events"
-      className="relative overflow-hidden py-16 bg-black"
+      className="relative overflow-hidden py-16"
     >
-      <div className="absolute inset-0 z-0 h-full w-full">
-        <Galaxy 
-          mouseRepulsion={false}
-          mouseInteraction={false}
-          density={1.7}
-          glowIntensity={0.2}
-          saturation={0.5}
-          hueShift={260}
-          twinkleIntensity={0.3}
-          rotationSpeed={0.1}
-          repulsionStrength={2}
-          autoCenterRepulsion={0}
-          starSpeed={0.7}
-          speed={1.9}
-        />
-      </div>
       <FloatingPathsLayer className="relative z-10 opacity-80" />
       <div className="relative z-20 mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-10">
         <h2 className="text-center font-kanit text-5xl font-black uppercase tracking-tight text-slate-900 sm:text-6xl lg:text-7xl dark:text-white">

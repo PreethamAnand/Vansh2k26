@@ -52,7 +52,12 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <head>
-          <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+          <link rel="preconnect" href="https://fonts.cdnfonts.com" crossOrigin="anonymous" />
+          <link rel="preload" href="https://fonts.cdnfonts.com/s/16219/Gilroy-Medium.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+          <link rel="preload" href="https://fonts.cdnfonts.com/s/16219/Gilroy-Regular.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+          <link rel="preload" href="https://fonts.cdnfonts.com/s/16219/Gilroy-Heavy.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+          <link rel="preload" href="https://fonts.cdnfonts.com/s/16219/Gilroy-Bold.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+          <script src="https://sdk.cashfree.com/js/v3/cashfree.js" defer></script>
         </head>
         <body
           className="antialiased overflow-x-hidden bg-black"

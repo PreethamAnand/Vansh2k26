@@ -54,5 +54,10 @@
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4.1.18",
     "typescript": "^5"
-  }
+  },
+  "browserslist": [
+    "last 3 versions",
+    "not dead",
+    "> 0.5%"
+  ]
 }

@@ -7,13 +7,16 @@ export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null);
 
   useEffect(() => {
+    // Disable Lenis entirely on mobile — use native scroll
+    if (window.innerWidth < 768) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: "vertical",
       gestureDirection: "vertical",
       smooth: true,
-      smoothTouch: true,
+      smoothTouch: false,
       touchMultiplier: 2,
     });
 

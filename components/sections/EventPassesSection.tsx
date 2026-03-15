@@ -1,5 +1,4 @@
 import { Pricing, type PricingPlan } from "@/components/ui/pricing";
-import Galaxy from "@/components/Galaxy";
 
 const passPlans: PricingPlan[] = [
   {
@@ -42,23 +41,7 @@ const passPlans: PricingPlan[] = [
 
 export default function EventPassesSection() {
   return (
-    <section id="event-passes" aria-label="Event passes" className="relative overflow-hidden bg-black py-6 sm:py-10">
-      <div className="absolute inset-0 z-0 h-full w-full">
-        <Galaxy 
-          mouseRepulsion={false}
-          mouseInteraction={false}
-          density={1.7}
-          glowIntensity={0.2}
-          saturation={0.5}
-          hueShift={260}
-          twinkleIntensity={0.3}
-          rotationSpeed={0.1}
-          repulsionStrength={2}
-          autoCenterRepulsion={0}
-          starSpeed={0.7}
-          speed={1.9}
-        />
-      </div>
+    <section id="event-passes" aria-label="Event passes" className="relative overflow-hidden py-6 sm:py-10">
       <div className="relative z-10">
         <Pricing
           plans={passPlans}

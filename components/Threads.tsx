@@ -2,9 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import type { HTMLAttributes } from 'react';
-import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
+import { Renderer, Program, Mesh, Triangle, Color, Transform } from 'ogl';
 
-import './Threads.css';
 
 const vertexShader = `
 attribute vec2 position;
@@ -169,7 +168,9 @@ export default function Threads({
       },
     });
 
+    const scene = new Transform();
     const mesh = new Mesh(gl, { geometry, program });
+    mesh.setParent(scene);
 
     const resize = () => {
       const w = container.clientWidth || window.innerWidth;
@@ -216,7 +217,7 @@ export default function Threads({
       }
 
       program.uniforms.iTime.value = time * 0.001;
-      renderer.render({ scene: mesh });
+      renderer.render({ scene });
       animationFrameId.current = window.requestAnimationFrame(update);
     };
 

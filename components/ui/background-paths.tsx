@@ -3,19 +3,28 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 36 }, (_, i) => ({
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  // On mobile: skip entirely — no paths rendered
+  if (isMobile) return null;
+
+  const paths = Array.from({ length: 12 }, (_, i) => ({
     id: i,
-    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
-      380 - i * 5 * position
-    } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
-      152 - i * 5 * position
-    } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
-      684 - i * 5 * position
-    } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    color: `rgba(15,23,42,${0.1 + i * 0.03})`,
-    width: 0.5 + i * 0.03,
+    d: `M-${380 - i * 15 * position} -${189 + i * 18}C-${
+      380 - i * 15 * position
+    } -${189 + i * 18} -${312 - i * 15 * position} ${216 - i * 18} ${
+      152 - i * 15 * position
+    } ${343 - i * 18}C${616 - i * 15 * position} ${470 - i * 18} ${
+      684 - i * 15 * position
+    } ${875 - i * 18} ${684 - i * 15 * position} ${875 - i * 18}`,
+    color: `rgba(15,23,42,${0.1 + i * 0.08})`,
+    width: 0.5 + i * 0.1,
   }));
 
   return (

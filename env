@@ -1,0 +1,36 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# SUPABASE
+# ─────────────────────────────────────────────────────────────────────────────
+NEXT_PUBLIC_SUPABASE_URL=https://dgqpmdkodliuxrxbhoij.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_hfDrTA2r02Lu6O5YzpYMMg_NsYjppxe
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=sb_publishable_hfDrTA2r02Lu6O5YzpYMMg_NsYjppxe
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key_here
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CASHFREE PAYMENT GATEWAY
+# Fill in your App ID and Secret Key from https://merchant.cashfree.com
+# Set CASHFREE_ENV to PRODUCTION when going live
+# ─────────────────────────────────────────────────────────────────────────────
+CASHFREE_APP_ID=
+CASHFREE_SECRET_KEY=
+CASHFREE_ENV=
+
+# Exposed to the browser — must match CASHFREE_ENV
+NEXT_PUBLIC_CASHFREE_ENV=
+
+# ─────────────────────────────────────────────────────────────────────────────
+# APP URL
+# Set to your production domain on Vercel (no trailing slash)
+# ─────────────────────────────────────────────────────────────────────────────
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# ─────────────────────────────────────────────────────────────────────────────
+# RESEND (Email)
+# ─────────────────────────────────────────────────────────────────────────────
+RESEND_API_KEY=your_resend_api_key_here
+
+# ─────────────────────────────────────────────────────────────────────────────
+# EVENT COORDINATOR LOGIN (server-side)
+# JSON array string used by /api/coordinator-login
+# ─────────────────────────────────────────────────────────────────────────────
+COORDINATOR_CREDENTIALS_JSON='[{"eventSlug":"singing","eventName":"Singing","coordinatorName":"K. Sai Lalitya","phone":"8374749942","username":"singing-ksailalitya-v2k26","password":"K7!mQ2@tL9#x"},{"eventSlug":"dance-solo","eventName":"Dance Solo","coordinatorName":"K. Sai Lalitya","phone":"8374749942","username":"dance-solo-ksailalitya-v2k26","password":"pR4$uV8!cN1^"},{"eventSlug":"dance-group","eventName":"Dance Group","coordinatorName":"J. Bhavani","phone":"7013159259","username":"dance-group-jbhavani-v2k26","password":"Zx3@Hm9*Qa6!"},{"eventSlug":"battle-of-bands","eventName":"Battle Of Bands","coordinatorName":"K. Manjunadha Reddy","phone":"9177639022","username":"battlebands-kmanjunadha-v2k26","password":"7vT#pL2!rW8$"},{"eventSlug":"photography","eventName":"Photography","coordinatorName":"M. Dheeraj","phone":"9848981465","username":"photography-mdheeraj-v2k26","password":"M2^kD9@sF4!y"},{"eventSlug":"short-film","eventName":"Short Film","coordinatorName":"B. Iswaryya","phone":"9110546818","username":"shortfilm-biswaryya-v2k26","password":"q8!Nw3$Jt7@b"},{"eventSlug":"short-film","eventName":"Short Film","coordinatorName":"Ashmitha","phone":"6303566399","username":"shortfilm-ashmitha-v2k26","password":"L5@pX1!mR9#d"},{"eventSlug":"game-zone","eventName":"Game Zone (BGMI & Free Fire)","coordinatorName":"Srikanth Reddy","phone":"7382020763","username":"gamezone-srikanth-v2k26","password":"u3$Gk8@vT2!n"},{"eventSlug":"game-zone","eventName":"Game Zone (BGMI & Free Fire)","coordinatorName":"Hasini","phone":"8790755516","username":"gamezone-hasini-v2k26","password":"A9!sQ4^hL7@e"},{"eventSlug":"mun","eventName":"Model United Nations","coordinatorName":"Shiva Sai","phone":"7801005872","username":"mun-shivasai-v2k26","password":"d6#Wm2!pZ8$k"},{"eventSlug":"mun","eventName":"Model United Nations","coordinatorName":"Nikitha Reddy","phone":"9347791530","username":"mun-nikithareddy-v2k26","password":"R1@tY7!cV3^q"}]'

@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useEffect, useState } from 'react';
-import { Renderer, Program, Triangle, Mesh } from 'ogl';
-import './LightRays.css';
+import { Renderer, Program, Triangle, Mesh, Transform } from 'ogl';
+
 
 const DEFAULT_COLOR = '#ffffff';
 
@@ -83,6 +83,7 @@ const LightRays = ({
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  // IntersectionObserver: only run WebGL when section is visible
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -109,7 +110,13 @@ const LightRays = ({
       await new Promise(resolve => setTimeout(resolve, 10));
       if (!containerRef.current) return;
 
-      const renderer = new Renderer({ dpr: Math.min(window.devicePixelRatio, 2), alpha: true });
+      const isMobile = window.innerWidth < 768;
+      const effectiveDpr = isMobile ? 0.5 : Math.min(window.devicePixelRatio, 2);
+      const targetFPS = isMobile ? 24 : 60;
+      const frameInterval = 1000 / targetFPS;
+      let lastFrameTime = 0;
+
+      const renderer = new Renderer({ dpr: effectiveDpr, alpha: true });
       rendererRef.current = renderer;
 
       const gl = renderer.gl;
@@ -215,10 +222,10 @@ void main() {
         lightSpread:    { value: lightSpread },
         rayLength:      { value: rayLength },
         pulsating:      { value: pulsating ? 1.0 : 0.0 },
-        fadeDistance:   { value: fadeDistance },
+        fadeDistance:    { value: fadeDistance },
         saturation:     { value: saturation },
         mousePos:       { value: [0.5, 0.5] },
-        mouseInfluence: { value: mouseInfluence },
+        mouseInfluence: { value: isMobile ? 0 : mouseInfluence },
         noiseAmount:    { value: noiseAmount },
         distortion:     { value: distortion },
       };
@@ -226,12 +233,14 @@ void main() {
 
       const geometry = new Triangle(gl);
       const program = new Program(gl, { vertex: vert, fragment: frag, uniforms });
+      const scene = new Transform();
       const mesh = new Mesh(gl, { geometry, program });
+      mesh.setParent(scene);
       meshRef.current = mesh;
 
       const updatePlacement = () => {
         if (!containerRef.current || !renderer) return;
-        renderer.dpr = Math.min(window.devicePixelRatio, 2);
+        renderer.dpr = effectiveDpr;
         const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
         renderer.setSize(wCSS, hCSS);
         const dpr = renderer.dpr;
@@ -245,15 +254,24 @@ void main() {
 
       const loop = (t: number) => {
         if (!rendererRef.current || !uniformsRef.current || !meshRef.current) return;
+
+        // Frame-rate throttle
+        const delta = t - lastFrameTime;
+        if (delta < frameInterval) {
+          animationIdRef.current = requestAnimationFrame(loop);
+          return;
+        }
+        lastFrameTime = t - (delta % frameInterval);
+
         uniforms.iTime.value = t * 0.001;
-        if (followMouse && mouseInfluence > 0.0) {
+        if (followMouse && mouseInfluence > 0.0 && !isMobile) {
           const s = 0.92;
           smoothMouseRef.current.x = smoothMouseRef.current.x * s + mouseRef.current.x * (1 - s);
           smoothMouseRef.current.y = smoothMouseRef.current.y * s + mouseRef.current.y * (1 - s);
           uniforms.mousePos.value = [smoothMouseRef.current.x, smoothMouseRef.current.y];
         }
         try {
-          renderer.render({ scene: mesh });
+          renderer.render({ scene });
           animationIdRef.current = requestAnimationFrame(loop);
         } catch (e) {
           console.warn('WebGL rendering error:', e);
@@ -310,6 +328,7 @@ void main() {
   }, [raysColor, raysSpeed, lightSpread, raysOrigin, rayLength, pulsating, fadeDistance, saturation, mouseInfluence, noiseAmount, distortion]);
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return;
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current || !rendererRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();

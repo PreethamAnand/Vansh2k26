@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Galaxy from "@/components/Galaxy";
 
 const CATEGORIES = [
   {
@@ -26,23 +25,7 @@ const MOBILE_CARD_STYLES = ["-rotate-2 mt-3", "rotate-2 mt-0", "-rotate-1 mt-4",
 
 const GuestsSection = () => {
   return (
-    <section className="relative overflow-hidden bg-black px-4 pb-10 pt-8 sm:px-10">
-      <div className="absolute inset-0 z-0 h-full w-full">
-        <Galaxy 
-          mouseRepulsion={false}
-          mouseInteraction={false}
-          density={1.7}
-          glowIntensity={0.2}
-          saturation={0.5}
-          hueShift={260}
-          twinkleIntensity={0.3}
-          rotationSpeed={0.1}
-          repulsionStrength={2}
-          autoCenterRepulsion={0}
-          starSpeed={0.7}
-          speed={1.9}
-        />
-      </div>
+    <section className="relative overflow-hidden px-4 pb-10 pt-8 sm:px-10">
       <div className="relative z-20 mx-auto mb-4 mt-2 max-w-[1400px]">
         <h2 className="text-left font-kanit text-3xl font-black uppercase italic tracking-[0.2em] text-white drop-shadow-md sm:text-4xl">
           EVENT CELEBRITIES

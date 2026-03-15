@@ -1,6 +1,5 @@
 'use client';
 
-import './CurvedLoop.css';
 
 interface CurvedLoopProps {
   marqueeText?: string;

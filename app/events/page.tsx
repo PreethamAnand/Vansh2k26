@@ -21,14 +21,14 @@ export default function EventsPage() {
 
             <section className="relative z-10 mx-auto w-full max-w-[1400px] px-5 pb-20 pt-28 sm:px-8 lg:px-12">
                 <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-                    <div>
+                    <div className="flex-1 min-w-0 break-words">
                         <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-[10px] font-extrabold uppercase tracking-[0.28em] text-white/70">
                             <Sparkles size={12} className="text-cyan-300" />
                             Premium Event Dashboards
                         </p>
                         <h1 className="max-w-4xl font-kanit text-4xl font-black uppercase italic leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-                            Explore All 8
-                            <span className="ml-3 bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
+                            Explore All 8{" "}
+                            <span className="bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
                                 Event Platforms
                             </span>
                         </h1>
